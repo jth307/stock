@@ -5,7 +5,7 @@ import SVGIcon from '../../dist/svg.js';
 // import { IoLogoLinkedin } from "react-icons/io";
 // import SearchbarContainer from '../searchbar/searchbar_container';
 
-class Greeting extends React.Component {
+class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -115,4 +115,4 @@ class Greeting extends React.Component {
     }
 }
 
-export default Greeting;
+export default Header;
