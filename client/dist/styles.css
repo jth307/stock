@@ -3,6 +3,9 @@ body {
   color: white;
 }
 
+* {
+  margin: 0;
+}
 .header-wrapper {
   display: flex;
   align-items: center;
@@ -76,7 +79,6 @@ body {
 
 .newsfeed{
   flex: 0.7;
-  border:1px solid rgb(0, 170, 147);
   color: white;
 }
 
@@ -92,11 +94,44 @@ body {
   margin-top: 0;
  }
 
+ .newsfeed-chart {
+  width: 90%;
+ }
+
+ .newsfeed-chartSection {
+  display: flex;
+  flex-direction: column;
+ }
 
 
+.graph {
+  height: 200px;
+  width: 100%;
+}
 
 .stats{
   flex: 0.3;
-  border:1px solid pink;
+  flex-direction: column;
+  padding: 0px 30px 30px 30px;
+  color: white;
 }
 
+
+.stats-container{
+  flex-direction: column;
+  flex: 1;
+  background-color: #1E2023;
+  border-radius: 5px;
+  border: 1px solid #42494D;
+}
+
+
+.stats-header{
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #42494D ;
+  padding: 20px 20px 10px 20px;
+  font-weight: 500;
+}
