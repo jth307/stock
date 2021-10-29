@@ -2,27 +2,33 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Promise from 'bluebird'
 import StatsRow from './StatsRow';
+const finnhub = require('finnhub');
+
 
 
 
 function Stats() {
 
-  const BASE_URL = 'https://finnhub.io/api/v1/quote.api'
+  const BASE_URL = 'https://finnhub.io/api/v1/quote?symbol='
   const TOKEN = 'c5t3qhaad3icf7iiomug'
+  // const api_key = finnhub.ApiClient.instance.authentications['api_key'];
+  // api_key.apiKey = "c5t3qhaad3icf7iiomug" // Replace this
+  // const finnhubClient = new finnhub.DefaultApi()
+
 
 
     const [stockData, setStockData] = useState([]);
 
+
     const getStockData = (stock) => {
       return axios
-      .get(`${BASE_URL}?symbol=${stock}&token=${TOKEN}`)
-      .catch((error)=>{
-        console.error(error.message)
-      })
+        .get(`${BASE_URL}${stock}&token=${TOKEN}`)
+        .catch((error) => {
+          console.error("Error", error.message);
+        });
+    };
 
-      setStockData(dataX);
-    }
-
+    // curl "https://finnhub.io/api/v1/quote?symbol=AAPL&token=c5t3qhaad3icf7iiomug"
 
 
     useEffect(() => {
@@ -43,10 +49,11 @@ function Stats() {
       });
 
       Promise.all(promises).then(()=>{
-        console.log(testData);
         setStockData(testData);
       })
     }, []);
+
+    console.log(stockData)
 
         return(
           <div className='stats'>
@@ -72,7 +79,7 @@ function Stats() {
                   </div>
                   <div className='stats-content'>
                     <div className='stats-row'>
-                    {stockData.map((stock) => (
+                     {stockData.map((stock) => (
                       <StatsRow
                         key={stock.name}
                         name={stock.name}
