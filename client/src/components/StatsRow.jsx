@@ -9,14 +9,12 @@ function StatsRow(props) {
 
   const percentage = ((props.price - props.openPrice)/props.openPrice) * 100;
 
-  const getModal = () => {
 
-  }
   return (
     <div className="row" >
       <div className="row-intro">
         <h1>{props?.name}</h1>
-        <p>200 shares{props.volume &&
+        <p>{props.volume &&
           (props.volume + " shares")
         }</p>
       </div>

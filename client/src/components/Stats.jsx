@@ -11,13 +11,33 @@ function Stats() {
 
   const BASE_URL = 'https://finnhub.io/api/v1/quote?symbol='
   const TOKEN = 'c5t3qhaad3icf7iiomug'
-  // const api_key = finnhub.ApiClient.instance.authentications['api_key'];
-  // api_key.apiKey = "c5t3qhaad3icf7iiomug" // Replace this
-  // const finnhubClient = new finnhub.DefaultApi()
 
 
 
     const [stockData, setStockData] = useState([]);
+    const [myStocks, setMyStocks] = useState([]);
+
+
+    const getMyStocks = () => {
+          const myData = ['UNH', 'WBA']
+          let promises = [];
+          let tempData = []
+          myData.map((stock) => {
+            promises.push(
+              getStockData(stock)
+              .then((res) => {
+                tempData.push({
+                  name: stock,
+                  ...res.data
+                });
+              })
+            )
+          });
+          Promise.all(promises).then(()=>{
+            setMyStocks(tempData);
+            console.log('hi',tempData)
+          })
+      }
 
 
     const getStockData = (stock) => {
@@ -28,12 +48,13 @@ function Stats() {
         });
     };
 
-    // curl "https://finnhub.io/api/v1/quote?symbol=AAPL&token=c5t3qhaad3icf7iiomug"
 
 
     useEffect(() => {
       const stocksList = ["AAPL", "MSFT", "TSLA", "FB", "BABA", "UBER", "DIS", "SBUX"];
       const testData = [];
+
+      getMyStocks();
 
       let promises = [];
       stocksList.map((stock) => {
@@ -63,18 +84,18 @@ function Stats() {
                   </div>
                   <div className='stats-content'>
                     <div className='stats-row'>
-                    {/* {stockData.map((stock) => (
+                    {myStocks.map((stock) => (
                       <StatsRow
-                        key={stock.data.ticker}
-                        name={stock.data.ticker}
-                        openPrice={stock.info.o}
-                        volume={stock.data.shares}
-                        price={stock.info.c}
+                        key={stock.name}
+                        name={stock.name}
+                        openPrice={stock.o}
+                        volume='120'
+                        price={stock.c}
                       />
-                    ))} */}
+                    ))}
                     </div>
                   </div>
-                  <div className='stats-header'>
+                  <div className='stats-header stats-list'>
                     <p>Lists</p>
                   </div>
                   <div className='stats-content'>

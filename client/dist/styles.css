@@ -105,7 +105,7 @@ body {
 
 
 .graph {
-  height: 200px;
+  /* height: 200px; */
   width: 100%;
 }
 
@@ -177,4 +177,42 @@ body {
 
 .row-chart{
   padding: 0 10px;
+}
+
+.stats-list{
+  border-top: 1px solid #42494D ;
+}
+
+
+
+.timeline-container {
+  display:flex;
+  border-bottom: 1px solid #3b4754;
+}
+
+/* .timeline-live {
+  padding: 12px;
+  font-weight: 200;
+  font-size: 15px;
+} */
+.timeline-buttons-container {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-bottom: 0px;
+}
+.timeline-button {
+  font-weight: 200;
+  padding: 10px 10px 15px 10px;
+  cursor: pointer;
+}
+
+.timeline-button:hover {
+  color: #21CE99;
+}
+
+.timeline-button.active {
+  color: #21CE99;
+  border-bottom: 1px solid #21CE99;
 }

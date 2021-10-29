@@ -1,5 +1,7 @@
 import React from 'react';
 import Graph from './Graph';
+import Timeline from './Timeline';
+
 
 
 
@@ -24,6 +26,7 @@ class Newsfeed extends React.Component {
                   </div>
                   <div className='newsfeed-chart'>
                     <Graph/>
+                    <Timeline/>
                   </div>
                 </div>
               </div>
