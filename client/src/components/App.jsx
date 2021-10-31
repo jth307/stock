@@ -1,21 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
-// import { AuthRoute } from '../util/route_util';
 
 import Header from './Header';
 import Newsfeed from './Newsfeed';
 import Stats from './Stats';
+import LoginPage from './LoginPage';
 
 
-// import SplashContainer from './splash/splash_container';
-// import LoginFormContainer from './session_form/login_form_container';
-// import SignupFormContainer from './session_form/signup_form_container';
-// import StockDetailsContainer from './stock/stock_details_container';
-// import PortfolioContainer from './portfolio/portfolio_container';
-// import ModalContainer from './modal/modal_container';
 
-const App = () => (
+
+function App () {
+
+  const adminUser = {
+    email : 'admin@admin.co',
+    password: 'admin',
+    name: 'Jamie'
+  };
+
+  const [user, setUser] = useState({admin: false});
+  const [error, setError] = useState('');
+
+  const Login = (details) => {
+    console.log(details);
+    if (details.email === adminUser.email && details.password === adminUser.password) {
+      setUser({admin: true })
+    }
+  }
+
+  const Logout = () => {
+    console.log('Logged Out!');
+  }
+
+
+
+  return (
+
     <div className='App'>
+      {(user.admin) ? (
+      <>
       <div className= 'app-header'>
         <Header />
       </div>
@@ -25,8 +47,11 @@ const App = () => (
         <Stats />
       </div>
       </div>
-
+      </>) : (
+        <LoginPage Login={Login} error={error}/>
+      )}
     </div>
-);
+  )
+};
 
 export default App;
