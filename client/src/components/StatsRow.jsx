@@ -1,6 +1,6 @@
 
 import React from "react";
-import StockChart from 'react-svg-loader!../stock.svg'
+import StockChart from '../stock.svg'
 
 
 
@@ -19,8 +19,8 @@ function StatsRow(props) {
         }</p>
       </div>
       <div className="row-chart">
-        <StockChart height={16}/>
-      </div>
+        <img src={StockChart} className='pic'/>
+       </div>
       <div className="row-numbers">
         <p className="row-price">{props.price}$200</p>
         <p className="row-percentage"> {Number(percentage).toFixed(2)}%</p>

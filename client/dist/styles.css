@@ -218,5 +218,13 @@ body {
 }
 
 .login{
-  color: white
+  color: white;
+}
+
+.landing{
+  color:white;
+}
+
+.pic{
+  height: 20px;
 }

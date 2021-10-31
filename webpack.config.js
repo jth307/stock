@@ -28,19 +28,21 @@ module.exports = {
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
             plugins: ['@babel/plugin-transform-runtime'],
-            {
-              loader: 'file-loader',
-              options: {
-                name: 'images/[hash]-[name].[ext]',
-              },
-          },
+
         },
       },
     },
-      {
-        test: /\.svg$/,
-        use: ['@svgr/webpack'],
-      },
+    {
+      test: /\.(png|jp(e*)g|svg|gif)$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: 'images/[hash]-[name].[ext]',
+          },
+        },
+      ],
+    },
     ],
   },
 };

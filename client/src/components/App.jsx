@@ -24,11 +24,14 @@ function App () {
     console.log(details);
     if (details.email === adminUser.email && details.password === adminUser.password) {
       setUser({admin: true })
+    } else {
+      setError('Invalid Credentials')
     }
   }
 
   const Logout = () => {
     console.log('Logged Out!');
+    setUser({admin: false})
   }
 
 
@@ -36,10 +39,10 @@ function App () {
   return (
 
     <div className='App'>
-      {(user.admin) ? (
+      {(!user.admin) ? (
       <>
       <div className= 'app-header'>
-        <Header />
+        <Header Logout={Logout}/>
       </div>
       <div className= 'app-body'>
       <div className= 'app-body-container'>
@@ -55,3 +58,4 @@ function App () {
 };
 
 export default App;
+

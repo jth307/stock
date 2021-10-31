@@ -106,6 +106,7 @@ class Header extends React.Component {
               <a href='#'>Cash</a>
               <a href='#'>Messages</a>
               <a href='#'>Account</a>
+              <button onClick={this.props.Logout}>Logout</button>
             </div>
           </div>
 
