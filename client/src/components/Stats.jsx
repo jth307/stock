@@ -35,7 +35,6 @@ function Stats() {
           });
           Promise.all(promises).then(()=>{
             setMyStocks(tempData);
-            console.log('hi',tempData)
           })
       }
 
@@ -74,7 +73,6 @@ function Stats() {
       })
     }, []);
 
-    console.log(stockData)
 
         return(
           <div className='stats'>

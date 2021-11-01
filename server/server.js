@@ -8,6 +8,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // other configuration...
 
+
+// app.get('/*', function(req, res) {
+//   res.sendFile(path.join(__dirname, '..', '/client/dist'), function(err) {
+//     if (err) {
+//       res.status(500).send(err)
+//     }
+//   })
+// })
+
+
 app.get('/', (req, res) => {
   res.send('Server says hello!');
 });

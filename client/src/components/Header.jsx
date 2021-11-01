@@ -1,19 +1,22 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SVGIcon from '../../dist/svg.js';
+import { Route, Redirect , useHistory} from 'react-router-dom';
+
 // import Octicon, { Mail, MarkGithub } from "@primer/octicons-react";
 // import { IoLogoLinkedin } from "react-icons/io";
 // import SearchbarContainer from '../searchbar/searchbar_container';
 
-class Header extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            demoUser: false
-        }
-        // this.handleSubmit = this.handleSubmit.bind(this);
-        // this.handleDemo = this.handleDemo.bind(this);
+function Header () {
+
+  let history = useHistory()
+
+
+    const Logout = () =>{
+      console.log('Logged Out!');
+      history.push('/landing' )
     }
+
 
     // handleSubmit(e) {
     //     e.preventDefault();
@@ -41,7 +44,7 @@ class Header extends React.Component {
     //     );
     // }
 
-    render() {
+
         // const { currentUser } = this.props;
         // if (currentUser) {
         //     return (
@@ -106,14 +109,14 @@ class Header extends React.Component {
               <a href='#'>Cash</a>
               <a href='#'>Messages</a>
               <a href='#'>Account</a>
-              <button onClick={this.props.Logout}>Logout</button>
+              <button onClick={Logout}>Logout</button>
             </div>
           </div>
 
         )
 
 
-    }
+
 }
 
 export default Header;

@@ -8,15 +8,24 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,
+    publicPath: '/',
   },
+  // devServer: {
+  //   // static: {
+  //   //   directory: path.join(__dirname, 'client', 'dist'),
+  //   // },
+  //   // compress: true,
+  //   // port: 9000,
+  //   // open: true,
+  //   historyApiFallback: true,
+  // },
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'client', 'dist'),
+    historyApiFallback: {
+      index: '/'
     },
-    compress: true,
-    port: 9000,
-    open: true,
-  },
+    contentBase: './',
+    hot: true
+ },
   resolve: { extensions: ['.js', '.jsx'] },
   module: {
     rules: [
@@ -44,5 +53,10 @@ module.exports = {
       ],
     },
     ],
+    // plugins: [
+    //   new HtmlWebpackPlugin({
+    //     template: 'app/index.html'
+    //   })
+    // ]
   },
 };
