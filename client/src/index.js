@@ -8,4 +8,4 @@ import { BrowserRouter as Router, Route, Link, useHistory, Redirect } from 'reac
 
 
 
-ReactDOM.render(<Landing/>, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'));

@@ -1,45 +1,38 @@
-// import React from 'react';
-// import Nav from './Nav';
-
-
-
-
-// function App () {
-
-//   return (
-
-//     <div className='landing'>
-//         <header>
-//             <Nav />
-//         </header>
-
-//     </div>
-// )
-// }
-
-// export default App;
-
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Nav from './Nav';
 import Landing from './Landing';
-import LoginPage from './LoginPage';
+import LoginForm from './LoginForm';
 import Portfolio from './portfolio';
+import SignUp from './SignUp';
 
-const App = () => (
+
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+export default function App() {
+  return (
     <Router>
-    <div className='main-div'>
-        <header className = 'app-header'>
-            <Nav />
-        </header>
-        <Route exact path='/portfolio' component={Portfolio} />
-        <Route exact path='/login' component={LoginPage} />
-        <Route exact path='/landing' component={Landing} />
-
-        {/* <Route path='/stocks/:symbol' component={StockDetailsContainer} /> */}
-    </div>
+      <div>
+        <Switch>
+          <Route path="/login">
+            <LoginForm />
+          </Route>
+          <Route path="/portfolio">
+            <Portfolio />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+          <Route path="/">
+            <Landing />
+          </Route>
+        </Switch>
+      </div>
     </Router>
-);
-
-export default App;
+  );
+}

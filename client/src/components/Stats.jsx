@@ -4,14 +4,10 @@ import Promise from 'bluebird'
 import StatsRow from './StatsRow';
 const finnhub = require('finnhub');
 
-
-
-
 function Stats() {
 
   const BASE_URL = 'https://finnhub.io/api/v1/quote?symbol='
   const TOKEN = 'c5t3qhaad3icf7iiomug'
-
 
 
     const [stockData, setStockData] = useState([]);
@@ -46,7 +42,6 @@ function Stats() {
           console.error("Error", error.message);
         });
     };
-
 
 
     useEffect(() => {

@@ -396,7 +396,7 @@ header {
 
 
 .demo-button {
-  background-image: linear-gradient(to right, #20CE99 50%, #20CE99 50%, #a7da86) ;
+  background-image: linear-gradient(to right, #20CE99 50%, #20CE99 50%, #89ebeb) ;
   color: white;
   margin: 10px;
   width: 77px;
@@ -410,8 +410,6 @@ header {
 
 .demo-button:hover {
   background-position: 100% 0%;
-  transition: 0.4s;
-
 }
 
 *, :after, :before {
@@ -482,11 +480,19 @@ button, input {
   margin-bottom: 15px;
 }
 .session-button {
-  background-color: #20CE99;
+  /* background-color: #20CE99; */
   color: white;
   font-family: 'Dosis', sans-serif;
   font-size: 17px;
   cursor: pointer;
+  background-image: linear-gradient(to right, #20CE99 50%, #20CE99 50%, #89ebeb) ;
+  transition: 0.4s;
+  background-position: 0%;
+  background-size: 200%;
+}
+
+.session-button:hover {
+background-position: 100% 0%;
 }
 
 .session-link-p a {
@@ -502,4 +508,83 @@ button, input {
   border: 1px solid red;
   margin: 10px;
   padding: 8px;
+}
+
+.signup-form-div {
+  display: flex;
+  justify-content: center;
+  margin: 200px;
+  margin-top: 150px;
+  text-align: center;
+}
+
+.form-h1 {
+  font-size: 50px;
+  margin: 20px;
+  font-weight: 400;
+}
+
+.form-h2 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.signup-inputs-div {
+  width: 600px;
+  height: 400px;
+  margin: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.signup-form-button {
+  background-image: linear-gradient(to right, #20CE99 50%, #20CE99 50%, #89ebeb) ;
+  transition: 0.4s;
+  background-position: 0%;
+  background-size: 200%;  color: white;
+  font-family: 'Dosis', sans-serif;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.signup-form-button:hover {
+  background-position: 100% 0%;
+}
+
+.name {
+  display: flex;
+}
+
+.name input {
+  width: 240px;
+  height: 40px;
+  font-size: 15px;
+  font-weight: 200;
+  border-radius: 5px;
+  border: 1px solid silver;
+  margin: 10px;
+  padding-left: 10px;
+
+}
+
+.signup-input, .signup-form-button {
+  width: 507px;
+  height: 40px;
+  font-size: 15px;
+  border-radius: 5px;
+  font-weight: 200;
+  border: 1px solid #C0C0C0;
+  margin: 10px;
+  padding-left: 10px;
+}
+
+::placeholder {
+  color: lightgray;
+}
+
+textarea:focus, input:focus{
+  outline: none;
 }
