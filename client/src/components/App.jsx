@@ -8,15 +8,16 @@ import SignUp from './SignUp';
 
 import React from "react";
 import {
-  BrowserRouter as Router,
+  // BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  HashRouter
 } from "react-router-dom";
 
 export default function App() {
   return (
-    <Router>
+    <HashRouter>
       <div>
         <Switch>
           <Route path="/login">
@@ -33,6 +34,6 @@ export default function App() {
           </Route>
         </Switch>
       </div>
-    </Router>
+    </HashRouter>
   );
 }
