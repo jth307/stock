@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import SVGIcon from '../../dist/svg.js';
+import Searchbar from './Searchbar';
+
 
 function Header () {
 
@@ -12,23 +14,24 @@ function Header () {
   }
 
   return(
-    <div className='header-wrapper'>
-      <div className='header-logo'>
-        <SVGIcon name="icon" width={30} height={30} />
+    <div className='greeting-div'>
+      <div className="greeting-left">
+        <Link className="rh-logo" to="/">
+          <SVGIcon name="icon" width={40} height={40} />
+          <span> Robinwood </span>
+        </Link>
       </div>
-      <div className='header-search'>
-        <div className='header-search-container'>
-          <input placeholder='Search...' type='text'/>
-        </div>
-      </div>
+      <Searchbar/>
       <div className='header-menuItems'>
-        <a href='#'>Free Stocks</a>
-        <a href='#'>Portfolio</a>
-        <a href='#'>Cash</a>
-        <a href='#'>Messages</a>
-        <a href='#'>Account</a>
-        <button onClick={Logout}>Logout</button>
-      </div>
+        <div>Free Stocks</div>
+        <div>Portfolio</div>
+        <div>Cash</div>
+        <div>Messages</div>
+        <div>Account</div>
+          <button onClick = {Logout} className="demo-button" >
+            Log Out
+          </button>
+          </div>
     </div>
   )
 }

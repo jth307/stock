@@ -19,7 +19,7 @@ function StatsRow(props) {
         <img src={StockChart} className='pic'/>
        </div>
       <div className="row-numbers">
-        <p className="row-price">{props.price}$200</p>
+        <p className="row-price">${props.price}</p>
         <p className="row-percentage"> {Number(percentage).toFixed(2)}%</p>
       </div>
     </div>

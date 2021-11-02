@@ -44,6 +44,7 @@ function Stats() {
     };
 
 
+
     useEffect(() => {
       const stocksList = ["AAPL", "MSFT", "TSLA", "FB", "BABA", "UBER", "DIS", "SBUX"];
       const testData = [];
@@ -70,10 +71,10 @@ function Stats() {
 
 
         return(
-          <div className='stats'>
-                <div className='stats-container'>
+          <div className='stocks-div'>
+                <div className='userStocks-div'>
                   <div className='stats-header'>
-                    <p>Stocks</p>
+                    <p>Stocks Owned</p>
                   </div>
                   <div className='stats-content'>
                     <div className='stats-row'>
@@ -88,8 +89,8 @@ function Stats() {
                     ))}
                     </div>
                   </div>
-                  <div className='stats-header stats-list'>
-                    <p>Lists</p>
+                  <div className='watchlist-div'>
+                    <p>Watchlist</p>
                   </div>
                   <div className='stats-content'>
                     <div className='stats-row'>

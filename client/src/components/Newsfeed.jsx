@@ -21,6 +21,7 @@ class Newsfeed extends React.Component {
               <div className='newsfeed-container'>
                 <div className='newsfeed-chartSection'>
                   <div className='newsfeed-portfolio'>
+                    <h2>Balance</h2>
                     <h1>$524,031</h1>
                     <p>+$44.63 (+0.04%) Today</p>
                   </div>
