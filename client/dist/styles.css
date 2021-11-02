@@ -384,20 +384,122 @@ header {
   border: 2px solid var(--rh-green);
   color: #000;
   cursor: pointer;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.signup-button:hover,
+.login-button:hover,
+.logout-button:hover {
+  color: #20CE99
 }
 
 
 .demo-button {
-  background-color: #20CE99;
+  background-image: linear-gradient(to right, #20CE99 50%, #20CE99 50%, #a7da86) ;
   color: white;
   margin: 10px;
   width: 77px;
   height: 34px;
   font-size: 17px;
   font-family: 'Dosis';
+  transition: 0.4s;
+  background-position: 0%;
+  background-size: 200%;
+}
+
+.demo-button:hover {
+  background-position: 100% 0%;
+  transition: 0.4s;
+
 }
 
 *, :after, :before {
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
+}
+
+.session-form-div {
+  display: flex;
+  justify-content: flex-end;
+  padding: 200px;
+  padding-right: 10%;
+  text-align: center;
+  background-image: url('https://robin-good.herokuapp.com/assets/money_background-3beffcfb221815a71201aa861a2ce39fac5df6bf7aeac36cc8f41746065d05ba.jpg');
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: 45% 100%;
+  height:430px;
+
+}
+
+.transparent-background {
+  opacity: 1;
+}
+.login-form-h1 {
+  font-size: 30px;
+  margin: 40px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.session-inputs-div {
+  opacity: 1;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+login-label {
+  width: 95%;
+  text-align: left;
+  font-size: 15px;
+}
+
+.session-input, .session-button, .session-demo-button {
+  width: 507px;
+  height: 40px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 1px solid #C0C0C0;
+  margin: 10px;
+}
+
+button, input {
+  overflow: visible;
+}
+
+.login-label {
+  width: 95%;
+  text-align: left;
+  font-size: 15px;
+}
+
+.session-link-p {
+  color: #C0C0C0;
+  margin-bottom: 15px;
+}
+.session-button {
+  background-color: #20CE99;
+  color: white;
+  font-family: 'Dosis', sans-serif;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.session-link-p a {
+  color: #20CE99;
+  cursor: pointer;
+
+}
+
+.login-errors {
+  color: red;
+  text-align: left;
+  width: 93%;
+  border: 1px solid red;
+  margin: 10px;
+  padding: 8px;
 }
