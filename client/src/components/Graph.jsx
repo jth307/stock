@@ -11,7 +11,7 @@ function Graph() {
   const [graphXData, setGraphXData] = useState([])
   const [graphYData, setGraphYData] = useState([])
   const [graphColor, setGraphColor] = useState('#21CE99')
-  const [graphInterval, setGraphInterval] = useState('5')
+  const [graphInterval, setGraphInterval] = useState('5Y')
 
 
   const BASE_URL = 'https://cloud.iexapis.com/stable/stock/'
@@ -111,7 +111,7 @@ function Graph() {
     let dataX = [];
     let dataY = [];
 
-    getStockGraphData('TSLA')
+    getStockGraphData('BABA')
       .then((res) => {
 
         for (let i = 0; i < res.data.length; i++) {
@@ -136,7 +136,7 @@ function Graph() {
 
           <div className="timeline-container">
         <div className="timeline-buttons-container">
-          {['LIVE', '1D', '1M', '3M', '1Y', '5Y'].map((interval) =>
+          {['LIVE', '24H', '4W', '3M', '1Y', '5Y'].map((interval) =>
            <Timeline interval = {interval} changeInterval = {changeInterval} currentInterval = {graphInterval}/>
            )}
         </div>
