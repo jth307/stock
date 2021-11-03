@@ -9,13 +9,9 @@ function Graph() {
 
   const [graphXData, setGraphXData] = useState([])
   const [graphYData, setGraphYData] = useState([])
-  const [graphData, setGraphData] = useState([])
-
 
   const BASE_URL = 'https://cloud.iexapis.com/stable/stock/'
   const TOKEN = 'pk_0bb2b9065996478c82fa4583b57d589b'
-
-
 
 
     const getStockGraphData = (stock) => {
@@ -26,45 +22,17 @@ function Graph() {
         });
     };
 
-
-
-    useEffect(() => {
-
-      let dataX = [];
-      let dataY = [];
-
-          getStockGraphData('MSFT')
-          .then((res) => {
-            console.log(res.data)
-
-            for (let i = 0; i < res.data.length; i++) {
-              dataX.push(res.data[i].minute);
-              dataY.push(res.data[i].average)
-            }
-
-            setGraphXData(dataX);
-            setGraphYData(dataY);
-
-
-          })
-
-    }, []);
-
-
-
   const data = {
     labels: graphXData,
     datasets: [
       {
-        label: 'test',
+        label: 'average',
         data: graphYData,
         fill: false,
-        // backgroundColor: 'rgb(255, 99, 132)',
-        // borderColor: 'rgba(255, 99, 132, 0.2)',
         type: 'line',
-        backgroundColor: 'black',
-        borderColor: '#21CE99',
-        borderWidth: 1.5,
+        backgroundColor: '#21CE99',
+        borderColor: graphYData[graphYData.length-1] - graphYData[0] > 0 ? '#21CE99' : 'red',
+        borderWidth: 1.8,
         pointRadius: 0,
         // pointBorderColor: '#000',
         // pointBackgroundColor: '#000',
@@ -123,27 +91,25 @@ function Graph() {
     }
   }
 
-  const mockData = () => {
+  useEffect(() => {
+
     let dataX = [];
     let dataY = [];
-    let value = 50;
-    for (let i = 0; i < 366 ; i++){
-      let date = new Date;
-      date.setHours(0,0,0,0);
-      date.setDate(i);
-      value += Math.round((Math.random() < 0.5? 1:0) * Math.random() *10);
-      dataX.push(date)
-      dataY.push(value)
 
-    }
-    setGraphXData(dataX);
-    setGraphYData(dataY);
-  }
+        getStockGraphData('BABA')
+        .then((res) => {
+          console.log(res.data)
 
-  // useEffect(()=>{
-  //   mockData()
+          for (let i = 0; i < res.data.length; i++) {
+            dataX.push(res.data[i].minute);
+            dataY.push(res.data[i].average)
+          }
+          setGraphXData(dataX);
+          setGraphYData(dataY);
+        })
 
-  // },[]);
+  }, []);
+
 
   return (
     <div className='graph'>
@@ -151,8 +117,6 @@ function Graph() {
           </div>
   );
 }
-
-
 
 
 export default Graph;

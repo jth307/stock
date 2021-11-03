@@ -1,6 +1,8 @@
 
 import React from "react";
 import StockChart from '../stock.svg'
+import SmallGraph from './SmallGraph';
+
 
 function StatsRow(props) {
 
@@ -16,7 +18,7 @@ function StatsRow(props) {
         }</p>
       </div>
       <div className="row-chart">
-        <img src={StockChart} className='pic'/>
+        <SmallGraph stock = {props.name}/>
        </div>
       <div className="row-numbers">
         <p className="row-price">${props.price}</p>

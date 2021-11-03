@@ -15,7 +15,7 @@ function Stats() {
 
 
     const getMyStocks = () => {
-          const myData = ['UNH', 'WBA']
+          const myData = ['TWTR', 'PFE']
           let promises = [];
           let tempData = []
           myData.map((stock) => {
