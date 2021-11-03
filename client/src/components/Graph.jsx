@@ -9,6 +9,8 @@ function Graph() {
 
   const [graphXData, setGraphXData] = useState([])
   const [graphYData, setGraphYData] = useState([])
+  const [graphColor, setGraphColor] = useState('#21CE99')
+
 
   const BASE_URL = 'https://cloud.iexapis.com/stable/stock/'
   const TOKEN = 'pk_0bb2b9065996478c82fa4583b57d589b'
@@ -30,62 +32,62 @@ function Graph() {
         data: graphYData,
         fill: false,
         type: 'line',
-        backgroundColor: '#21CE99',
-        borderColor: graphYData[graphYData.length-1] - graphYData[0] > 0 ? '#21CE99' : 'red',
+        backgroundColor: graphColor,
+        borderColor: graphColor,
         borderWidth: 1.8,
         pointRadius: 0,
-        // pointBorderColor: '#000',
-        // pointBackgroundColor: '#000',
-        // pointHoverBackgroundColor: '#21CE99',
-        // pointHoverBorderColor: '#000',
-        // pointHoverBorderWidth: 1,
-        // pointHoverRadius:6
+        pointBorderColor: graphColor,
+        pointBackgroundColor: graphColor,
+        pointHoverBackgroundColor: graphColor,
+        pointHoverBorderColor: graphColor,
+        pointHoverBorderWidth: 1,
+        pointHoverRadius:4
       },
     ],
   };
 
   const options= {
-    tooltips: {
-      mode: 'index',
-      intersect: false
-    },
-    label: {
-      display:false,
-    },
+    // tooltips: {
+    //   mode: 'index',
+    //   intersect: false,
+
+    // },
     responsive: true,
     plugins: {
-      title: {
-        display: false,
-      },
       legend: {
         display: false,
       }
     },
     interaction: {
       mode: 'index',
-      intersect: false
+      intersect: false,
+      backgroundColor: 'white',
+      bodyColor: graphColor,
+      displayColors: false,
+      titleFont: {size: 0},
+      padding: 15,
+      borderColor	: 'lightgrey',
+      borderWidth: 1,
+      cornerRadius: 0,
+      caretPadding: 55,
+      bodyFont: {
+        family:'Dosis',
+        size: 16,
+      }
     },
     scales: {
       x: {
         display: false,
-        // type: 'time',
         time: {
           format: 'MM/DD/YY',
           tooltipFormat:'ll'
         },
       },
-      // {
-      //   display: false,
-      //   title: {
-      //     display: true,
-      //     text: 'Month'
-      //   }
-      // },
       y: {
         display: false,
         title: {
-          display: true,
-          text: 'Value'
+          display: false,
+          // text: 'Value'
         }
       }
     }
@@ -96,7 +98,7 @@ function Graph() {
     let dataX = [];
     let dataY = [];
 
-        getStockGraphData('BABA')
+        getStockGraphData('PFE')
         .then((res) => {
           console.log(res.data)
 
@@ -106,6 +108,10 @@ function Graph() {
           }
           setGraphXData(dataX);
           setGraphYData(dataY);
+
+          if (dataY[dataY.length-1] - dataY[0] < 0) {
+            setGraphColor('red')}
+
         })
 
   }, []);
