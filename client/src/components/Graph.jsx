@@ -2,11 +2,54 @@
 
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
+import axios from 'axios';
+
 
 function Graph() {
 
   const [graphXData, setGraphXData] = useState([])
   const [graphYData, setGraphYData] = useState([])
+  const [graphData, setGraphData] = useState([])
+
+
+  const BASE_URL = 'https://cloud.iexapis.com/stable/stock/'
+  const TOKEN = 'pk_0bb2b9065996478c82fa4583b57d589b'
+
+
+
+
+    const getStockGraphData = (stock) => {
+      return axios
+        .get(`${BASE_URL}${stock}/intraday-prices/?chartInterval=5&token=${TOKEN}`)
+        .catch((error) => {
+          console.error("Error", error.message);
+        });
+    };
+
+
+
+    useEffect(() => {
+
+      let dataX = [];
+      let dataY = [];
+
+          getStockGraphData('MSFT')
+          .then((res) => {
+            console.log(res.data)
+
+            for (let i = 0; i < res.data.length; i++) {
+              dataX.push(res.data[i].minute);
+              dataY.push(res.data[i].average)
+            }
+
+            setGraphXData(dataX);
+            setGraphYData(dataY);
+
+
+          })
+
+    }, []);
+
 
 
   const data = {
@@ -97,10 +140,10 @@ function Graph() {
     setGraphYData(dataY);
   }
 
-  useEffect(()=>{
-    mockData()
+  // useEffect(()=>{
+  //   mockData()
 
-  },[]);
+  // },[]);
 
   return (
     <div className='graph'>
