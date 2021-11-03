@@ -25,9 +25,8 @@ class Newsfeed extends React.Component {
                     <h1>$524,031</h1>
                     <p>+$44.63 (+0.04%) Today</p>
                   </div>
-                  <div className='newsfeed-chart'>
+                  <div >
                     <Graph/>
-                    <Timeline/>
                   </div>
                 </div>
               </div>
