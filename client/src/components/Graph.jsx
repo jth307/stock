@@ -111,7 +111,7 @@ function Graph() {
     let dataX = [];
     let dataY = [];
 
-    getStockGraphData('BABA')
+    getStockGraphData('PFE')
       .then((res) => {
 
         for (let i = 0; i < res.data.length; i++) {
