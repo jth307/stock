@@ -92,7 +92,7 @@ function Graph({currentStock}) {
     let dataX = [];
     let dataY = [];
 
-    getStockGraphData(currentStock)
+    getStockGraphData(currentStock.name)
       .then((res) => {
 
         for (let i = 0; i < res.data.length; i++) {
