@@ -4,7 +4,7 @@ import SVGIcon from '../../../dist/svg.js';
 import Searchbar from './Searchbar';
 
 
-function Header () {
+function Header ({reset}) {
 
   let history = useHistory()
 
@@ -24,7 +24,7 @@ function Header () {
       <Searchbar/>
       <div className='header-menuItems'>
         <div>Free Stocks</div>
-        <div>Portfolio</div>
+        <div onClick={()=>(reset())}>Portfolio</div>
         <div>Cash</div>
         <div>Messages</div>
         <div>Account</div>

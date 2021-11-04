@@ -161,7 +161,7 @@ body {
 
 .newsfeed{
   color: black;
-  width: 71%;
+  width: 70%;
   height: auto;
   position: relative;
   right: 11rem;
@@ -312,7 +312,7 @@ body {
 
 
 .stocks-div {
-  width: 29%;
+  width: 30%;
   height: 75rem;
   margin: 1%;
   top: 0.6rem;
@@ -639,7 +639,134 @@ textarea:focus, input:focus{
   text-decoration: none;
 }
 
+/* =================BUY VIEW========================= */
 
+
+.asset-page-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  padding-bottom: 0
+}
+
+.form-tabs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  font-weight: bold;
+  font-size: 2.3rem;
+  border-bottom: 1px solid #e6e9ed;
+  position: relative;
+  padding: 1.5rem 1.8rem;
+  margin: none;
+
+}
+
+.form-tab {
+  height: 7rem;
+  padding-top: 0.2rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  position: relative;
+
+}
+
+
+.red .active {
+  color: red;
+  border-bottom: 2px solid red;
+}
+
+.sidebar-form {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 70%;
+  position: relative;
+  width: 100%;
+
+}
+
+.sidebar-form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 2rem;
+  height: 30%;
+  width: 100%;
+  position: relative;
+}
+.sidebar-form-row:first-child {
+  padding-bottom: 0;
+}
+
+.sidebar-form-row > input {
+  width: 7rem;
+  height: 4rem;
+  background-color: rgb(240, 240, 240);
+  border: none;
+  text-align: right;
+  padding-right: 1rem;
+}
+
+.relevant-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  width: 35rem;
+  height: 18%;
+  border-top: 1px solid #e6e9ed;
+  position: relative;
+}
+
+.buy-stocks-div {
+  width: 30%;
+  height: 40rem;
+  margin: 1%;
+  top: 0.6rem;
+  left: 8.8rem;
+  padding: 0.6rem;
+  border: 1px solid #BFBFBF;
+  background-color: white;
+  box-shadow: 1.2rem 1.2rem 0.6rem #aaaaaa;
+  overflow: scroll;
+  position: relative;
+  padding-bottom: 0;
+}
+
+.estimate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 6.2rem;
+  width: 100%;
+  border-top: 1px solid #e6e9ed;
+  font-weight: bold;
+  position: relative;
+  padding: 2rem 2rem 3rem 2rem;
+}
+
+.sidebar-form button {
+  width: 30rem;
+  height: 10rem;
+  border: transparent;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: bold;
+  transition: background 0.2s;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  position: relative;
+
+}
 
 /* =================ODOMETER========================= */
 
