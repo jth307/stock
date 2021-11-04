@@ -20,7 +20,6 @@ class Newsfeed extends React.Component {
 
 
     render() {
-
         return(
           <div className='newsfeed'>
               <div className='newsfeed-container'>
@@ -36,7 +35,7 @@ class Newsfeed extends React.Component {
                     <p>+$44.63 (+0.04%) Today</p>
                   </div>
                   <div >
-                    <Graph/>
+                    <Graph currentStock={this.props.currentStock}/>
                   </div>
                 </div>
               </div>

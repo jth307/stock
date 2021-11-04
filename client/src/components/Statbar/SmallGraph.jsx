@@ -18,7 +18,7 @@ function SmallGraph({stock}) {
 
     const getStockGraphData = (stock) => {
       return axios
-        .get(`${BASE_URL}${stock}/intraday-prices/?chartInterval=5&token=${TOKEN}`)
+        .get(`${BASE_URL}${stock}/intraday-prices/?chartInterval=2&token=${TOKEN}`)
         .catch((error) => {
           console.error("Error", error.message);
         });

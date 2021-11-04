@@ -6,12 +6,12 @@ import axios from 'axios';
 import Timeline from './Timeline';
 
 
-function Graph() {
+function Graph({currentStock}) {
 
   const [graphXData, setGraphXData] = useState([])
   const [graphYData, setGraphYData] = useState([])
   const [graphColor, setGraphColor] = useState('#21CE99')
-  const [graphInterval, setGraphInterval] = useState('5Y')
+  const [graphInterval, setGraphInterval] = useState('24H')
 
 
   const BASE_URL = 'https://cloud.iexapis.com/stable/stock/'
@@ -86,12 +86,13 @@ function Graph() {
     }
   }
 
+
   useEffect(() => {
 
     let dataX = [];
     let dataY = [];
 
-    getStockGraphData('PFE')
+    getStockGraphData(currentStock)
       .then((res) => {
 
         for (let i = 0; i < res.data.length; i++) {
@@ -102,29 +103,11 @@ function Graph() {
         setGraphYData(dataY);
 
         if (dataY[dataY.length-1] - dataY[0] < 0) {
-          setGraphColor('red')}
+          setGraphColor('red')} else {
+            setGraphColor('#21CE99')
+          }
       })
-  }, []);
-
-  useEffect(() => {
-
-    let dataX = [];
-    let dataY = [];
-
-    getStockGraphData('PFE')
-      .then((res) => {
-
-        for (let i = 0; i < res.data.length; i++) {
-          dataX.push(res.data[i].minute);
-          dataY.push(res.data[i].average)
-        }
-        setGraphXData(dataX);
-        setGraphYData(dataY);
-
-        if (dataY[dataY.length-1] - dataY[0] < 0) {
-          setGraphColor('red')}
-      })
-  }, [graphInterval]);
+  }, [currentStock, graphInterval]);
 
 
 

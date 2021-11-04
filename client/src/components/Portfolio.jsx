@@ -7,6 +7,13 @@ import Stats from './Statbar/Stats';
 
 function Portfolio () {
 
+  const [currentStock, setCurrentStock] = useState('PFE')
+
+  const changeStock = (stock)=>{
+    setCurrentStock(stock)
+  }
+
+
   return (
 
     <div>
@@ -16,8 +23,8 @@ function Portfolio () {
       </div>
       <div className= 'portfolio-main-div'>
       <div className= 'portfolio-info-div'>
-        <Newsfeed />
-        <Stats />
+        <Newsfeed currentStock= {currentStock}/>
+        <Stats changeStock= {changeStock}/>
       </div>
       </div>
 

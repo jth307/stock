@@ -4,7 +4,7 @@ import Promise from 'bluebird'
 import StatsRow from './StatsRow';
 const finnhub = require('finnhub');
 
-function Stats() {
+function Stats({changeStock}) {
 
   const BASE_URL = 'https://finnhub.io/api/v1/quote?symbol='
   const TOKEN = 'c5t3qhaad3icf7iiomug'
@@ -85,6 +85,7 @@ function Stats() {
                         openPrice={stock.o}
                         volume='120'
                         price={stock.c}
+                        changeStock= {changeStock}
                       />
                     ))}
                     </div>
@@ -100,6 +101,7 @@ function Stats() {
                         name={stock.name}
                         openPrice={stock.o}
                         price={stock.c}
+                        changeStock= {changeStock}
                       />
                     ))}
                     </div>

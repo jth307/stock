@@ -2,16 +2,19 @@
 import React from "react";
 import StockChart from '../../stock.svg'
 import SmallGraph from './SmallGraph';
+import { Link, useHistory, Redirect } from 'react-router-dom';
+
 
 
 function StatsRow(props) {
 
+  var history = useHistory()
+
   const percentage = ((props.price - props.openPrice)/props.openPrice) * 100;
 
   const viewStock = () => {
-    console.log(props.name)
-
-  }
+    props.changeStock(props.name)
+    }
 
 
 
