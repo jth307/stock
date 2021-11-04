@@ -702,14 +702,14 @@ textarea:focus, input:focus{
 .portfolio-info-div {
   display: flex;
   justify-content: space-between;
-  width: 1200px;
-  margin: 1%;
+  width: 70%;
+  margin: 7%;
 }
 
-.portfolio-div {
+/* .portfolio-div {
   margin: 1%;
   margin-top: 71px;
-}
+} */
 
 .stats-header p,
 .watchlist-div p{

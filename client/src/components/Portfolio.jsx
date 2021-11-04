@@ -9,13 +9,13 @@ function Portfolio () {
 
   return (
 
-    <div className='portfolio-main-div'>
+    <div>
 
-      <div className= 'app-header'>
+      <div >
         <Header />
       </div>
+      <div className= 'portfolio-main-div'>
       <div className= 'portfolio-info-div'>
-      <div className= 'portfolio-div'>
         <Newsfeed />
         <Stats />
       </div>

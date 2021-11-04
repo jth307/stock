@@ -2,7 +2,7 @@
 import Nav from './Nav';
 import Landing from './Landing';
 import LoginForm from './LoginForm';
-import Portfolio from './portfolio';
+import Portfolio from './Portfolio';
 import SignUp from './SignUp';
 
 
