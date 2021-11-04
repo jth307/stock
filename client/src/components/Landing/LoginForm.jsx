@@ -144,7 +144,7 @@ function LoginForm() {
                             />
 
                         <p className='session-link-p'>
-                            New to The Benevolent? <Link className='session-nav-link' to={`/signup`}>
+                            New to Robinwood? <Link className='session-nav-link' to={`/signup`}>
                                 {SignUp} Click here to complete your application
                                             </Link>
                         </p>

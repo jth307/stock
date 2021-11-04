@@ -8,11 +8,17 @@ function StatsRow(props) {
 
   const percentage = ((props.price - props.openPrice)/props.openPrice) * 100;
 
+  const viewStock = () => {
+    console.log(props.name)
+
+  }
+
+
 
   return (
-    <div className="row" >
+    <div className="row" id={props.name} onClick={viewStock}>
       <div className="row-intro">
-        <h1>{props?.name}</h1>
+        <h1>{props.name}</h1>
         <p>{props.volume &&
           (props.volume + " shares")
         }</p>
