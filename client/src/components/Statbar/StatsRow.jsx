@@ -1,6 +1,6 @@
 
 import React from "react";
-import StockChart from '../stock.svg'
+import StockChart from '../../stock.svg'
 import SmallGraph from './SmallGraph';
 
 

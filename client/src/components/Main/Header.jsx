@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import SVGIcon from '../../dist/svg.js';
+import SVGIcon from '../../../dist/svg.js';
 import Searchbar from './Searchbar';
 
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link , useHistory } from 'react-router-dom';
-import SVGIcon from '../../dist/svg.js';
+import SVGIcon from '../../../dist/svg.js';
 
 function Nav ({authed}) {
   let history = useHistory()

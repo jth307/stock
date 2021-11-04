@@ -1,9 +1,9 @@
 
-import Nav from './Nav';
-import Landing from './Landing';
-import LoginForm from './LoginForm';
+import Nav from './Landing/Nav';
+import Landing from './Landing/Landing';
+import LoginForm from './Landing/LoginForm';
 import Portfolio from './Portfolio';
-import SignUp from './SignUp';
+import SignUp from './Landing/SignUp';
 
 
 

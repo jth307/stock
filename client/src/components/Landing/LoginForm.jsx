@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory, Redirect } from 'react-router-dom';
-import Portfolio from './Portfolio';
+import Portfolio from '../Portfolio';
 import SignUp from './SignUp';
 import Nav from './Nav';
 
