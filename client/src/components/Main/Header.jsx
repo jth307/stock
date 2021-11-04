@@ -4,12 +4,12 @@ import SVGIcon from '../../../dist/svg.js';
 import Searchbar from './Searchbar';
 
 
-function Header ({reset}) {
+function Header (props) {
 
   let history = useHistory()
+  console.log(props.changeStock)
 
   const Logout = () =>{
-    console.log('Logged Out!');
     history.push('/landing' )
   }
 
@@ -21,10 +21,10 @@ function Header ({reset}) {
           <span> Robinwood </span>
         </Link>
       </div>
-      <Searchbar/>
+      <Searchbar changeStock= {props.changeStock}/>
       <div className='header-menuItems'>
         <div>Free Stocks</div>
-        <div onClick={()=>(reset())}>Portfolio</div>
+        <div onClick={()=>(props.reset())}>Portfolio</div>
         <div>Cash</div>
         <div>Messages</div>
         <div>Account</div>

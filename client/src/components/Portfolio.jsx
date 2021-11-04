@@ -28,7 +28,7 @@ function Portfolio () {
     <div>
 
       <div >
-        <Header reset={reset}/>
+        <Header reset={reset} changeStock= {changeStock}/>
       </div>
       <div className= 'portfolio-main-div'>
       <div className= 'portfolio-info-div'>

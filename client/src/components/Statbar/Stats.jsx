@@ -67,6 +67,7 @@ function Stats({changeStock}) {
       Promise.all(promises).then(()=>{
         setStockData(testData);
       })
+
     }, []);
 
 
