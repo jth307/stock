@@ -2,13 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Promise from 'bluebird'
 import StatsRow from './StatsRow';
-const finnhub = require('finnhub');
+import getStockData from '../query.js';
 
 function Stats({changeStock}) {
-
-  const BASE_URL = 'https://finnhub.io/api/v1/quote?symbol='
-  const TOKEN = 'c5t3qhaad3icf7iiomug'
-
 
     const [stockData, setStockData] = useState([]);
     const [myStocks, setMyStocks] = useState([]);
@@ -33,16 +29,6 @@ function Stats({changeStock}) {
             setMyStocks(tempData);
           })
       }
-
-
-    const getStockData = (stock) => {
-      return axios
-        .get(`${BASE_URL}${stock}&token=${TOKEN}`)
-        .catch((error) => {
-          console.error("Error", error.message);
-        });
-    };
-
 
 
     useEffect(() => {

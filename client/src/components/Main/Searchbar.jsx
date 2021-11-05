@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-
-// All searchable IEX symbols/tickers
 import symbols from './symbols.json';
+import getStockData from '../query.js';
+
 
 class Searchbar extends React.Component {
   constructor(props) {
@@ -34,17 +34,28 @@ class Searchbar extends React.Component {
     const results = this.state.results;
     // If the user presses enter, go to the first result
     if (results.length > 0) {
-      console.log('hello')
       const firstResult = this.state.results[0].symbol;
-      // this.props.history.push(`stocks/${firstResult}`);
-      this.props.changeStock(firstResult)
-      this.resetQuery()
+      getStockData(firstResult)
+      .then((res) => {
+        this.props.changeStock(firstResult,res.data.c)
+        this.resetQuery()
+      })
     }
   }
 
+  handleClick(symbol) {
+
+    getStockData(symbol)
+    .then((res) => {
+      this.props.changeStock(symbol,res.data.c)
+      this.resetQuery()
+    })
+  }
+
+
   formatName(name) {
-    if (name.length >= 50) {
-      return `${name.slice(0, 50)}...`;
+    if (name.length >= 45) {
+      return `${name.slice(0, 35)}...`;
     } else {
       return name;
     }
@@ -60,7 +71,7 @@ class Searchbar extends React.Component {
           {results.map((result, i) => {
             return (
               <li key={i}>
-                <div className="result"  onClick={this.handleSubmit}>
+                <div className="result"  onClick={()=>(this.handleClick(result.symbol))}>
                   <div>{result.symbol}</div>
                   <div>{this.formatName(result.name)}</div>
                   <div></div>
@@ -93,3 +104,4 @@ class Searchbar extends React.Component {
 }
 
 export default withRouter(Searchbar);
+

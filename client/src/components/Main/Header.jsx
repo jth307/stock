@@ -7,7 +7,6 @@ import Searchbar from './Searchbar';
 function Header (props) {
 
   let history = useHistory()
-  console.log(props.changeStock)
 
   const Logout = () =>{
     history.push('/landing' )
