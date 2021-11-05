@@ -33,7 +33,7 @@ class Buy extends React.Component {
     };
     this.selectTab = this.selectTab.bind(this);
     this.handleInput = this.handleInput.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   isValid(input) {
@@ -57,16 +57,16 @@ class Buy extends React.Component {
     if (validInput) {
       this.setState({
         shares: e.target.value,
-        validInput,
+        validInput: true,
         inputErrorDisplay: false,
         estimatedCost: "$" +
-          (this.props.currentStock.price * parseInt(e.target.value) / 100)
+          (this.props.currentStock.price * parseInt(e.target.value))
             .toLocaleString('en', { minimumFractionDigits: 2 })
       });
     } else {
       this.setState({
         shares: e.target.value,
-        validInput,
+        validInput: false,
         inputErrorDisplay: false,
         estimatedCost: "$0.00"
       });
@@ -74,21 +74,24 @@ class Buy extends React.Component {
     // this.props.clearErrors();
   }
 
-  // handleSubmit(e) {
-  //   if (!this.state.validInput) {
-  //     this.setState({ inputErrorDisplay: true });
-  //   } else {
-  //     const sharesSuccessText = parseInt(this.state.shares) === 1 ? "share" : "shares";
-  //     if (this.state.active === 'buy') {
-  //       this.props.buyAsset(parseInt(this.state.shares));
-  //       this.props.setSuccessMessage(`You bought ${this.state.shares} ${sharesSuccessText} of ${this.props.asset.ticker}`);
-  //     } else {
-  //       this.props.sellAsset(parseInt(this.state.shares));
-  //       this.props.setSuccessMessage(`You sold ${this.state.shares} ${sharesSuccessText} of ${this.props.asset.ticker}`);
-  //     }
-  //     if (this.state.timeout) clearTimeout(this.state.timeout);
-  //   }
-  // }
+  handleSubmit(e) {
+
+    if (!this.state.validInput) {
+      this.setState({ inputErrorDisplay: true });
+    } else {
+      const sharesSuccessText = parseInt(this.state.shares) === 1 ? "share" : "shares";
+      if (this.state.active === 'buy') {
+        alert('bought!')
+        // this.props.buyAsset(parseInt(this.state.shares));
+        // this.props.setSuccessMessage(`You bought ${this.state.shares} ${sharesSuccessText} of ${this.props.asset.ticker}`);
+      } else {
+        // this.props.sellAsset(parseInt(this.state.shares));
+        // this.props.setSuccessMessage(`You sold ${this.state.shares} ${sharesSuccessText} of ${this.props.asset.ticker}`);
+        alert('sold!')
+      }
+      // if (this.state.timeout) clearTimeout(this.state.timeout);
+    }
+  }
 
   render() {
     const inputError = this.state.inputErrorDisplay ?
@@ -124,6 +127,7 @@ class Buy extends React.Component {
               value={this.state.shares}
               maxLength="5"
               placeholder="0"
+              onChange={this.handleInput}
              />
           </div>
           <div className="sidebar-form-row">
@@ -142,8 +146,8 @@ class Buy extends React.Component {
           </button>
         </div>
         <div className="sidebar-form-errors">
-          {/* {inputError}
-          {
+          {inputError}
+          {/* {
             this.props.errors.map((error) => (<span>{error}</span>))
           } */}
         </div>

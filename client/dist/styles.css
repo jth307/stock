@@ -815,6 +815,17 @@ textarea:focus, input:focus{
   padding-right: 1rem;
 }
 
+.sidebar-form-errors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-size: 1.5rem;
+  height: 6rem;
+  position: relative;
+  bottom: 1.5rem;
+}
+
 .relevant-info {
   display: flex;
   justify-content: center;
