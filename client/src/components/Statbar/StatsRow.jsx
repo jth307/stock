@@ -13,7 +13,7 @@ function StatsRow(props) {
   const percentage = ((props.price - props.openPrice)/props.openPrice) * 100;
 
   const viewStock = () => {
-    props.changeStock(props.name, props.price)
+    props.changeStock(props.name, props.price, percentage)
     }
 
 

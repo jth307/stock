@@ -60,7 +60,7 @@ class Buy extends React.Component {
         validInput,
         inputErrorDisplay: false,
         estimatedCost: "$" +
-          (5385 * parseInt(e.target.value) / 100)
+          (this.props.currentStock.price * parseInt(e.target.value) / 100)
             .toLocaleString('en', { minimumFractionDigits: 2 })
       });
     } else {
@@ -94,8 +94,7 @@ class Buy extends React.Component {
     const inputError = this.state.inputErrorDisplay ?
       (<span>Please enter a positive integer</span>) : null;
 
-    const color = "green"
-    //  this.props.asset.percentChange < 0 ? "red" : "green";
+    const color = this.props.currentStock.percentage < 0 ? "red" : "green";
 
     const [estimated, btnText] = this.state.active === "buy" ?
       ["Cost", "Buy"] : ["Credit", "Sell"];
@@ -109,7 +108,7 @@ class Buy extends React.Component {
           .toLocaleString('en', { minimumFractionDigits: 2 }) + " "}
         Buying Power Available
       </span>
-    ) : (<span>12{sharesText} Available</span>);
+    ) : (<span>12{" "+sharesText} Available</span>);
     return (
       <div className='buy-stocks-div'>
       <aside className={`asset-page-sidebar ${color}`}>
@@ -130,7 +129,7 @@ class Buy extends React.Component {
           <div className="sidebar-form-row">
             <span>Market Price</span>
             <span className="bold-me">
-              ${(6758 / 100)
+              ${this.props.currentStock.price
                 .toLocaleString('en', { minimumFractionDigits: 2 })}
             </span>
           </div>

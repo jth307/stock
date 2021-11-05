@@ -16,6 +16,8 @@ function Newsfeed (props) {
     setOdometerValue(props.currentStock.price);
   }, [props.currentStock]);
 
+  const color = props.currentStock.change > 0? "green" : "red";
+
     return(
       <div className='newsfeed'>
           <div className='newsfeed-container'>
@@ -28,7 +30,7 @@ function Newsfeed (props) {
                 value={odometerValue }
             />
             </h1>
-                <p>+$44.63 (+0.04%) Today</p>
+                <p className = {color}>+${props.currentStock.change} ({Number(props.currentStock.percentage).toFixed(2)}%) Today</p>
               </div>
               <div >
                 <Graph currentStock={props.currentStock}/>

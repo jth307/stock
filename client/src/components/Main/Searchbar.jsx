@@ -37,7 +37,7 @@ class Searchbar extends React.Component {
       const firstResult = this.state.results[0].symbol;
       getStockData(firstResult)
       .then((res) => {
-        this.props.changeStock(firstResult,res.data.c)
+        this.props.changeStock(firstResult,res.data.c,res.data.dp,res.data.d)
         this.resetQuery()
       })
     }
@@ -47,7 +47,8 @@ class Searchbar extends React.Component {
 
     getStockData(symbol)
     .then((res) => {
-      this.props.changeStock(symbol,res.data.c)
+
+      this.props.changeStock(symbol,res.data.c,res.data.dp, res.data.d)
       this.resetQuery()
     })
   }

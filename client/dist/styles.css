@@ -259,9 +259,16 @@ ul, ul li {
   font-size: 3.8rem;
  }
 
-.newsfeed-portfolio p {
+.newsfeed-portfolio .green {
   margin-top: 0.6rem;
   color: #20CE99;
+  font-weight: 500;
+  font-size: 1.8rem;
+ }
+
+ .newsfeed-portfolio .red {
+  margin-top: 0.6rem;
+  color: red;
   font-weight: 500;
   font-size: 1.8rem;
  }
@@ -748,13 +755,28 @@ textarea:focus, input:focus{
   align-items: center;
   border-bottom: 2px solid transparent;
   position: relative;
+  cursor: pointer;
 
 }
 
+.green .active {
+  color: #20CE99;
+  border-bottom: 2px solid #20CE99;
+}
 
 .red .active {
   color: red;
   border-bottom: 2px solid red;
+}
+
+.green button {
+  background-color: #20CE99;
+  cursor: pointer;
+}
+
+.red button {
+  background-color: red;
+  cursor: pointer;
 }
 
 .sidebar-form {
