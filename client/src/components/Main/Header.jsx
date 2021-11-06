@@ -22,7 +22,7 @@ function Header (props) {
       </div>
       <Searchbar changeStock= {props.changeStock}/>
       <div className='header-menuItems'>
-        <div>Free Stocks</div>
+        <div onClick={() => (history.push('/free'))}>Free Stocks</div>
         <div onClick={()=>(props.reset())}>Portfolio</div>
         <div>Cash</div>
         <div>Messages</div>

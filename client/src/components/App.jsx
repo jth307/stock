@@ -4,6 +4,8 @@ import Landing from './Landing/Landing';
 import LoginForm from './Landing/LoginForm';
 import Portfolio from './Portfolio';
 import SignUp from './Landing/SignUp';
+import FreeStocks from './Landing/FreeStocks';
+
 
 
 
@@ -30,6 +32,9 @@ export default function App() {
           </Route>
           <Route path="/signup">
             <SignUp />
+          </Route>
+          <Route path="/free">
+            <FreeStocks />
           </Route>
           <Route path="/">
             <Landing />
