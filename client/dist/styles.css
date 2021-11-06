@@ -938,6 +938,74 @@ textarea:focus, input:focus{
 
 
 
+/* =================NEWS========================= */
+
+    .none {
+      border-bottom: 2px solid black;
+      padding-bottom: 10px;
+  }
+
+  .news-div h2 {
+    margin: 2% 2% 0 0;
+    font-weight: 500;
+    font-size: 3.8rem;
+    margin-bottom: 1%;
+  }
+
+  .news-div {
+      width: 171%;
+      margin-top: 21rem;
+  }
+
+  .general-news-list {
+      display: flex;
+      flex-direction: column;
+  }
+
+  .news-article {
+      margin-top: 2%;
+      background-color: white;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0.75rem 0.75rem 1.5rem -0.25rem rgba(102,99,102,0.7);
+      height: 20rem;
+      overflow: hidden;
+  }
+
+  .news-article div {
+      width: 60%;
+  }
+
+  .news-article a {
+      font-weight: 500;
+      font-size: 2rem;
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+      /* margin: 2%; */
+      margin-bottom: 1.25rem;
+      display: flex;
+  }
+
+
+  .news-article a:hover {
+    color:#20CE99;
+  }
+
+  .news-article img {
+      width: 23%;
+      height: auto;
+      border: 1px solid rgb(131, 131, 131);
+      box-shadow: 0.15rem 0.15rem 0.5rem 0.25rem rgba(102,99,102,0.7);
+
+  }
+
+  .news-article p {
+      font-size: 2rem;
+      color: grey;
+      margin: 2%;
+  }
 /* =================ODOMETER========================= */
 
 .odometer.odometer-auto-theme, .odometer.odometer-theme-default {

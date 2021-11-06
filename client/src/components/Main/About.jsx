@@ -1,5 +1,5 @@
 import React from 'react';
-import getStockDetail from '../stockDetails.js';
+import apiroutes from '../stockDetails.js';
 
 
 class About extends React.Component {
@@ -9,7 +9,7 @@ class About extends React.Component {
   }
 
   componentDidMount() {
-    getStockDetail(this.props.currentStock.name)
+    apiroutes.getStockDetail(this.props.currentStock.name)
       .then((res) => {
         this.setState({
           CEO: res.data.CEO,
@@ -24,7 +24,7 @@ class About extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.currentStock !== prevProps.currentStock) {
-      getStockDetail(this.props.currentStock.name)
+      apiroutes.getStockDetail(this.props.currentStock.name)
       .then((res) => {
         this.setState({
           CEO: res.data.CEO,

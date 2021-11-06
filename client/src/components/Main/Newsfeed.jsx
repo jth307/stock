@@ -3,7 +3,7 @@ import Graph from './Graph';
 import Timeline from './Timeline';
 import Odometer from 'react-odometerjs';
 import About from './About';
-
+import News from './News';
 
 
 function Newsfeed (props) {
@@ -40,7 +40,7 @@ function Newsfeed (props) {
             </div>
           </div>
           {odometerValue > 100000? null : <About currentStock= {props.currentStock}/>}
-
+          <News currentStock= {props.currentStock}/>
       </div>
 
     )
