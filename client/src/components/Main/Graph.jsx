@@ -12,10 +12,11 @@ function Graph({currentStock}) {
   const [graphYData, setGraphYData] = useState([])
   const [graphColor, setGraphColor] = useState('#21CE99')
   const [graphInterval, setGraphInterval] = useState('24H')
+  const config = require('../../../../server/helpers/config.js');
 
 
   const BASE_URL = 'https://cloud.iexapis.com/stable/stock/'
-  const TOKEN = 'pk_0bb2b9065996478c82fa4583b57d589b'
+  const TOKEN = config.API_TOKEN
 
   const changeInterval = (interval) => {
     setGraphInterval(interval.interval)

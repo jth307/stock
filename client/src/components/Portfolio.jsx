@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Header from './Main/Header';
 import Newsfeed from './Main/Newsfeed';
 import Stats from './Statbar/Stats';
-import Buy from './Buy';
+import Buy from './Statbar/Buy';
+
 
 
 

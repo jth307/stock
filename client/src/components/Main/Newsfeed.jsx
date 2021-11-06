@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Graph from './Graph';
 import Timeline from './Timeline';
 import Odometer from 'react-odometerjs';
+import About from './About';
+
 
 
 function Newsfeed (props) {
@@ -37,6 +39,8 @@ function Newsfeed (props) {
               </div>
             </div>
           </div>
+          {odometerValue > 100000? null : <About currentStock= {props.currentStock}/>}
+
       </div>
 
     )

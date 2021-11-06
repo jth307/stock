@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
+const config = require('../../../../server/helpers/config.js');
 
 
 function SmallGraph({stock}) {
@@ -13,7 +14,7 @@ function SmallGraph({stock}) {
 
 
   const BASE_URL = 'https://cloud.iexapis.com/stable/stock/'
-  const TOKEN = 'pk_0bb2b9065996478c82fa4583b57d589b'
+  const TOKEN = config.API_TOKEN
 
 
     const getStockGraphData = (stock) => {

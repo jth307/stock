@@ -821,25 +821,26 @@ textarea:focus, input:focus{
   align-items: center;
   color: red;
   font-size: 1.5rem;
-  height: 6rem;
+  height: 7.5rem;
   position: relative;
   bottom: 1.5rem;
+  padding-bottom: none
 }
 
 .relevant-info {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   width: 35rem;
-  height: 18%;
+  height: 15rem;
   border-top: 1px solid #e6e9ed;
   position: relative;
 }
 
 .buy-stocks-div {
   width: 30%;
-  height: 40rem;
+  height: 44rem;
   margin: 1%;
   top: 0.6rem;
   left: 8.8rem;
@@ -878,6 +879,64 @@ textarea:focus, input:focus{
   position: relative;
 
 }
+
+
+/* =================ABOUT========================= */
+
+.stock-about {
+  /* height: 30%; */
+  margin-top: 5.5rem;
+  width: 171%;
+}
+
+.stock-about h2 {
+  margin: 2% 2% 0 0;
+  font-weight: bold;
+  font-size: 3.8rem;
+  margin-bottom: 1%;
+}
+
+.stock-about p {
+  /* margin: 1%; */
+  font-size: 2rem;
+  margin: 1% 1% 1% 0;
+}
+
+.company-info {
+  display: flex;
+  margin: 3%;
+  /* margin-left: 1%; */
+  justify-content: space-between;
+}
+
+.company-info label {
+  font-weight: bold;
+  color: #20CE99;
+  font-size: 2rem;
+}
+
+.company-info label div {
+  color: grey;
+  margin-top: 6px;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6.2rem;
+  font-size: 1.6rem;
+}
+  .details div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .details div span:first-child {
+      font-weight: bolder;
+      padding-bottom: 1.2rem;
+    }
+
+
 
 /* =================ODOMETER========================= */
 
