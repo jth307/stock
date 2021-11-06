@@ -891,7 +891,7 @@ textarea:focus, input:focus{
 
 .stock-about h2 {
   margin: 2% 2% 0 0;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 3.8rem;
   margin-bottom: 1%;
 }

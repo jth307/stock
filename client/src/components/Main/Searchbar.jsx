@@ -8,9 +8,11 @@ class Searchbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = { query: "", results: [] };
+    this.wrapperRef = React.createRef();
     this.updateQuery = this.updateQuery.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.resetQuery = this.resetQuery.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   resetQuery() {
@@ -21,12 +23,17 @@ class Searchbar extends React.Component {
     const query = e.target.value;
     const queryExp = RegExp("^" + query, 'i');
     let results = [];
+    if (e.target.value){
     results = symbols.filter(stock => {
       if (stock.symbol.match(queryExp) || stock.name.match(queryExp)) {
         return stock;
       }
     });
     this.setState({ query: query, results: results });
+
+  } else {
+    this.setState({ query: "", results: [] });
+  }
   }
 
   handleSubmit(e) {
@@ -85,9 +92,24 @@ class Searchbar extends React.Component {
     }
   }
 
+componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+}
+
+componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+}
+
+handleClickOutside(e) {
+  // if (this.state.results.length === 0) return;
+  // if (this.wrapperRef && !this.wrapperRef.current.contains(e.target)) {
+    this.setState({ results: [] });
+  //}
+}
+
   render() {
     return (
-      <div className="searchbar-container">
+      <div className="searchbar-container" ref={this.wrapperRef}>
         <div className="searchbar">
           <form onSubmit={this.handleSubmit}>
             <input
