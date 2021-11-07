@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link , useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SVGIcon from '../../../dist/svg.js';
 
 function Nav ({authed}) {
-  let history = useHistory()
-  const [loggedIn, setLoggedIn] = useState(false)
-
-
-  const Logout = () =>{
-    console.log('Logged Out!');
-    history.push('/landing' )
-  }
 
     return(
       <div className="greeting-div">
       <div className="greeting-left">
-        <Link className="rh-logo" to="/">
+        <Link className="rh-logo" to="/landing2">
           <SVGIcon name="icon" width={40} height={40} />
           <span> Robinwood </span>
         </Link>

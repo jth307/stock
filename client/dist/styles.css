@@ -1099,6 +1099,7 @@ textarea:focus, input:focus{
 }
 
 
+/* =================FREE STOCKS========================= */
 
 
 .splashy-section-1 {
@@ -1169,3 +1170,93 @@ textarea:focus, input:focus{
   }
 
 
+
+
+/* =================CASH========================= */
+
+  .panes h1 {
+    font-size: 6rem;
+    padding: 1.5rem 0;
+    margin: 0;
+    font-family: Helvetica;
+
+  }
+
+  .pane1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 9rem 6.5rem;
+  }
+
+  .pane1-text {
+    margin-top: 18rem;
+    margin-left: 6rem;
+  }
+
+  .pane1 header {
+    margin-bottom: 3rem;
+  }
+
+  .pane1 div {
+    padding-bottom: 3rem;
+  }
+
+  .pane1 p {
+    font-size: 2.3rem;
+    font-family: 'Helvetica';
+    margin: 0.4rem 0.3rem;
+    font-weight: lighter;
+  }
+
+  .signup-buttonz {
+    cursor: pointer;
+    color: white;
+    background-image: linear-gradient(to right, #20CE99 50%, #20CE99 50%, #89ebeb) ;
+    padding: 1.6rem 5rem;
+    font-weight: normal;
+    font-size: 2.2rem;
+    font-family:'Helvetica';
+    border-radius: 1rem;
+    border: none;
+    background-position: 0%;
+    background-size: 200%;
+    text-decoration: none;
+    position: relative;
+    top: 2.6rem;
+    left: 0.5rem;
+}
+
+.signup-buttonz:hover {
+  background-position: 100% 0%;
+}
+
+  .signup-buttonz:focus {
+    outline: none;
+  }
+
+  .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+.animated.delay-1s {
+  animation-delay: 1s;
+}
+.animated.delay-2s {
+  animation-delay: 2s;
+}
+
+.animated.delay-3s {
+  animation-delay: 3s;
+}
+
+.video-container video{
+  margin-right: 5rem;
+  height: 80rem;
+}
+  /* =================???========================= */

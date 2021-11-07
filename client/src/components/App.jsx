@@ -5,14 +5,9 @@ import LoginForm from './Landing/LoginForm';
 import Portfolio from './Portfolio';
 import SignUp from './Landing/SignUp';
 import FreeStocks from './Landing/FreeStocks';
-
-
-
-
-
+import Landing2 from './Landing/Landing2';
 import React from "react";
 import {
-  // BrowserRouter as Router,
   Switch,
   Route,
   Link,
@@ -35,6 +30,9 @@ export default function App() {
           </Route>
           <Route path="/free">
             <FreeStocks />
+          </Route>
+          <Route path="/landing2">
+            <Landing2 />
           </Route>
           <Route path="/">
             <Landing />

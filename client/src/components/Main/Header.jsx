@@ -9,13 +9,13 @@ function Header (props) {
   let history = useHistory()
 
   const Logout = () =>{
-    history.push('/landing' )
+    history.push('/' )
   }
 
   return(
     <div className='greeting-div'>
       <div className="greeting-left">
-        <Link className="rh-logo" to="/">
+        <Link className="rh-logo" to="/landing2">
           <SVGIcon name="icon" width={40} height={40} />
           <span> Robinwood </span>
         </Link>

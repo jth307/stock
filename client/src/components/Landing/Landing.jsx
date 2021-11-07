@@ -1,47 +1,38 @@
+
 import React from 'react';
-import phone from '../../../dist/assets/phone.png';
 import Nav from './Nav';
+import { Link } from 'react-router-dom';
 
 
-class Landing extends React.Component {
-    constructor(props) {
-        super(props);
-        // this.state = {
-        //     phoneImg: media[0],
-        //     cardVid: media[1]
-        // }
-    }
-    render() {
-        return (
-          <>
-          <div> <Nav/> </div>
-            <div className='splash-div'>
-                <div className='splash-section-1'>
-                    <div className='splash-body-1'>
-                        <h1 className='splash-h1-1'>It's Time to Do Money</h1>
-                        <p className='splash-description-1'>Robinwood, a pioneer of commission-free investing, gives you access to investing and more ways to make your money work harder.</p>
-                    </div>
-                    <div>
-                        <img  width='400' height='300' className='splash-image-1' src={phone}/>
-                    </div>
-                </div>
-                <div className='splash-section-2'>
-                    <h1 className='splash-h1-2'>Break Free from Commission Fees</h1>
-                    <p className='splash-description-2'>Make unlimited commission-free trades in stocks, funds, and options with The Benevolent Financial. The same goes for buying and selling cryptocurrencies with The Benevolent Crypto. Zero commission fees.</p>
-                </div>
-                <div className='splash-section-3'>
-                    <div className='splash-body-3'>
-                        <h1 className='splash-h1-3'>Introducing Cash Management</h1>
-                        <p className='splash-description-3'>Invest, spend, and earn 1.80% APY*—all through your brokerage account.</p>
-                    </div>
-                    <video width='400' height='300' autoPlay muted  loop>
-                        <source src={'https://the-benevolent.herokuapp.com/credit-card-video.mp4'} type="video/mp4" />
-                    </video>
-                </div>
-            </div>
-          </>
-        )
-    }
-}
+const Landing = () => {
+  return (
+    <>
+    <div> <Nav /></div>
+    <main className="panes">
+      <section className="pane1">
+        <section className="pane1-text">
+          <header>
+            <h1 className="animated fadeInUp">Investing.</h1>
+            <h1 className="animated fadeInUp delay-1s">Now for the rest of us.</h1>
+          </header>
+          <div>
+            <p className="animated fadeInUp delay-2s">EasyTrade lets you learn to invest in the </p>
+            <p className="animated fadeInUp delay-2s"> stock market for free.</p>
+          </div>
+          <Link
+              className="signup-buttonz animated fadeInUp delay-3s"
+              to="/portfolio"><span>Demo</span></Link>
+        </section>
+        <div className="animated fadeInUp delay-3s video-container">
+          <video autoPlay loop muted>
+            <source src="http://sparrow-app.herokuapp.com/assets/phone_1-aa43dfecfbf3cfffd8613a65f01fa3eae946475a23e4cbf039f70b2b11ffafae.webm" />
+          </video>
+        </div>
+      </section>
+    </main>
+    </>
+  );
+};
 
 export default Landing;
+
