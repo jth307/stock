@@ -35,7 +35,7 @@ function Newsfeed (props) {
                 <p className = {color}>+${props.currentStock.change} ({Number(props.currentStock.percentage).toFixed(2)}%) Today</p>
               </div>
               <div >
-                <Graph currentStock={props.currentStock}/>
+                <Graph currentStock={props.currentStock}  setFetchStatus= {props.setFetchStatus}/>
               </div>
             </div>
           </div>

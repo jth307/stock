@@ -1260,3 +1260,9 @@ textarea:focus, input:focus{
   height: 80rem;
 }
   /* =================???========================= */
+  .loading {
+    left: 47%;
+    position: fixed;
+    top: 50%;
+    z-index: 10;
+}

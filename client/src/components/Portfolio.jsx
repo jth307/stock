@@ -4,8 +4,7 @@ import Header from './Main/Header';
 import Newsfeed from './Main/Newsfeed';
 import Stats from './Statbar/Stats';
 import Buy from './Statbar/Buy';
-
-
+import { BeatLoader } from 'react-spinners';
 
 
 function Portfolio () {
@@ -17,6 +16,7 @@ function Portfolio () {
     change: 44.25
   })
   const [buyView, setBuyView] = useState(false)
+  const [fetchStatus, setFetchStatus] = useState(false)
 
   const changeStock = (stock,price,percentage,change)=>{
     setCurrentStock({name: stock, price: price, percentage: percentage, change: change});
@@ -33,19 +33,34 @@ function Portfolio () {
     setBuyView(false);
   }
 
+  if (fetchStatus) {
+    return (
+      <>
+      <div >
+        <Header reset={reset} changeStock= {changeStock}/>
+      </div>
+      <div className='loading'>
+        <BeatLoader
+          sizeUnit={"px"}
+          size={20}
+          color={'#21ce99'}
+          loading={true}
+        />
+      </div>
+      </>
+    );
+  }
 
   return (
-
     <div>
-
       <div >
         <Header reset={reset} changeStock= {changeStock}/>
       </div>
       <div className= 'portfolio-main-div'>
       <div className= 'portfolio-info-div'>
-        <Newsfeed currentStock= {currentStock} buyView={buyView}/>
+        <Newsfeed currentStock= {currentStock} buyView={buyView} setFetchStatus= {setFetchStatus}/>
         {buyView? <Buy currentStock= {currentStock}/> :
-        <Stats changeStock= {changeStock}/>}
+        <Stats changeStock= {changeStock}  setFetchStatus= {setFetchStatus}/>}
       </div>
       </div>
 

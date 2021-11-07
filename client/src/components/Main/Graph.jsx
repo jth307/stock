@@ -6,7 +6,7 @@ import axios from 'axios';
 import Timeline from './Timeline';
 
 
-function Graph({currentStock}) {
+function Graph({currentStock,  setFetchStatus}) {
 
   const [graphXData, setGraphXData] = useState([])
   const [graphYData, setGraphYData] = useState([])
@@ -28,6 +28,7 @@ function Graph({currentStock}) {
       .get(`${BASE_URL}${stock}/intraday-prices/?chartInterval=${graphInterval.substring(0,1)}&token=${TOKEN}`)
       .catch((error) => {
         console.error("Error", error.message);
+        // setFetchStatus(true)
       });
   };
 
