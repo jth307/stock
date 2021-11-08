@@ -1102,7 +1102,7 @@ textarea:focus, input:focus{
 /* =================FREE STOCKS========================= */
 
 
-.splashy-section-1 {
+.city-section-1 {
   display: flex;
   /* background-color: #20CE99; */
   background: linear-gradient(180deg, rgba(32,206,153,1) 65%, rgba(15,14,14,1) 100%);
@@ -1110,7 +1110,7 @@ textarea:focus, input:focus{
 
 }
 
-.section-1-image {
+.city-section-1-image {
   background-image: url('./images/skyline.png');
   height: 85rem;
   background-size: cover;
@@ -1123,7 +1123,7 @@ textarea:focus, input:focus{
   background-color:#20CE99
 }
 
-.section-1-text {
+.city-section-1-text {
   width: 35%;
   height: 85rem;
   position: relative;
@@ -1132,7 +1132,7 @@ textarea:focus, input:focus{
   border-radius: 1.2rem;
 }
 
-.section-1-text header {
+.city-section-1-text header {
     font-size: 7rem;
     margin-top: 19rem;
     margin-left: 10rem;
@@ -1146,7 +1146,7 @@ textarea:focus, input:focus{
     width: 38rem;
     line-height: 1.3em;
   }
-  #splash-signup-link {
+  #city-signup-link {
     background-color: black;
     color: white;
     display: flex;

@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory, Redirect, useLocation } from 'react-router-dom';
-import Portfolio from '../Portfolio';
-import SignUp from './SignUp';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import Nav from './Nav';
-
 
 
 function LoginForm(props) {
@@ -13,7 +10,6 @@ function LoginForm(props) {
 
   const [details, setDetails] = useState({email:'', password:''});
   const [error, setError] = useState('');
-
 
   const adminUser = {
     email : 'guest@demo',
@@ -58,56 +54,53 @@ function LoginForm(props) {
             n++;
             setTimeout(() => { displayDemoPassword(password, n) }, 100);
         } else {
-            const demoUser = { email: 'guest@demo', password: 'password123' };
-            Login(demoUser);
+            Login(adminUser);
         }
     }
 
 
-        return (
-          <>
-          <div> <Nav setDemo = {displayDemoUser}/> </div>
-            <div className='session-form-div'>
-                <form className='transparent-background'
-                onSubmit={submitHandler}
-                >
-                    <h1 className='login-form-h1'>Welcome to Robinwood</h1>
-                    <div className='session-inputs-div'>
-                        <label className='login-label'>Email</label>
-                        <input
-                            className='session-input'
-                            // onChange={this.update('username')}
-                            // value={this.state.username}
-                            required
-                            type='email' name='name' id='name' onChange={e => setDetails({...details, email: e.target.value})} value = {details.email}
-                            value={details.email}
+    return (
+      <>
+      <div>
+        <Nav/>
+      </div>
+        <div className='session-form-div'>
+            <form className='transparent-background'
+            onSubmit={submitHandler}>
+                <h1 className='login-form-h1'>Welcome to Robinwood</h1>
+                <div className='session-inputs-div'>
+                    <label className='login-label'>Email</label>
+                    <input
+                        className='session-input'
+                        // onChange={this.update('username')}
+                        // value={this.state.username}
+                        required
+                        type='email' name='name' id='name' onChange={e => setDetails({...details, email: e.target.value})} value = {details.email}
+                        value={details.email}
+                    />
+                    <label className='login-label'>Password</label>
+                    <input
+                        className='session-input'
+                        type="password"
+                        // onChange={this.update('password')}
+                        // value={this.state.password}
+                        required
+                        type='password' name='password' id='password' onChange={e => setDetails({...details, password: e.target.value})}
+                        value={details.password}
                         />
-                        <label className='login-label'>Password</label>
-                        <input
-                            className='session-input'
-                            type="password"
-                            // onChange={this.update('password')}
-                            // value={this.state.password}
-                            required
-                            type='password' name='password' id='password' onChange={e => setDetails({...details, password: e.target.value})}
-                            value={details.password}
-                            />
-
-                        <p className='session-link-p'>
-                            New to Robinwood? <Link className='session-nav-link' to={`/signup`}>
-                                {SignUp} Click here to complete your application
-                                            </Link>
-                        </p>
-                        <button className='session-button' type="submit">Login</button>
-                        {(error !== '') ? ( <div className='login-errors'>{error}</div>) : ''}
-
-                    </div>
-                </form>
-            </div>
-            </>
-
-        )
-
+                    <p className='session-link-p'>
+                        New to Robinwood?
+                        <Link className='session-nav-link' to={`/signup`}>
+                            Click here to complete your application
+                        </Link>
+                    </p>
+                    <button className='session-button' type="submit">Login</button>
+                    {(error !== '') ? ( <div className='login-errors'>{error}</div>) : ''}
+                </div>
+            </form>
+        </div>
+      </>
+    )
 }
 
 export default LoginForm;

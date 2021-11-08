@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import symbols from './symbols.json';
-import getStockData from '../query.js';
+import apiRoutes from '../apiRoutes.js';
 
 
 class Searchbar extends React.Component {
@@ -42,7 +42,7 @@ class Searchbar extends React.Component {
     // If the user presses enter, go to the first result
     if (results.length > 0) {
       const firstResult = this.state.results[0].symbol;
-      getStockData(firstResult)
+      apiRoutes.getStockData(firstResult)
       .then((res) => {
         this.props.changeStock(firstResult,res.data.c,res.data.dp,res.data.d)
         this.resetQuery()
@@ -52,7 +52,7 @@ class Searchbar extends React.Component {
 
   handleClick(symbol) {
 
-    getStockData(symbol)
+    apiRoutes.getStockData(symbol)
     .then((res) => {
 
       this.props.changeStock(symbol,res.data.c,res.data.dp, res.data.d)

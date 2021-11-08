@@ -7,21 +7,23 @@ const FreeStocks = (props) => {
   return (
     <main>
       <Nav />
-      <div className="splashy-container">
+      <div className="city-container">
         <div className="buffer" />
-        <section className="splashy-section-1">
-          <div className="section-1-text">
+        <section className="city-section-1">
+          <div className="city-section-1-text">
             <header>Invest Your Way</header>
             <div className="subtext">
               At Robinwood, we work to give you the tools you need to build your future.
             </div>
             <Link
-              id="splash-signup-link"
+              id="city-signup-link"
               className="nav-child"
-              to="/signup"><span>Sign Up</span></Link>
+              to="/signup">
+              <span>Sign Up</span>
+            </Link>
             <div className="filler" />
           </div>
-          <div className="section-1-image" />
+          <div className="city-section-1-image" />
         </section>
       </div>
     </main>

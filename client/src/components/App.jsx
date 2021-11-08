@@ -5,7 +5,7 @@ import LoginForm from './Landing/LoginForm';
 import Portfolio from './Portfolio';
 import SignUp from './Landing/SignUp';
 import FreeStocks from './Landing/FreeStocks';
-import Landing2 from './Landing/Landing2';
+import About from './Landing/About';
 import React from "react";
 import {
   Switch,
@@ -31,8 +31,8 @@ export default function App() {
           <Route path="/free">
             <FreeStocks />
           </Route>
-          <Route path="/landing2">
-            <Landing2 />
+          <Route path="/about">
+            <About />
           </Route>
           <Route path="/">
             <Landing />

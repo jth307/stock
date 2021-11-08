@@ -14,7 +14,7 @@ function SmallGraph({stock}) {
 
 
   const BASE_URL = 'https://cloud.iexapis.com/stable/stock/'
-  const TOKEN = config.API_TOKEN
+  const TOKEN = config.CLOUD_API_TOKEN
 
 
     const getStockGraphData = (stock) => {

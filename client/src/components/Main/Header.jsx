@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import SVGIcon from '../../../dist/svg.js';
+import SVGIcon from '../../../dist/images/svg.js';
 import Searchbar from './Searchbar';
 
 
@@ -15,7 +15,7 @@ function Header (props) {
   return(
     <div className='greeting-div'>
       <div className="greeting-left">
-        <Link className="rh-logo" to="/landing2">
+        <Link className="rh-logo" to="/about">
           <SVGIcon name="icon" width={40} height={40} />
           <span> Robinwood </span>
         </Link>

@@ -16,7 +16,7 @@ function Graph({currentStock,  setFetchStatus}) {
 
 
   const BASE_URL = 'https://cloud.iexapis.com/stable/stock/'
-  const TOKEN = config.API_TOKEN
+  const TOKEN = config.CLOUD_API_TOKEN
 
   const changeInterval = (interval) => {
     setGraphInterval(interval.interval)
@@ -96,11 +96,11 @@ function Graph({currentStock,  setFetchStatus}) {
 
     getStockGraphData(currentStock.name)
       .then((res) => {
-
         for (let i = 0; i < res.data.length; i++) {
           dataX.push(res.data[i].minute);
           dataY.push(res.data[i].average)
         }
+
         setGraphXData(dataX);
         setGraphYData(dataY);
 
@@ -115,18 +115,17 @@ function Graph({currentStock,  setFetchStatus}) {
 
   return (
     <div className='newsfeed-chart'>
-    <div className='graph'>
-           <Line data={data} options={options} />
-          </div>
-
-          <div className="timeline-container">
+      <div className='graph'>
+          <Line data={data} options={options} />
+      </div>
+      <div className="timeline-container">
         <div className="timeline-buttons-container">
           {['LIVE', '24H', '4W', '3M', '1Y', '5Y'].map((interval) =>
-           <Timeline interval = {interval} changeInterval = {changeInterval} currentInterval = {graphInterval}/>
-           )}
+            <Timeline interval = {interval} changeInterval = {changeInterval} currentInterval = {graphInterval}/>
+            )}
         </div>
-    </div>
       </div>
+    </div>
 
   );
 }

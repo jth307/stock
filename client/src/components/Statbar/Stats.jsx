@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Promise from 'bluebird'
 import StatsRow from './StatsRow';
-import getStockData from '../query.js';
+import apiRoutes from '../apiRoutes.js';
 
 function Stats({changeStock,setFetchStatus}) {
 
@@ -17,7 +17,7 @@ function Stats({changeStock,setFetchStatus}) {
           let tempData = []
           myData.map((stock) => {
             promises.push(
-              getStockData(stock)
+              apiRoutes.getStockData(stock)
               .then((res) => {
                 tempData.push({
                   name: stock,
@@ -42,7 +42,7 @@ function Stats({changeStock,setFetchStatus}) {
       let promises = [];
       stocksList.map((stock) => {
         promises.push(
-          getStockData(stock)
+          apiRoutes.getStockData(stock)
           .then((res) => {
             testData.push({
               name: stock,

@@ -1,6 +1,5 @@
 
 import React from "react";
-import StockChart from '../../stock.svg'
 import SmallGraph from './SmallGraph';
 import { Link, useHistory, Redirect } from 'react-router-dom';
 

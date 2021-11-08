@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import apiroutes from '../stockDetails.js';
+import apiRoutes from '../apiRoutes.js';
 
 
 function News(props) {
@@ -8,7 +8,7 @@ function News(props) {
 
 
   useEffect(()=> {
-    apiroutes.fetchGeneralNews()
+    apiRoutes.fetchGeneralNews()
     .then((news) => {
       setNews(news.data.articles.slice(0,4));
     })
@@ -30,24 +30,23 @@ function News(props) {
   // }
 
   useEffect(()=> {
-    apiroutes.fetchStockNews(props.currentStock.name)
+    apiRoutes.fetchStockNews(props.currentStock.name)
     .then((news) => {
-      console.log(news)
       setStockNews(news.data.articles.slice(0,4));
     })
     }, [props.currentStock]);
 
 
 
-    const filterStories = (news) =>{
-      const englishStories = [];
-      news.forEach((story) => {
-        if (story.lang === 'en') {
-          englishStories.push(story);
-        }
-      });
-      return englishStories;
-    }
+  const filterStories = (news) =>{
+    const englishStories = [];
+    news.forEach((story) => {
+      if (story.lang === 'en') {
+        englishStories.push(story);
+      }
+    });
+    return englishStories;
+  }
 
   const renderNews=()=> {
     if (props.currentStock.price<100000) {
@@ -86,13 +85,13 @@ function News(props) {
 }
 
 
-    return (
-        <div className='news-div'>
-            <h2>Recent News</h2>
-            <hr/>
-            {renderNews()}
-        </div>
-    );
+  return (
+      <div className='news-div'>
+          <h2>Recent News</h2>
+          <hr/>
+          {renderNews()}
+      </div>
+  );
 
 }
 
