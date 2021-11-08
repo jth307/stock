@@ -1259,10 +1259,68 @@ textarea:focus, input:focus{
   margin-right: 5rem;
   height: 80rem;
 }
-  /* =================???========================= */
+  /* =================MODAL / Loading========================= */
   .loading {
     left: 47%;
     position: fixed;
     top: 50%;
     z-index: 10;
+}
+
+.cart-popup-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(4, 10, 9, 0.85);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cart-show-popup {
+  z-index: 5;
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.68);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.cart-popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(255, 255, 255);
+  width: 30rem;
+  height: 10rem;
+  overflow-y: scroll;
+  border: 2px double rgb(134, 245, 202);
+  border-radius: 2rem;
+}
+
+.cart-close-popup {
+  float: right;
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  cursor: pointer;
+  background-color: transparent;
+  border-color: transparent;
+  position: sticky;
+  color:rgb(40, 80, 47, 0.25);
+  top: 0;
+  left: 10;
+}
+
+
+.cart-popup-header {
+  font-size: 2rem;
+  font-family:  Helvetica, sans-serif;
+  text-align: center;
+  font-weight: 400;
+  margin-top: 2.6rem;
+  color:rgb(23, 48, 28);
+  padding:1rem;
 }

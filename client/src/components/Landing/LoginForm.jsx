@@ -35,7 +35,6 @@ function LoginForm(props) {
   }
 
     useEffect(() => {
-      console.log('hi', location)
       if (location.state)
         {displayDemoUser('guest@demo', 0)};
     }, [])

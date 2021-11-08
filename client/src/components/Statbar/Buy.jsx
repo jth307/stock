@@ -30,6 +30,7 @@ class Buy extends React.Component {
       validInput: false,
       inputErrorDisplay: false,
       estimatedCost: "$0.00",
+      modalClass: 'cart-popup-container',
     };
     this.selectTab = this.selectTab.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -49,7 +50,6 @@ class Buy extends React.Component {
 
   selectTab(type) {
     this.setState({ active: type, inputErrorDisplay: false });
-    // this.props.clearErrors();
   }
 
   handleInput(e) {
@@ -71,7 +71,6 @@ class Buy extends React.Component {
         estimatedCost: "$0.00"
       });
     }
-    // this.props.clearErrors();
   }
 
   handleSubmit(e) {
@@ -80,17 +79,20 @@ class Buy extends React.Component {
       this.setState({ inputErrorDisplay: true });
     } else {
       const sharesSuccessText = parseInt(this.state.shares) === 1 ? "share" : "shares";
-      if (this.state.active === 'buy') {
-        alert('bought!')
-        // this.props.buyAsset(parseInt(this.state.shares));
-        // this.props.setSuccessMessage(`You bought ${this.state.shares} ${sharesSuccessText} of ${this.props.asset.ticker}`);
-      } else {
-        // this.props.sellAsset(parseInt(this.state.shares));
-        // this.props.setSuccessMessage(`You sold ${this.state.shares} ${sharesSuccessText} of ${this.props.asset.ticker}`);
-        alert('sold!')
-      }
-      // if (this.state.timeout) clearTimeout(this.state.timeout);
+      if (this.state.active === 'buy') {this.openCartModal();
+
+    } else {
+      this.openCartModal();
+          }
     }
+  }
+
+   closeCartModal() {
+    this.setState({modalClass: 'cart-popup-container'});
+  }
+
+  openCartModal() {
+    this.setState({modalClass:'cart-popup-container cart-show-popup'});
   }
 
   render() {
@@ -113,6 +115,13 @@ class Buy extends React.Component {
       </span>
     ) : (<span>12{" "+sharesText} Available</span>);
     return (
+      <>
+      <div className={this.state.modalClass}>
+        <div className="cart-popup-content">
+          <button type="button" onClick={()=>(this.closeCartModal())} className="cart-close-popup">&times;</button>
+          <h1 className="cart-popup-header">Transaction successful</h1>
+        </div>
+      </div>
       <div className='buy-stocks-div'>
       <aside className={`asset-page-sidebar ${color}`}>
         <BuyOrSell
@@ -156,6 +165,7 @@ class Buy extends React.Component {
         </div>
       </aside>
       </div>
+      </>
     );
   }
 }
