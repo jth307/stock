@@ -11,7 +11,6 @@ function Stats({changeStock,setFetchStatus}) {
 
 
     const getMyStocks = () => {
-
           const myData = ['TWTR', 'PFE']
           let promises = [];
           let tempData = []
@@ -54,9 +53,7 @@ function Stats({changeStock,setFetchStatus}) {
 
       Promise.all(promises).then(()=>{
         setStockData(testData);
-
-      })
-
+      });
     }, []);
 
 
@@ -98,9 +95,7 @@ function Stats({changeStock,setFetchStatus}) {
                   </div>
                 </div>
           </div>
-
         )
-
 }
 
 export default Stats;

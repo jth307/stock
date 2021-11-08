@@ -11,7 +11,7 @@ const FINN_TOKEN = config.FINN_API_TOKEN
 const NEWS_TOKEN = config.NEWS_API_TOKEN
 
 const apiRoutes = {
-  getStockDetail : function(stock)  {
+  getStockDetail : function(stock) {
     return axios
       .get(`${CLOUD_BASE_URL}${stock}/company?token=${CLOUD_TOKEN}`)
       .catch((error) => {

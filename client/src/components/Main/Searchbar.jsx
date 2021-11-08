@@ -24,16 +24,15 @@ class Searchbar extends React.Component {
     const queryExp = RegExp("^" + query, 'i');
     let results = [];
     if (e.target.value){
-    results = symbols.filter(stock => {
-      if (stock.symbol.match(queryExp) || stock.name.match(queryExp)) {
-        return stock;
-      }
+      results = symbols.filter(stock => {
+        if (stock.symbol.match(queryExp) || stock.name.match(queryExp)) {
+          return stock;
+        }
     });
     this.setState({ query: query, results: results });
-
-  } else {
-    this.setState({ query: "", results: [] });
-  }
+    } else {
+      this.setState({ query: "", results: [] });
+    }
   }
 
   handleSubmit(e) {
@@ -51,10 +50,8 @@ class Searchbar extends React.Component {
   }
 
   handleClick(symbol) {
-
     apiRoutes.getStockData(symbol)
     .then((res) => {
-
       this.props.changeStock(symbol,res.data.c,res.data.dp, res.data.d)
       this.resetQuery()
     })
@@ -92,20 +89,17 @@ class Searchbar extends React.Component {
     }
   }
 
-componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
-}
+  componentDidMount() {
+      document.addEventListener('mousedown', this.handleClickOutside);
+  }
 
-componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
-}
+  componentWillUnmount() {
+      document.removeEventListener('mousedown', this.handleClickOutside);
+  }
 
-handleClickOutside(e) {
-  // if (this.state.results.length === 0) return;
-  // if (this.wrapperRef && !this.wrapperRef.current.contains(e.target)) {
-    this.setState({ results: [] });
-  //}
-}
+  handleClickOutside(e) {
+      this.setState({ results: [] });
+  }
 
   render() {
     return (

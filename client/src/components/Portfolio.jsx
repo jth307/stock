@@ -57,13 +57,12 @@ function Portfolio () {
         <Header reset={reset} changeStock= {changeStock}/>
       </div>
       <div className= 'portfolio-main-div'>
-      <div className= 'portfolio-info-div'>
-        <Newsfeed currentStock= {currentStock} buyView={buyView} setFetchStatus= {setFetchStatus}/>
-        {buyView? <Buy currentStock= {currentStock}/> :
-        <Stats changeStock= {changeStock}  setFetchStatus= {setFetchStatus}/>}
+        <div className= 'portfolio-info-div'>
+          <Newsfeed currentStock= {currentStock} buyView={buyView} setFetchStatus= {setFetchStatus}/>
+          {buyView? <Buy currentStock= {currentStock}/> :
+          <Stats changeStock= {changeStock}  setFetchStatus= {setFetchStatus}/>}
+        </div>
       </div>
-      </div>
-
     </div>
   )
 };

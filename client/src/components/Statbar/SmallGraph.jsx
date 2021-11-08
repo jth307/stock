@@ -37,22 +37,12 @@ function SmallGraph({stock}) {
         borderColor: graphColor,
         borderWidth: 1.4,
         pointRadius: 0,
-        // pointBorderColor: '#21CE99',
-        // pointBackgroundColor: '#000',
-        // pointHoverBackgroundColor: '#21CE99',
-        // pointHoverBorderColor: '#000',
-        // pointHoverBorderWidth: 1,
         pointHoverRadius: 3
       },
     ],
   };
 
   const options= {
-    // tooltips: {
-    //   mode: 'index',
-    //   intersect: false,
-
-    // },
     responsive: true,
     plugins: {
       legend: {
@@ -84,7 +74,6 @@ function SmallGraph({stock}) {
         display: false,
         title: {
           display: false,
-          // text: 'Value'
         }
       }
     }
@@ -97,7 +86,6 @@ function SmallGraph({stock}) {
 
         getStockGraphData(stock)
         .then((res) => {
-
           for (let i = 0; i < res.data.length; i++) {
             dataX.push(res.data[i].minute);
             dataY.push(res.data[i].average)
@@ -107,17 +95,18 @@ function SmallGraph({stock}) {
 
           if (dataY[dataY.length-1] - dataY[0] < 0) {
             setGraphColor('red')}
-
         })
-
   }, []);
-
-
 
 
   return (
     <div className='graph'>
-           <Line data={data} options={options} width={72} height={40} />
+           <Line
+            data={data}
+            options={options}
+            width={72}
+            height={40}
+           />
           </div>
   );
 }

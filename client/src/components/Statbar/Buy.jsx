@@ -74,20 +74,18 @@ class Buy extends React.Component {
   }
 
   handleSubmit(e) {
-
     if (!this.state.validInput) {
       this.setState({ inputErrorDisplay: true });
     } else {
       const sharesSuccessText = parseInt(this.state.shares) === 1 ? "share" : "shares";
       if (this.state.active === 'buy') {this.openCartModal();
-
     } else {
       this.openCartModal();
-          }
+    }
     }
   }
 
-   closeCartModal() {
+  closeCartModal() {
     this.setState({modalClass: 'cart-popup-container'});
   }
 

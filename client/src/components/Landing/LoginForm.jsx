@@ -62,7 +62,7 @@ function LoginForm(props) {
     return (
       <>
       <div>
-        <Nav/>
+        <Nav displayDemoUser = {displayDemoUser}/>
       </div>
         <div className='session-form-div'>
             <form className='transparent-background'
