@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory, Redirect } from 'react-router-dom';
+import { Link, useHistory, Redirect, useLocation } from 'react-router-dom';
 import Portfolio from '../Portfolio';
 import SignUp from './SignUp';
 import Nav from './Nav';
 
 
 
-function LoginForm() {
+function LoginForm(props) {
 
   var history = useHistory()
-
+  const location = useLocation();
 
   const [details, setDetails] = useState({email:'', password:''});
   const [error, setError] = useState('');
 
+
   const adminUser = {
-    email : 'jt@jt',
-    password: 'jt',
+    email : 'guest@demo',
+    password: 'password123',
     name: 'Jamie'
   };
 
@@ -26,97 +27,47 @@ function LoginForm() {
   }
 
   const Login = (details) => {
-    console.log(details);
-    console.log(history);
-
     if (details.email === adminUser.email && details.password === adminUser.password) {
-      // setUser({admin: true })
-      // document.getElementById('email')
-      // return (<Redirect to='/profile'/>)
       history.push('/portfolio')
-
-
     } else {
       setError('Invalid Credentials')
     }
   }
 
-    // componentDidMount() {
-    //     if (this.props.errors.length > 0) {
-    //         this.props.clearErrors();
-    //     }
-    //     if (this.props.demoUser) {
-    //         this.props.demoStateOff( {demoUser: false} );
-    //         this.displayDemoUser('guest', 0);
-    //     }
-    // }
+    useEffect(() => {
+      console.log('hi', location)
+      if (location.state)
+        {displayDemoUser('guest@demo', 0)};
+    }, [])
 
-    // componentDidUpdate() {
-    //     if (this.props.demoUser) {
-    //         this.props.demoStateOff({ demoUser: false });
-    //         this.displayDemoUser('guest', 0);
-    //     }
-    // }
 
-    // update(field) {
-    //     return e => {
-    //         this.setState({
-    //             [field]: e.currentTarget.value
-    //         })
-    //     }
-    // }
+    const displayDemoUser = (username, n) =>{
+        if (n < username.length) {
+            let curr = username.substring(0, n + 1);
+            setDetails({ email: curr });
+            n++;
+            setTimeout( () => { displayDemoUser(username, n) }, 100);
+        } else {
+            displayDemoPassword('password123', 0);
+        }
+    }
 
-    // handleSubmit(e) {
-    //     e.preventDefault();
-    //     // const user = Object.assign({}, this.state);
-    //     // this.props.processForm(user);
-    //     useHistory().push('/profile')
+    const displayDemoPassword = (password, n) =>{
+        if (n < password.length) {
+            let curr = password.substring(0, n + 1);
+            setDetails({ password: curr });
+            n++;
+            setTimeout(() => { displayDemoPassword(password, n) }, 100);
+        } else {
+            const demoUser = { email: 'guest@demo', password: 'password123' };
+            Login(demoUser);
+        }
+    }
 
-    // }
 
-    // renderErrors() {
-    //     if (this.props.errors.length > 0) {
-    //         return (
-    //             <ul className='login-errors'>
-    //                 {this.props.errors.map((error, i) => (
-    //                     <li key={`error-${i}`}>
-    //                         {error}
-    //                     </li>
-    //                 ))}
-    //             </ul>
-    //         );
-    //     }
-    // }
-
-    // displayDemoUser(username, n) {
-    //     if (n < username.length) {
-    //         let curr = username.substring(0, n + 1);
-    //         this.setState({ username: curr });
-    //         n++;
-    //         setTimeout( () => { this.displayDemoUser(username, n) }, 100);
-    //     } else {
-    //         this.displayDemoPassword('password', 0);
-    //     }
-    // }
-
-    // displayDemoPassword(password, n) {
-    //     if (n < password.length) {
-    //         let curr = password.substring(0, n + 1);
-    //         this.setState({ password: curr });
-    //         n++;
-    //         setTimeout(() => { this.displayDemoPassword(password, n) }, 100);
-    //     } else {
-    //         const demoUser = { username: 'guest', password: 'password' };
-    //         this.props.processForm(demoUser);
-    //     }
-    // }
-
-        // const { formType, navLink } = this.props;
-        // const formLabel = formType[0].toUpperCase() + formType.slice(1).toLowerCase();
-        // const navLinkLabel = navLink[0].toUpperCase() + navLink.slice(1).toLowerCase();
         return (
           <>
-          <div> <Nav/> </div>
+          <div> <Nav setDemo = {displayDemoUser}/> </div>
             <div className='session-form-div'>
                 <form className='transparent-background'
                 onSubmit={submitHandler}

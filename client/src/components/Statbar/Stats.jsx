@@ -4,13 +4,14 @@ import Promise from 'bluebird'
 import StatsRow from './StatsRow';
 import getStockData from '../query.js';
 
-function Stats({changeStock}) {
+function Stats({changeStock,setFetchStatus}) {
 
     const [stockData, setStockData] = useState([]);
     const [myStocks, setMyStocks] = useState([]);
 
 
     const getMyStocks = () => {
+
           const myData = ['TWTR', 'PFE']
           let promises = [];
           let tempData = []
@@ -32,6 +33,7 @@ function Stats({changeStock}) {
 
 
     useEffect(() => {
+
       const stocksList = ["AAPL", "MSFT", "TSLA", "FB", "BABA", "UBER", "DIS", "SBUX"];
       const testData = [];
 
@@ -52,6 +54,7 @@ function Stats({changeStock}) {
 
       Promise.all(promises).then(()=>{
         setStockData(testData);
+
       })
 
     }, []);

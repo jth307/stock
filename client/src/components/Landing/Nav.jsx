@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import SVGIcon from '../../../dist/svg.js';
 
-function Nav ({authed}) {
+function Nav (props) {
+
+  let history = useHistory()
+
+  const handleDemo = () =>{
+
+    if (props.setDemo){
+    props.setDemo('guest@demo',0)} else{
+    history.push({
+      pathname: '/login',
+      state: { demoUser: true }
+  })
+}
+  }
 
     return(
       <div className="greeting-div">
@@ -19,17 +32,15 @@ function Nav ({authed}) {
           </Link>
         </div>
         <div>
-          <Link className="login-button" to="/login">
+          <Link className="login-button" to="/login" replace>
             Log In
           </Link>
+
         </div>
         <div>
-        <Link className='demo-link' to="/portfolio">
-          <button className="demo-button" >
+          <button className="demo-button" onClick={handleDemo}>
             Demo
           </button>
-          </Link>
-
         </div>
       </div>
     </div>

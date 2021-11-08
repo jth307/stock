@@ -21,7 +21,10 @@ const Landing = () => {
           </div>
           <Link
               className="signup-buttonz animated fadeInUp delay-3s"
-              to="/portfolio"><span>Demo</span></Link>
+              to={{
+                pathname: '/login',
+                state: { demoUser: true }
+            }}><span>Demo</span></Link>
         </section>
         <div className="animated fadeInUp delay-3s video-container">
           <video autoPlay loop muted>
