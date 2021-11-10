@@ -42,7 +42,15 @@ const checkUsername= (username) => {
   });
 };
 
+const serialize=(id)=>{
+  const psqlStatementArray = `SELECT * FROM
+  users WHERE id = $1`;
+  return pool.query(psqlStatementArray, [id])
+  .then((result) => {
+    return result;
+  });
 
+}
 // const getHome = (callback) => {
 //   const psqlStatement = 'SELECT NOW()';
 //   pool.query(psqlStatement, callback);
@@ -125,6 +133,6 @@ const checkUsername= (username) => {
 
 
 module.exports = {
-  postUser, checkUser, checkUsername
+  postUser, checkUser, checkUsername, serialize
 
 };

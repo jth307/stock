@@ -2,15 +2,17 @@ const path = require('path');
 const express = require('express');
 const db = require('../database/index');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 
-
-
+const initializePassport = require('../passportConfig.js')
+initializePassport.initialize(passport)
 const app = express();
 
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(passport.initialize());
+app.use(passport.session);
 
 app.post('/example', async(req, res) => {
   // console.log('post reviews req.body', req.body);
@@ -33,7 +35,6 @@ app.post('/example', async(req, res) => {
     if (errors.length>0) {
       res.status(200).send({errors})
     } else {
-
 
   // form validation passed
 
@@ -67,8 +68,12 @@ app.post('/example', async(req, res) => {
   }
 });
 
+app.post('/signup', passport.authenticate('local', {
+  successRedirect: "/portfolio",
+  failureRedirect: "/login",
+  failureFlash: true
 
-
+}))
 app.get('/', (req, res) => {
   res.send('Server says hello!');
 });

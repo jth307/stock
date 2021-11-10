@@ -37,7 +37,14 @@ function SignUp (){
             console.log('lol')
         } else {
         setError([])
-      }})
+        history.push({
+                pathname: '/login',
+                state: {
+                demoUser: false,
+                password: '',
+                }
+              })
+          }})
       .catch((error)=> {
           console.log('hi',error);
     //   setError(error)
