@@ -31,19 +31,19 @@ function LoginForm(props) {
   }
 
     useEffect(() => {
-      if (location.state)
-        {displayDemoUser('robinwood', 0)};
+      if (location.state.demoUser)
+        {displayDemoUser()};
     }, [])
 
 
-    const displayDemoUser = (username, n) =>{
+    const displayDemoUser = (username='robinwood', n=0, password='password123') =>{
         if (n < username.length) {
             let curr = username.substring(0, n + 1);
             setDetails({ username: curr });
             n++;
             setTimeout( () => { displayDemoUser(username, n) }, 100);
         } else {
-            displayDemoPassword('password123', 0);
+            displayDemoPassword(password, 0);
         }
     }
 

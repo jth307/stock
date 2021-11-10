@@ -48,10 +48,18 @@ const apiRoutes = {
       .get(`${CLOUD_BASE_URL}${stock}/intraday-prices/?chartInterval=${interval.substring(0,1)}&token=${CLOUD_TOKEN}`)
       .catch((error) => {
         console.error("Error", error.message);
-        // setFetchStatus(true)
       });
   },
 
+  createUser: function (data) {
+    return axios
+    .post('http://localhost:9000/example/', data)
+    // .then( res => { console.log(res.status) } )
+    .catch((error) => {
+      throw new Error(error);
+    });
+
+  }
 }
 
 
