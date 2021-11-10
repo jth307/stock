@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import apiRoutes from '../apiRoutes.js';
+import apiRoutes from '../../apiRoutes.js';
 
 
 function News(props) {

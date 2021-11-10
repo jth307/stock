@@ -17,11 +17,13 @@ function Nav (props) {
       }
     }
 
+
+
   return(
     <div className="greeting-div">
       <div className="greeting-left">
+        <SVGIcon name="icon" width={40} height={40} className='switch' />
         <Link className="rh-logo" to="/about">
-          <SVGIcon name="icon" width={40} height={40} />
           <span> Robinwood </span>
         </Link>
       </div>

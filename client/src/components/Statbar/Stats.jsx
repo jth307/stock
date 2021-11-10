@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Promise from 'bluebird'
 import StatsRow from './StatsRow';
-import apiRoutes from '../apiRoutes.js';
+import apiRoutes from '../../apiRoutes.js';
 
 function Stats({changeStock,setFetchStatus}) {
 

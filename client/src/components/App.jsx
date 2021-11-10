@@ -6,7 +6,7 @@ import Portfolio from './Portfolio';
 import SignUp from './Landing/SignUp';
 import FreeStocks from './Landing/FreeStocks';
 import About from './Landing/About';
-import React from "react";
+import React, { useState } from 'react';
 import {
   Switch,
   Route,
@@ -15,6 +15,7 @@ import {
 } from "react-router-dom";
 
 export default function App() {
+
   return (
     <HashRouter>
       <div>

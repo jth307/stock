@@ -30,7 +30,7 @@ const Landing = () => {
                  <span>Demo</span>
           </Link>
         </section>
-        <div className="animated fadeInUp delay-3s video-container">
+        <div className="animated fadeInUp delay-3s video-container inverted">
           <video autoPlay loop muted>
             <source src="http://sparrow-app.herokuapp.com/assets/phone_1-aa43dfecfbf3cfffd8613a65f01fa3eae946475a23e4cbf039f70b2b11ffafae.webm" />
           </video>

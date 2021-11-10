@@ -8,11 +8,11 @@ function LoginForm(props) {
   var history = useHistory()
   const location = useLocation();
 
-  const [details, setDetails] = useState({email:'', password:''});
+  const [details, setDetails] = useState({username:'', password:''});
   const [error, setError] = useState('');
 
   const adminUser = {
-    email : 'guest@demo',
+    username : 'robinwood',
     password: 'password123',
     name: 'Jamie'
   };
@@ -23,7 +23,7 @@ function LoginForm(props) {
   }
 
   const Login = (details) => {
-    if (details.email === adminUser.email && details.password === adminUser.password) {
+    if (details.username === adminUser.username && details.password === adminUser.password) {
       history.push('/portfolio')
     } else {
       setError('Invalid Credentials')
@@ -32,14 +32,14 @@ function LoginForm(props) {
 
     useEffect(() => {
       if (location.state)
-        {displayDemoUser('guest@demo', 0)};
+        {displayDemoUser('robinwood', 0)};
     }, [])
 
 
     const displayDemoUser = (username, n) =>{
         if (n < username.length) {
             let curr = username.substring(0, n + 1);
-            setDetails({ email: curr });
+            setDetails({ username: curr });
             n++;
             setTimeout( () => { displayDemoUser(username, n) }, 100);
         } else {
@@ -75,8 +75,8 @@ function LoginForm(props) {
                         // onChange={this.update('username')}
                         // value={this.state.username}
                         required
-                        type='email' name='name' id='name' onChange={e => setDetails({...details, email: e.target.value})} value = {details.email}
-                        value={details.email}
+                        type='text' name='name' id='name' onChange={e => setDetails({...details, username: e.target.value})} value = {details.username}
+                        value={details.username}
                     />
                     <label className='login-label'>Password</label>
                     <input

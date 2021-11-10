@@ -50,6 +50,10 @@ body {
   justify-content: space-between;
 }
 
+.switch{
+  cursor: pointer;
+}
+
 .rh-logo span{
    margin-left: 1.2rem;
 }
@@ -1324,3 +1328,4 @@ textarea:focus, input:focus{
   color:rgb(23, 48, 28);
   padding:1rem;
 }
+

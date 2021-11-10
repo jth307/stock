@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
-const config = require('../../../../server/helpers/config.js');
+import apiRoutes from '../../apiRoutes.js';
 
 
 function SmallGraph({stock}) {
@@ -13,19 +13,7 @@ function SmallGraph({stock}) {
   const [graphColor, setGraphColor] = useState('#21CE99')
 
 
-  const BASE_URL = 'https://cloud.iexapis.com/stable/stock/'
-  const TOKEN = config.CLOUD_API_TOKEN
-
-
-    const getStockGraphData = (stock) => {
-      return axios
-        .get(`${BASE_URL}${stock}/intraday-prices/?chartInterval=2&token=${TOKEN}`)
-        .catch((error) => {
-          console.error("Error", error.message);
-        });
-    };
-
-  const data = {
+  const graphData = {
     labels: graphXData,
     datasets: [
       {
@@ -42,7 +30,7 @@ function SmallGraph({stock}) {
     ],
   };
 
-  const options= {
+  const graphOptions= {
     responsive: true,
     plugins: {
       legend: {
@@ -84,7 +72,7 @@ function SmallGraph({stock}) {
     let dataX = [];
     let dataY = [];
 
-        getStockGraphData(stock)
+        apiRoutes.getStockGraphData(stock,'2')
         .then((res) => {
           for (let i = 0; i < res.data.length; i++) {
             dataX.push(res.data[i].minute);
@@ -102,8 +90,8 @@ function SmallGraph({stock}) {
   return (
     <div className='graph'>
            <Line
-            data={data}
-            options={options}
+            data={graphData}
+            options={graphOptions}
             width={72}
             height={40}
            />

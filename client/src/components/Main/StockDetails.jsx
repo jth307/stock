@@ -1,5 +1,5 @@
 import React from 'react';
-import apiRoutes from '../apiRoutes.js';
+import apiRoutes from '../../apiRoutes.js';
 
 
 class StockDetails extends React.Component {

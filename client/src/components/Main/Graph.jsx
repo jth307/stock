@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import Timeline from './Timeline';
+import apiRoutes from '../../apiRoutes.js';
 
 
 function Graph({currentStock,  setFetchStatus}) {
@@ -12,27 +13,13 @@ function Graph({currentStock,  setFetchStatus}) {
   const [graphYData, setGraphYData] = useState([])
   const [graphColor, setGraphColor] = useState('#21CE99')
   const [graphInterval, setGraphInterval] = useState('24H')
-  const config = require('../../../../server/helpers/config.js');
 
-
-  const BASE_URL = 'https://cloud.iexapis.com/stable/stock/'
-  const TOKEN = config.CLOUD_API_TOKEN
 
   const changeInterval = (interval) => {
     setGraphInterval(interval.interval)
   };
 
-
-  const getStockGraphData = (stock) => {
-    return axios
-      .get(`${BASE_URL}${stock}/intraday-prices/?chartInterval=${graphInterval.substring(0,1)}&token=${TOKEN}`)
-      .catch((error) => {
-        console.error("Error", error.message);
-        // setFetchStatus(true)
-      });
-  };
-
-  const data = {
+  const graphData = {
     labels: graphXData,
     datasets: [
       {
@@ -54,7 +41,7 @@ function Graph({currentStock,  setFetchStatus}) {
     ],
   };
 
-  const options= {
+  const graphOptions= {
     responsive: true,
     plugins: {
       legend: {
@@ -94,7 +81,7 @@ function Graph({currentStock,  setFetchStatus}) {
     let dataX = [];
     let dataY = [];
 
-    getStockGraphData(currentStock.name)
+    apiRoutes.getStockGraphData(currentStock.name, graphInterval)
       .then((res) => {
         for (let i = 0; i < res.data.length; i++) {
           dataX.push(res.data[i].minute);
@@ -116,7 +103,7 @@ function Graph({currentStock,  setFetchStatus}) {
   return (
     <div className='newsfeed-chart'>
       <div className='graph'>
-          <Line data={data} options={options} />
+          <Line data={graphData} options={graphOptions} />
       </div>
       <div className="timeline-container">
         <div className="timeline-buttons-container">

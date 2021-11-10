@@ -16,7 +16,7 @@ class About extends React.Component {
                 <Nav/>
             </div>
             <div className='splash-div'>
-                <div className='splash-section-1'>
+                <div className='splash-section-1 inverted'>
                     <div className='splash-body-1'>
                         <h1 className='splash-h1-1'>It's Time to Do Money</h1>
                         <p className='splash-description-1'>Robinwood, a pioneer of commission-free investing, gives you access to investing and more ways to make your money work harder.</p>

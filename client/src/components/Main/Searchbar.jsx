@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import symbols from './symbols.json';
-import apiRoutes from '../apiRoutes.js';
+import apiRoutes from '../../apiRoutes.js';
 
 
 class Searchbar extends React.Component {
