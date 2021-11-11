@@ -28,9 +28,9 @@ const checkUser= (email) => {
   const psqlStatementArray = `SELECT * FROM
   users WHERE email = $1`;
   return pool.query(psqlStatementArray, [email])
-  .then((result) => {
-    return result;
-  });
+  // .then((result) => {
+  //   return result;
+  // });
 };
 
 const checkUsername= (username) => {
@@ -49,8 +49,35 @@ const serialize=(id)=>{
   .then((result) => {
     return result;
   });
+};
 
-}
+const buyStock= (params) => {
+  const paramsArray = [
+    params.username,
+    params.stock,
+    params.qty,
+  ];
+  const psqlStatementArray = `INSERT INTO
+  users_stocks (stock, quantity, user_id)
+  VALUES ($1, $2, $3)
+  WHERE ID IN (SELECT ID
+    FROM COMPANY
+    WHERE SALARY > 45000)
+  RETURNING id
+  `;
+
+
+  // INSERT INTO COMPANY_BKP
+  //  SELECT * FROM COMPANY
+  //  WHERE ID IN (SELECT ID
+  //     FROM COMPANY)
+
+
+  // console.log(psqlStatementArray);
+  return pool.query(psqlStatementArray, paramsArray)
+};
+
+
 // const getHome = (callback) => {
 //   const psqlStatement = 'SELECT NOW()';
 //   pool.query(psqlStatement, callback);

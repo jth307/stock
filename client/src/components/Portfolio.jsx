@@ -19,7 +19,8 @@ function Portfolio () {
   })
   const [buyView, setBuyView] = useState(false)
   const [fetchStatus, setFetchStatus] = useState(false)
-  const [user, setUser] = useState(location.state.username)
+  const [user, setUser] = useState({username: location.state.username, userID: location.state.userID})
+  console.log('port', user)
 
 
   const changeStock = (stock,price,percentage,change)=>{

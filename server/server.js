@@ -2,17 +2,13 @@ const path = require('path');
 const express = require('express');
 const db = require('../database/index');
 const bcrypt = require('bcrypt');
-// const passport = require('passport');
 
-// const initializePassport = require('../passportConfig.js')
-// initializePassport.initialize(passport)
 const app = express();
 
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(passport.initialize());
-// app.use(passport.session());
+
 
 app.post('/register', async(req, res) => {
   // console.log('post reviews req.body', req.body);
@@ -54,8 +50,8 @@ app.post('/register', async(req, res) => {
               res.status(200).send({errors})
             } else {
                 db.postUser(req.body)
-                .then(() => {
-                  res.status(201).send('Success: User added.');
+                .then((result) => {
+                  res.status(201).send(result.rows);
                 })
                 .catch((err) => {
                   res.status(404).send(`Error: Could not add the given user. Data received: ${err}`);
@@ -79,7 +75,7 @@ app.post('/authenticate', (req, res) => {
         bcrypt.compare(password, user.passcode, (err, isMatch)=>{
           if (isMatch) {
             console.log('match!')
-            res.status(200).send('Success')
+            res.status(200).send({message:'Success', userID: user.id})
           } else {
             console.log('nah')
             res.status(200).send('Invalid Credentials')
@@ -92,27 +88,6 @@ app.post('/authenticate', (req, res) => {
     })
 
 })
-
-// app.post('/signup', passport.authenticate('local', {
-//   successRedirect: "/portfolio",
-//   failureRedirect: "/login",
-//   failureFlash: true
-
-// }))
-
-// function checkAuthenticated(req,res,next) {
-//   if (req.isAuthenticated()) {
-//     return res.redirect('/portfolio')
-//   }
-//   next();
-// }
-
-// function checkNotAuthenticated(req,res,next) {
-//   if (req.isAuthenticated()) {
-//     return next();
-//   }
-//   res.redirect('/login')
-// }
 
 
 app.get('/', (req, res) => {

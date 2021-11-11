@@ -27,15 +27,16 @@ function SignUp (){
       .then((res) => {
         if (res.data.errors) {
             setError(res.data.errors)
-            console.log('lol')
         } else {
         setError([])
+        console.log('wut id', res.data)
         history.push({
                 pathname: '/login',
                 state: {
                 demoUser: false,
                 password: data.password,
-                username: data.username
+                username: data.username,
+                userID: res.data[0].id
                 }
               })
           }})

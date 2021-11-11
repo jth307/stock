@@ -13,22 +13,19 @@ function LoginForm(props) {
   const [details, setDetails] = useState({username:'', password:''});
   const [error, setError] = useState('');
 
-  const adminUser = {
-    username : 'robinwood',
-    password: 'password',
-  };
 
   const submitHandler = (e) => {
     if (e){
     e.preventDefault();}
     apiRoutes.authenticateUser(details)
     .then((res) => {
-      if (res.data === 'Success') {
+      if (res.data.message === 'Success') {
         auth.login(() => {
           history.push({
             pathname: '/portfolio',
             state: {
-            username: details.username
+            username: details.username,
+            userID: res.data.userID
             }
           })         })
       } else {
@@ -41,19 +38,40 @@ function LoginForm(props) {
   }
 
   const Login = () => {
-    apiRoutes.authenticateUser(adminUser)
-    .then((res) => {
-      if (res.data === 'Success') {
-        auth.login(() => {
-          history.push({
-            pathname: '/portfolio',
-            state: {
-            username: adminUser.username
-            }
-         })
-        })
-      }
-    })
+    if (location.state){
+      let currentUser = {username:location.state.username, password:location.state.password}
+      apiRoutes.authenticateUser(currentUser)
+      .then((res) => {
+        if (res.data.message === 'Success') {
+          auth.login(() => {
+            history.push({
+              pathname: '/portfolio',
+              state: {
+              username: location.state.username,
+              userID: location.state.userID
+              }
+          })
+          })
+        }
+      })
+
+    }else {
+      let currentUser = {username:'robinwood', password:'password'}
+      apiRoutes.authenticateUser(currentUser)
+      .then((res) => {
+        if (res.data.message === 'Success') {
+          auth.login(() => {
+            history.push({
+              pathname: '/portfolio',
+              state: {
+              username: 'robinwood',
+              userID: res.data.userID
+              }
+          })
+          })
+        }
+      })
+    }
   }
 
     useEffect(() => {
@@ -68,7 +86,6 @@ function LoginForm(props) {
 
 
     const displayDemoUser = (username='robinwood', n=0, password='password') =>{
-      console.log(username, n, password)
         if (n < username.length) {
             let curr = username.substring(0, n + 1);
             setDetails({ username: curr });
@@ -121,8 +138,7 @@ function LoginForm(props) {
                         value={details.password}
                         />
                     <p className='session-link-p'>
-                        New to Robinwood?
-                        <Link className='session-nav-link' to={`/signup`}>
+                        New to Robinwood? <Link className='session-nav-link' to={`/signup`}>
                             Click here to complete your application
                         </Link>
                     </p>
