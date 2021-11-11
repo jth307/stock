@@ -41,13 +41,13 @@ function SignUp (){
                 pathname: '/login',
                 state: {
                 demoUser: false,
-                password: '',
+                password: data.password,
+                username: data.username
                 }
               })
           }})
       .catch((error)=> {
-          console.log('hi',error);
-    //   setError(error)
+          console.log('signup error',error);
     })
     }
 

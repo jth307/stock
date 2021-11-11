@@ -48,13 +48,17 @@ function LoginForm(props) {
     useEffect(() => {
       if (location.state) {
       if (location.state.demoUser)
-        {displayDemoUser()};
+        {displayDemoUser()}
+        else {
+          console.log(location.state)
+        displayDemoUser(location.state.username, 0, location.state.password)
       }
-    }, [])
+    }}, [])
 
 
 
     const displayDemoUser = (username='robinwood', n=0, password='password') =>{
+      console.log(username, n, password)
         if (n < username.length) {
             let curr = username.substring(0, n + 1);
             setDetails({ username: curr });
@@ -71,7 +75,6 @@ function LoginForm(props) {
             setDetails({ password: curr });
             n++;
             setTimeout(() => { displayDemoPassword(password, n) }, 100);
-            console.log(details)
         } else {
             Login();
         }
