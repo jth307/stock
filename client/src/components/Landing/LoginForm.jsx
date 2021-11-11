@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import Nav from './Nav';
 import auth from '../../auth';
-
+import apiRoutes from '../../apiRoutes.js';
 
 
 function LoginForm(props) {
@@ -21,9 +21,19 @@ function LoginForm(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    auth.login(details,() => {
-     history.push('/portfolio');
-    });
+    apiRoutes.authenticateUser(details)
+    .then((res) => {
+      if (res.data === 'Success') {
+        auth.login(() => {
+          history.push('/portfolio');
+         })
+      } else {
+        setError(res.data)
+      }
+    })
+    .catch((error)=> {
+        console.log('login error',error);
+    })
   }
 
   // const Login = (details) => {
@@ -75,7 +85,7 @@ function LoginForm(props) {
             onSubmit={submitHandler}>
                 <h1 className='login-form-h1'>Welcome to Robinwood</h1>
                 <div className='session-inputs-div'>
-                    <label className='login-label'>Email</label>
+                    <label className='login-label'>Username</label>
                     <input
                         className='session-input'
                         // onChange={this.update('username')}

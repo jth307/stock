@@ -7,6 +7,7 @@ function initialize(passport) {
   const authenticatUser = (username, password, done)=>{
     db.checkUsername(username)
     .then((results) => {
+      console.log('r',results)
       if (results.rows.length>0 ){
         const user = results.row[0];
         bcrypt.compare(password, user.password, (err, isMatch)=>{

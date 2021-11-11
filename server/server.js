@@ -2,19 +2,19 @@ const path = require('path');
 const express = require('express');
 const db = require('../database/index');
 const bcrypt = require('bcrypt');
-const passport = require('passport');
+// const passport = require('passport');
 
-const initializePassport = require('../passportConfig.js')
-initializePassport.initialize(passport)
+// const initializePassport = require('../passportConfig.js')
+// initializePassport.initialize(passport)
 const app = express();
 
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-app.post('/example', async(req, res) => {
+app.post('/register', async(req, res) => {
   // console.log('post reviews req.body', req.body);
   if (!req.body) {
     res.status(401).send('Error: Must supply body parameters');
@@ -39,7 +39,7 @@ app.post('/example', async(req, res) => {
   // form validation passed
 
       let hashedPassword = await bcrypt.hash(password, 10 )
-      password = hashedPassword
+      req.body.password = hashedPassword
 
       db.checkUser(email)
       .then((results) => {
@@ -68,30 +68,55 @@ app.post('/example', async(req, res) => {
   }
 });
 
-app.post('/signup', passport.authenticate('local', {
-  successRedirect: "/portfolio",
-  failureRedirect: "/login",
-  failureFlash: true
 
-}))
+app.post('/authenticate', (req, res) => {
+  let {username, password} = req.body;
 
-function checkAuthenticated(req,res,next) {
-  if (req.isAuthenticated()) {
-    return res.redirect('/portfolio')
-  }
-  next();
-}
+  db.checkUsername(username)
+    .then((result) => {
+      if (result.rows.length>0 ){
+        const user = result.rows[0];
+        bcrypt.compare(password, user.passcode, (err, isMatch)=>{
+          if (isMatch) {
+            console.log('match!')
+            res.status(200).send('Success')
+          } else {
+            console.log('nah')
+            res.status(200).send('Invalid Credentials')
+          }
+        })
+      } else {
+        console.log('wtf')
+        res.status(200).send('User is not registered')
+      }
+    })
 
-function checkNotAuthenticated(req,res,next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login')
-}
+})
+
+// app.post('/signup', passport.authenticate('local', {
+//   successRedirect: "/portfolio",
+//   failureRedirect: "/login",
+//   failureFlash: true
+
+// }))
+
+// function checkAuthenticated(req,res,next) {
+//   if (req.isAuthenticated()) {
+//     return res.redirect('/portfolio')
+//   }
+//   next();
+// }
+
+// function checkNotAuthenticated(req,res,next) {
+//   if (req.isAuthenticated()) {
+//     return next();
+//   }
+//   res.redirect('/login')
+// }
 
 
 app.get('/', (req, res) => {
-  res.render('/#/portfolio');
+  res.send('Server says hello!');
 });
 
 app.listen(9000, () => {

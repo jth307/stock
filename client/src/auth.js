@@ -1,11 +1,12 @@
+import apiRoutes from './apiRoutes.js';
+
 class Auth {
 
   constructor() {
     this.authenticated= false
   }
 
-  login(details, cb){
-    console.log(details)
+  login(cb){
     this.authenticated= true
     cb()
   }
