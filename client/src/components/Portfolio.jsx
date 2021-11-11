@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import {useLocation } from 'react-router-dom';
+
 
 import Header from './Main/Header';
 import Newsfeed from './Main/Newsfeed';
@@ -8,7 +10,7 @@ import { BeatLoader } from 'react-spinners';
 
 
 function Portfolio () {
-
+  const location = useLocation();
   const [currentStock, setCurrentStock] = useState({
     name: 'PFE',
     price: 128573.98,
@@ -17,6 +19,8 @@ function Portfolio () {
   })
   const [buyView, setBuyView] = useState(false)
   const [fetchStatus, setFetchStatus] = useState(false)
+  const [user, setUser] = useState(location.state.username)
+
 
   const changeStock = (stock,price,percentage,change)=>{
     setCurrentStock({name: stock, price: price, percentage: percentage, change: change});
@@ -59,7 +63,7 @@ function Portfolio () {
       <div className= 'portfolio-main-div'>
         <div className= 'portfolio-info-div'>
           <Newsfeed currentStock= {currentStock} buyView={buyView} setFetchStatus= {setFetchStatus}/>
-          {buyView? <Buy currentStock= {currentStock}/> :
+          {buyView? <Buy user={user} currentStock= {currentStock}/> :
           <Stats changeStock= {changeStock}  setFetchStatus= {setFetchStatus}/>}
         </div>
       </div>

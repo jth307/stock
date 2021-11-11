@@ -25,14 +25,18 @@ function LoginForm(props) {
     .then((res) => {
       if (res.data === 'Success') {
         auth.login(() => {
-          history.push('/portfolio');
-         })
+          history.push({
+            pathname: '/portfolio',
+            state: {
+            username: details.username
+            }
+          })         })
       } else {
         setError(res.data)
       }
     })
     .catch((error)=> {
-        console.log('login error',error);
+        console.log('loginn error',error);
     })
   }
 
@@ -41,16 +45,22 @@ function LoginForm(props) {
     .then((res) => {
       if (res.data === 'Success') {
         auth.login(() => {
-          history.push('/portfolio');
+          history.push({
+            pathname: '/portfolio',
+            state: {
+            username: adminUser.username
+            }
          })
-    }})}
+        })
+      }
+    })
+  }
 
     useEffect(() => {
       if (location.state) {
       if (location.state.demoUser)
         {displayDemoUser()}
-        else {
-          console.log(location.state)
+      if (location.state.username) {
         displayDemoUser(location.state.username, 0, location.state.password)
       }
     }}, [])

@@ -25,13 +25,6 @@ function SignUp (){
 
       apiRoutes.createUser(data)
       .then((res) => {
-        //   history.push({
-        //     pathname: '/login',
-        //     state: {
-        //     username: '',
-        //     password: '',
-        //     }
-        //   })
         if (res.data.errors) {
             setError(res.data.errors)
             console.log('lol')
