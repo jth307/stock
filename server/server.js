@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
-app.use(passport.session);
+app.use(passport.session());
 
 app.post('/example', async(req, res) => {
   // console.log('post reviews req.body', req.body);
@@ -74,8 +74,24 @@ app.post('/signup', passport.authenticate('local', {
   failureFlash: true
 
 }))
+
+function checkAuthenticated(req,res,next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/portfolio')
+  }
+  next();
+}
+
+function checkNotAuthenticated(req,res,next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login')
+}
+
+
 app.get('/', (req, res) => {
-  res.send('Server says hello!');
+  res.render('/#/portfolio');
 });
 
 app.listen(9000, () => {

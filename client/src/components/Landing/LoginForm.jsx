@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import Nav from './Nav';
+import auth from '../../auth';
+
 
 
 function LoginForm(props) {
@@ -19,20 +21,24 @@ function LoginForm(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    Login(details)
+    auth.login(details,() => {
+     history.push('/portfolio');
+    });
   }
 
-  const Login = (details) => {
-    if (details.username === adminUser.username && details.password === adminUser.password) {
-      history.push('/portfolio')
-    } else {
-      setError('Invalid Credentials')
-    }
-  }
+  // const Login = (details) => {
+  //   if (details.username === adminUser.username && details.password === adminUser.password) {
+  //     history.push('/portfolio')
+  //   } else {
+  //     setError('Invalid Credentials')
+  //   }
+  // }
 
     useEffect(() => {
+      if (location.state) {
       if (location.state.demoUser)
         {displayDemoUser()};
+      }
     }, [])
 
 

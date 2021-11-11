@@ -22,7 +22,7 @@ function StatsRow(props) {
         </p>
       </div>
       <div className="row-chart">
-        <SmallGraph stock = {props.name}/>
+        {/* <SmallGraph stock = {props.name}/> */}
       </div>
       <div className="row-numbers">
         <p className="row-price">${props.price}</p>

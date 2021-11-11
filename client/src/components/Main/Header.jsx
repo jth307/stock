@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import SVGIcon from '../../../dist/images/svg.js';
 import Searchbar from './Searchbar';
+import auth from '../../auth';
+
 
 
 function Header (props) {
@@ -9,7 +11,9 @@ function Header (props) {
   let history = useHistory()
 
   const Logout = () =>{
-    history.push('/' )
+    auth.logout(() => {
+      history.push('/');
+     });
   }
 
   return(

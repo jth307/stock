@@ -6,6 +6,7 @@ import Portfolio from './Portfolio';
 import SignUp from './Landing/SignUp';
 import FreeStocks from './Landing/FreeStocks';
 import About from './Landing/About';
+import {ProtectedRoute} from '../protectedRoute';
 import React, { useState } from 'react';
 import {
   Switch,
@@ -23,9 +24,9 @@ export default function App() {
           <Route path="/login">
             <LoginForm />
           </Route>
-          <Route path="/portfolio">
-            <Portfolio />
-          </Route>
+          <ProtectedRoute path="/portfolio"
+            component = {Portfolio}
+          />
           <Route path="/signup">
             <SignUp />
           </Route>
