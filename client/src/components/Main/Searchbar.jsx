@@ -50,6 +50,7 @@ class Searchbar extends React.Component {
   }
 
   handleClick(symbol) {
+    console.log('clicked')
     apiRoutes.getStockData(symbol)
     .then((res) => {
       this.props.changeStock(symbol,res.data.c,res.data.dp, res.data.d)
@@ -71,7 +72,7 @@ class Searchbar extends React.Component {
     if (results.length > 0) {
       results = results.slice(0, 6);
       return (
-        <ul className="search-results">
+        <ul className="search-results" >
           <div id="search-header">Stocks</div>
           {results.map((result, i) => {
             return (
@@ -91,6 +92,7 @@ class Searchbar extends React.Component {
 
   componentDidMount() {
       document.addEventListener('mousedown', this.handleClickOutside);
+
   }
 
   componentWillUnmount() {
@@ -98,12 +100,16 @@ class Searchbar extends React.Component {
   }
 
   handleClickOutside(e) {
+    if (this.wrapperRef && !this.wrapperRef.current.contains(e.target)) {
       this.setState({ results: [] });
+    }
   }
+
+
 
   render() {
     return (
-      <div className="searchbar-container" ref={this.wrapperRef}>
+      <div id="searchbox" className="searchbar-container" ref={this.wrapperRef}>
         <div className="searchbar">
           <form onSubmit={this.handleSubmit}>
             <input

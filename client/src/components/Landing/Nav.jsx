@@ -8,7 +8,7 @@ function Nav (props) {
 
   const handleDemo = () =>{
     if (props.displayDemoUser){
-    props.displayDemoUser('guest@demo',0)
+    props.displayDemoUser()
     } else{
       history.push({
         pathname: '/login',

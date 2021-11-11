@@ -19,14 +19,15 @@ function Header (props) {
   return(
     <div className='greeting-div'>
       <div className="greeting-left">
-        <Link className="rh-logo" to="/about">
+        {/* <Link className="rh-logo" to="/about"> */}
           <SVGIcon name="icon" width={40} height={40} />
-          <span> Robinwood </span>
-        </Link>
+          <span className="rh-logo"> Robinwood </span>
+        {/* </Link> */}
       </div>
       <Searchbar changeStock= {props.changeStock}/>
       <div className='header-menuItems'>
-        <div onClick={() => (history.push('/free'))}>Free Stocks</div>
+        {/* <div onClick={() => (history.push('/free'))}>Free Stocks</div> */}
+        <div>Free Stocks</div>
         <div onClick={()=>(props.reset())}>Portfolio</div>
         <div>Cash</div>
         <div>Messages</div>

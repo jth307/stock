@@ -1,12 +1,12 @@
 
 import React from 'react';
-import Nav from './Nav';
+import Header from '../Main/Header';
 import { Link } from 'react-router-dom';
 
 const FreeStocks = (props) => {
   return (
     <main>
-      <Nav />
+      <Header />
       <div className="city-container">
         <div className="buffer" />
         <section className="city-section-1">

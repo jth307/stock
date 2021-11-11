@@ -15,12 +15,12 @@ function LoginForm(props) {
 
   const adminUser = {
     username : 'robinwood',
-    password: 'password123',
-    name: 'Jamie'
+    password: 'password',
   };
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    if (e){
+    e.preventDefault();}
     apiRoutes.authenticateUser(details)
     .then((res) => {
       if (res.data === 'Success') {
@@ -36,13 +36,14 @@ function LoginForm(props) {
     })
   }
 
-  // const Login = (details) => {
-  //   if (details.username === adminUser.username && details.password === adminUser.password) {
-  //     history.push('/portfolio')
-  //   } else {
-  //     setError('Invalid Credentials')
-  //   }
-  // }
+  const Login = () => {
+    apiRoutes.authenticateUser(adminUser)
+    .then((res) => {
+      if (res.data === 'Success') {
+        auth.login(() => {
+          history.push('/portfolio');
+         })
+    }})}
 
     useEffect(() => {
       if (location.state) {
@@ -52,7 +53,8 @@ function LoginForm(props) {
     }, [])
 
 
-    const displayDemoUser = (username='robinwood', n=0, password='password123') =>{
+
+    const displayDemoUser = (username='robinwood', n=0, password='password') =>{
         if (n < username.length) {
             let curr = username.substring(0, n + 1);
             setDetails({ username: curr });
@@ -69,8 +71,9 @@ function LoginForm(props) {
             setDetails({ password: curr });
             n++;
             setTimeout(() => { displayDemoPassword(password, n) }, 100);
+            console.log(details)
         } else {
-            Login(adminUser);
+            Login();
         }
     }
 
