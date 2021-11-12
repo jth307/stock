@@ -21,6 +21,8 @@ function LoginForm(props) {
     .then((res) => {
       console.log(res.data)
       if (res.data.message === 'Success') {
+        console.log("hmmm", res.data)
+
         auth.login(() => {
           history.push({
             pathname: '/portfolio',
@@ -34,22 +36,25 @@ function LoginForm(props) {
       }
     })
     .catch((error)=> {
-        console.log('loginn error',error);
+        console.log('login error',error);
     })
   }
 
   const Login = () => {
     if (location.state){
       let currentUser = {username:location.state.username, password:location.state.password}
+      if (!location.state.username) {currentUser.username = 'robinwood'; currentUser.password = 'password', currentUser.userID = 16}
       apiRoutes.authenticateUser(currentUser)
       .then((res) => {
         if (res.data.message === 'Success') {
+          console.log("hmm", res.data)
+
           auth.login(() => {
             history.push({
               pathname: '/portfolio',
               state: {
-              username: location.state.username,
-              userID: location.state.userID
+              username: currentUser.username,
+              userID: currentUser.userID
               }
           })
           })
@@ -61,6 +66,7 @@ function LoginForm(props) {
       apiRoutes.authenticateUser(currentUser)
       .then((res) => {
         if (res.data.message === 'Success') {
+          console.log("hm", res.data)
           auth.login(() => {
             history.push({
               pathname: '/portfolio',

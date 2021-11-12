@@ -29,6 +29,7 @@ class Buy extends React.Component {
     this.state = {
       active: "buy",
       shares: '',
+      stockQty: this.props.currentStock.quantity,
       validInput: false,
       inputErrorDisplay: false,
       limitExceeded: false,
@@ -85,7 +86,7 @@ class Buy extends React.Component {
 
       let stockCount = this.state.active === 'buy'? this.state.shares : -Math.abs(this.state.shares)
 
-      if (this.state.active !== 'buy' && this.state.shares > this.props.currentStock.quantity) {
+      if (this.state.active !== 'buy' && this.state.shares > this.state.stockQty) {
         this.setState({limitExceeded: true});
       } else {
         let data = {
@@ -97,12 +98,13 @@ class Buy extends React.Component {
         if (this.state.active !== 'buy' && this.state.shares === this.props.currentStock.quantity.toString()){
           apiRoutes.deleteStock(data)
           .then((res) => {
+            this.setState({stockQty: this.state.stockQty + stockCount})
             this.openCartModal();
             })
         }else {
           apiRoutes.updateStockQuantity(data)
           .then((res) => {
-            console.log(res.data);
+            this.setState({stockQty: Number(this.state.stockQty) + Number(stockCount)})
             this.openCartModal();
             })
         }
@@ -118,6 +120,12 @@ class Buy extends React.Component {
     this.setState({modalClass:'cart-popup-container cart-show-popup'});
   }
 
+  // componentDidUpdate(prevProps) {
+
+  // }
+
+
+
   render() {
     const inputError = this.state.inputErrorDisplay ?
       (<span>Please enter a positive integer</span>) : null;
@@ -131,7 +139,6 @@ class Buy extends React.Component {
       ["Cost", "Buy"] : ["Credit", "Sell"];
 
     const sharesText = this.props.currentStock.quantity <= 1 ? " Share" : " Shares";
-    const shareQty = this.props.currentStock.quantity > 0 ? this.props.currentStock.quantity : 0;
 
     const relevantInfo = this.state.active === "buy" ?(
       <span>
@@ -139,7 +146,7 @@ class Buy extends React.Component {
           .toLocaleString('en', { minimumFractionDigits: 2 }) + " "}
         Buying Power Available
       </span>
-    ) : (<span>{shareQty + sharesText} Available</span>);
+    ) : (<span>{this.state.stockQty + sharesText} Available</span>);
     return (
       <>
       <div className={this.state.modalClass}>

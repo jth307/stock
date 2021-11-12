@@ -11,9 +11,10 @@ import { BeatLoader } from 'react-spinners';
 
 function Portfolio () {
   const location = useLocation();
+  const [total, setTotal] = useState(0)
   const [currentStock, setCurrentStock] = useState({
     name: 'PFE',
-    price: 128573.98,
+    price: total,
     percentage: .56,
     change: 44.25,
     quantity: 10
@@ -32,13 +33,17 @@ function Portfolio () {
   const reset = ()=>{
     setCurrentStock({
       name:'PFE',
-      price:128573.98,
+      price: total,
       percentage: .56,
       change: 44.25,
       quantity: 10
     });
     setBuyView(false);
   }
+
+  useEffect(() => {
+    reset()
+  }, [total]);
 
   if (fetchStatus) {
     return (
@@ -65,9 +70,9 @@ function Portfolio () {
       </div>
       <div className= 'portfolio-main-div'>
         <div className= 'portfolio-info-div'>
-          <Newsfeed currentStock= {currentStock} buyView={buyView} setFetchStatus= {setFetchStatus}/>
+          <Newsfeed total = {total} currentStock= {currentStock} buyView={buyView} setFetchStatus= {setFetchStatus}/>
           {buyView? <Buy user={user} currentStock= {currentStock}/> :
-          <Stats changeStock= {changeStock}  setFetchStatus= {setFetchStatus}  user={user}/>}
+          <Stats setTotal = {setTotal} changeStock= {changeStock}  setFetchStatus= {setFetchStatus}  user={user}/>}
         </div>
       </div>
     </div>

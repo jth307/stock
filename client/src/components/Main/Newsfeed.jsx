@@ -16,7 +16,7 @@ function Newsfeed (props) {
 
   useEffect(() => {
     setOdometerValue(props.currentStock.price);
-  }, [props.currentStock]);
+  }, [props.currentStock, props.total]);
 
   const color = props.currentStock.change > 0? "green" : "red";
 

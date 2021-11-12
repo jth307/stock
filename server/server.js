@@ -129,7 +129,6 @@ app.post('/deleteStock', (req, res) => {
 
   db.deleteStock(req.body)
     .then((result) => {
-      console.log('should delete')
       res.status(201).send(result.rows);
     })
     .catch((err) => {
