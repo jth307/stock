@@ -11,12 +11,13 @@ import { BeatLoader } from 'react-spinners';
 
 function Portfolio () {
   const location = useLocation();
-  const [total, setTotal] = useState(0)
+  const [snapshot, setSnapshot] = useState({total:0,priceChange:0,changePercentage:0})
+
   const [currentStock, setCurrentStock] = useState({
     name: 'PFE',
-    price: total,
-    percentage: .56,
-    change: 44.25,
+    price: snapshot.total,
+    percentage: snapshot.changePercentage,
+    change: Number(snapshot.priceChange).toFixed(2),
     quantity: 10
   })
   const [buyView, setBuyView] = useState(false)
@@ -31,11 +32,12 @@ function Portfolio () {
   }
 
   const reset = ()=>{
+    console.log('reset',snapshot.priceChange)
     setCurrentStock({
       name:'PFE',
-      price: total,
-      percentage: .56,
-      change: 44.25,
+      price: snapshot.total,
+      percentage: snapshot.changePercentage,
+      change: Number(snapshot.priceChange).toFixed(2),
       quantity: 10
     });
     setBuyView(false);
@@ -43,7 +45,7 @@ function Portfolio () {
 
   useEffect(() => {
     reset()
-  }, [total]);
+  }, [snapshot]);
 
   if (fetchStatus) {
     return (
@@ -70,9 +72,13 @@ function Portfolio () {
       </div>
       <div className= 'portfolio-main-div'>
         <div className= 'portfolio-info-div'>
-          <Newsfeed total = {total} currentStock= {currentStock} buyView={buyView} setFetchStatus= {setFetchStatus}/>
+          <Newsfeed total = {snapshot.total} currentStock= {currentStock} buyView={buyView} setFetchStatus= {setFetchStatus}/>
           {buyView? <Buy user={user} currentStock= {currentStock}/> :
-          <Stats setTotal = {setTotal} changeStock= {changeStock}  setFetchStatus= {setFetchStatus}  user={user}/>}
+          <Stats
+          setSnapshot = {setSnapshot}
+          changeStock= {changeStock}
+          setFetchStatus= {setFetchStatus}
+          user={user}/>}
         </div>
       </div>
     </div>

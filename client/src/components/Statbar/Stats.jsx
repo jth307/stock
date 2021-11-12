@@ -4,7 +4,7 @@ import Promise from 'bluebird'
 import StatsRow from './StatsRow';
 import apiRoutes from '../../apiRoutes.js';
 
-function Stats({changeStock,setFetchStatus,user,setTotal}) {
+function Stats({changeStock,setFetchStatus,user,setSnapshot}) {
 
     const [stockData, setStockData] = useState([]);
     const [myStocks, setMyStocks] = useState([]);
@@ -31,10 +31,16 @@ function Stats({changeStock,setFetchStatus,user,setTotal}) {
           Promise.all(promises).then(()=>{
             setMyStocks(tempData);
             let total = 0
-            tempData.map((stock)=>(
-              total += stock.c * stock.quantity
-            ))
-            setTotal(total)
+            let change = 0
+            let percentage = 0
+            tempData.map((stock)=>{
+              total += stock.c * stock.quantity;
+              percentage += (stock.c - stock.o )/ stock.o * 100;
+              change += stock.c - stock.o;
+            })
+
+            console.log('here',change/tempData.length)
+            setSnapshot({total: total, changePercentage : percentage/tempData.length, priceChange : change/tempData.length })
           })
         })
         .catch((error)=> {
