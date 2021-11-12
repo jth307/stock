@@ -89,6 +89,21 @@ app.post('/authenticate', (req, res) => {
 
 })
 
+app.post('/buy', (req, res) => {
+
+  console.log(req.body)
+
+  db.buyStocks(req.body)
+    .then((result) => {
+      res.status(201).send(result.rows);
+    })
+    .catch((err) => {
+      res.status(404).send(`Error: Could not buy stock. Data received: ${err}`);
+    });
+
+})
+
+
 
 app.get('/', (req, res) => {
   res.send('Server says hello!');

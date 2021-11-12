@@ -1,4 +1,6 @@
 import React from 'react';
+import apiRoutes from '../../apiRoutes.js';
+
 
 class BuyOrSell extends React.Component {
   render() {
@@ -77,11 +79,21 @@ class Buy extends React.Component {
     if (!this.state.validInput) {
       this.setState({ inputErrorDisplay: true });
     } else {
-      const sharesSuccessText = parseInt(this.state.shares) === 1 ? "share" : "shares";
-      if (this.state.active === 'buy') {this.openCartModal();
-    } else {
-      this.openCartModal();
-    }
+    //   const sharesSuccessText = parseInt(this.state.shares) === 1 ? "share" : "shares";
+    //   if (this.state.active === 'buy') {this.openCartModal();
+    // } else {
+    //   this.openCartModal();
+    // }
+      let data = {
+        stock: this.props.currentStock.name,
+        qty: this.state.shares,
+        userID: this.props.user.userID,
+      }
+      apiRoutes.buyStocks(data)
+      .then((res) => {
+        console.log(res.data);
+        this.openCartModal();
+        })
     }
   }
 

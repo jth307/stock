@@ -42,38 +42,19 @@ const checkUsername= (username) => {
   });
 };
 
-const serialize=(id)=>{
-  const psqlStatementArray = `SELECT * FROM
-  users WHERE id = $1`;
-  return pool.query(psqlStatementArray, [id])
-  .then((result) => {
-    return result;
-  });
-};
 
-const buyStock= (params) => {
+
+const buyStocks= (params) => {
   const paramsArray = [
-    params.username,
     params.stock,
     params.qty,
+    params.userID,
   ];
   const psqlStatementArray = `INSERT INTO
   users_stocks (stock, quantity, user_id)
   VALUES ($1, $2, $3)
-  WHERE ID IN (SELECT ID
-    FROM COMPANY
-    WHERE SALARY > 45000)
   RETURNING id
   `;
-
-
-  // INSERT INTO COMPANY_BKP
-  //  SELECT * FROM COMPANY
-  //  WHERE ID IN (SELECT ID
-  //     FROM COMPANY)
-
-
-  // console.log(psqlStatementArray);
   return pool.query(psqlStatementArray, paramsArray)
 };
 
@@ -160,6 +141,6 @@ const buyStock= (params) => {
 
 
 module.exports = {
-  postUser, checkUser, checkUsername, serialize
+  postUser, checkUser, checkUsername, buyStocks
 
 };
