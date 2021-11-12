@@ -19,6 +19,8 @@ function Newsfeed (props) {
   }, [props.currentStock, props.total]);
 
   const color = props.currentStock.change > 0? "green" : "red";
+  const percentage = props.currentStock.percentage? Number(props.currentStock.percentage).toFixed(2): 0
+  const price = props.currentStock.change === 'NaN' ? 0: props.currentStock.change
 
     return(
       <div className='newsfeed'>
@@ -32,7 +34,7 @@ function Newsfeed (props) {
                 value={odometerValue }
                 />
                 </h1>
-                <p className = {color}>+${props.currentStock.change} ({Number(props.currentStock.percentage).toFixed(2)}%) Today</p>
+                <p className = {color}>+${price} ({percentage}%) Today</p>
               </div>
               <div >
                 <Graph currentStock={props.currentStock}  setFetchStatus= {props.setFetchStatus}/>
