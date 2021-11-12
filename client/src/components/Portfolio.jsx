@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {useLocation } from 'react-router-dom';
-
-
 import Header from './Main/Header';
 import Newsfeed from './Main/Newsfeed';
 import Stats from './Statbar/Stats';
@@ -11,19 +9,17 @@ import { BeatLoader } from 'react-spinners';
 
 function Portfolio () {
   const location = useLocation();
-  const [snapshot, setSnapshot] = useState({total:0,priceChange:0,changePercentage:0})
-
+  const [snapshot, setSnapshot] = useState({total:0,priceChange:0,changePercentage:0});
+  const [buyView, setBuyView] = useState(false);
+  const [fetchStatus, setFetchStatus] = useState(false);
+  const [user, setUser] = useState({username: location.state.username, userID: location.state.userID});
   const [currentStock, setCurrentStock] = useState({
     name: 'PFE',
     price: snapshot.total,
     percentage: snapshot.changePercentage,
     change: Number(snapshot.priceChange).toFixed(2),
     quantity: 10
-  })
-  const [buyView, setBuyView] = useState(false)
-  const [fetchStatus, setFetchStatus] = useState(false)
-  const [user, setUser] = useState({username: location.state.username, userID: location.state.userID})
-  console.log('port', user)
+  });
 
 
   const changeStock = (stock,price,percentage,change,volume)=>{
@@ -32,7 +28,6 @@ function Portfolio () {
   }
 
   const reset = ()=>{
-    console.log('reset',snapshot.priceChange)
     setCurrentStock({
       name:'PFE',
       price: snapshot.total,

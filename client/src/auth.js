@@ -12,17 +12,13 @@ class Auth {
   }
 
   logout(cb){
-    console.log('u log out')
-
     this.authenticated= false
     cb()
-
   }
 
   isAuthenticated(){
     return this.authenticated
   }
-
 }
 
 export default new Auth()

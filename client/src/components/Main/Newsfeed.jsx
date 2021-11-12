@@ -10,10 +10,6 @@ function Newsfeed (props) {
 
   const [odometerValue, setOdometerValue] = useState(0)
 
-  // useEffect(() => {
-  //   setOdometerValue(currentStock.price);
-  // }, []);
-
   useEffect(() => {
     setOdometerValue(props.currentStock.price);
   }, [props.currentStock, props.total]);
@@ -29,20 +25,20 @@ function Newsfeed (props) {
               <div className='newsfeed-portfolio'>
                 <h2>{ props.buyView?props.currentStock.name: 'Balance' }</h2>
                 <h1> $<Odometer
-                format="(,ddd).dd"
-                duration={ 200 }
-                value={odometerValue }
+                  format="(,ddd).dd"
+                  duration={ 200 }
+                  value={odometerValue }
                 />
                 </h1>
                 <p className = {color}>+${price} ({percentage}%) Today</p>
               </div>
               <div >
-                <Graph currentStock={props.currentStock}  setFetchStatus= {props.setFetchStatus}/>
+                <Graph currentStock={props.currentStock}  setFetchStatus={props.setFetchStatus}/>
               </div>
             </div>
           </div>
-          {!props.buyView? null : <StockDetails currentStock= {props.currentStock}/>}
-          <News currentStock= {props.currentStock}/>
+          {!props.buyView? null : <StockDetails currentStock={props.currentStock}/>}
+          <News buyView={props.buyView} currentStock={props.currentStock}/>
       </div>
     )
 }

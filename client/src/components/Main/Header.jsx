@@ -5,7 +5,6 @@ import Searchbar from './Searchbar';
 import auth from '../../auth';
 
 
-
 function Header (props) {
 
   let history = useHistory()
@@ -35,7 +34,7 @@ function Header (props) {
           <button onClick = {Logout} className="demo-button" >
             Log Out
           </button>
-          </div>
+        </div>
     </div>
   )
 }

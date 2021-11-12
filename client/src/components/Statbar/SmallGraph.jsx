@@ -90,10 +90,10 @@ function SmallGraph({stock}) {
   return (
     <div className='graph'>
            <Line
-            data={graphData}
-            options={graphOptions}
-            width={72}
-            height={40}
+              data={graphData}
+              options={graphOptions}
+              width={72}
+              height={40}
            />
           </div>
   );

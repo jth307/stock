@@ -58,7 +58,6 @@ class Searchbar extends React.Component {
     })
   }
 
-
   formatName(name) {
     if (name.length >= 45) {
       return `${name.slice(0, 35)}...`;
@@ -92,7 +91,6 @@ class Searchbar extends React.Component {
 
   componentDidMount() {
       document.addEventListener('mousedown', this.handleClickOutside);
-
   }
 
   componentWillUnmount() {
@@ -104,7 +102,6 @@ class Searchbar extends React.Component {
       this.setState({ results: [] });
     }
   }
-
 
 
   render() {

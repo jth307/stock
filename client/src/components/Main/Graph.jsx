@@ -9,14 +9,13 @@ import apiRoutes from '../../apiRoutes.js';
 
 function Graph({currentStock,  setFetchStatus}) {
 
-  const [graphXData, setGraphXData] = useState([])
-  const [graphYData, setGraphYData] = useState([])
-  const [graphColor, setGraphColor] = useState('#21CE99')
-  const [graphInterval, setGraphInterval] = useState('24H')
-
+  const [graphXData, setGraphXData] = useState([]);
+  const [graphYData, setGraphYData] = useState([]);
+  const [graphColor, setGraphColor] = useState('#21CE99');
+  const [graphInterval, setGraphInterval] = useState('24H');
 
   const changeInterval = (interval) => {
-    setGraphInterval(interval.interval)
+    setGraphInterval(interval.interval);
   };
 
   const graphData = {
@@ -85,19 +84,19 @@ function Graph({currentStock,  setFetchStatus}) {
       .then((res) => {
         for (let i = 0; i < res.data.length; i++) {
           dataX.push(res.data[i].minute);
-          dataY.push(res.data[i].average)
+          dataY.push(res.data[i].average);
         }
 
         setGraphXData(dataX);
         setGraphYData(dataY);
 
         if (dataY[dataY.length-1] - dataY[0] < 0) {
-          setGraphColor('red')} else {
-            setGraphColor('#21CE99')
-          }
+          setGraphColor('red')
+        } else {
+          setGraphColor('#21CE99')
+        }
       })
   }, [currentStock, graphInterval]);
-
 
 
   return (
@@ -113,7 +112,6 @@ function Graph({currentStock,  setFetchStatus}) {
         </div>
       </div>
     </div>
-
   );
 }
 

@@ -11,6 +11,9 @@ const FINN_TOKEN = config.FINN_API_TOKEN
 const NEWS_TOKEN = config.NEWS_API_TOKEN
 
 const apiRoutes = {
+
+  ///////FRONTEND/////////
+
   getStockDetail : function(stock) {
     return axios
       .get(`${CLOUD_BASE_URL}${stock}/company?token=${CLOUD_TOKEN}`)
@@ -51,6 +54,10 @@ const apiRoutes = {
       });
   },
 
+
+///////BACKEND/////////
+
+
   createUser: function (data) {
     return axios
     .post('http://localhost:9000/register/', data)
@@ -90,7 +97,6 @@ const apiRoutes = {
       throw new Error(error);
     });
   },
-
 
 }
 

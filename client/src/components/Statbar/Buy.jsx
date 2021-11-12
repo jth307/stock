@@ -101,7 +101,7 @@ class Buy extends React.Component {
             this.setState({stockQty: this.state.stockQty + stockCount})
             this.openCartModal();
             })
-        }else {
+        } else {
           apiRoutes.updateStockQuantity(data)
           .then((res) => {
             this.setState({stockQty: Number(this.state.stockQty) + Number(stockCount)})
@@ -120,18 +120,12 @@ class Buy extends React.Component {
     this.setState({modalClass:'cart-popup-container cart-show-popup'});
   }
 
-  // componentDidUpdate(prevProps) {
-
-  // }
-
-
-
   render() {
     const inputError = this.state.inputErrorDisplay ?
       (<span>Please enter a positive integer</span>) : null;
 
     const limitError = this.state.limitExceeded ?
-    (<span>You don't have enough stocks</span>) : null;
+      (<span>You don't have enough stocks</span>) : null;
 
     const color = this.props.currentStock.percentage < 0 ? "red" : "green";
 
@@ -140,13 +134,14 @@ class Buy extends React.Component {
 
     const sharesText = this.props.currentStock.quantity <= 1 ? " Share" : " Shares";
 
-    const relevantInfo = this.state.active === "buy" ?(
+    const relevantInfo = this.state.active === "buy" ? (
       <span>
         ${(329255/ 100)
           .toLocaleString('en', { minimumFractionDigits: 2 }) + " "}
         Buying Power Available
       </span>
     ) : (<span>{this.state.stockQty + sharesText} Available</span>);
+
     return (
       <>
       <div className={this.state.modalClass}>
@@ -188,10 +183,8 @@ class Buy extends React.Component {
           </button>
         </div>
         <div className="sidebar-form-errors">
-          {inputError} {limitError}
-          {/* {
-            this.props.errors.map((error) => (<span>{error}</span>))
-          } */}
+          {inputError}
+          {limitError}
         </div>
         <div className="relevant-info">
           {relevantInfo}
