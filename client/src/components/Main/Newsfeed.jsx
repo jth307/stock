@@ -41,7 +41,7 @@ function Newsfeed (props) {
               </div>
             </div>
           </div>
-          {odometerValue > 100000? null : <StockDetails currentStock= {props.currentStock}/>}
+          {!props.buyView? null : <StockDetails currentStock= {props.currentStock}/>}
           <News currentStock= {props.currentStock}/>
       </div>
     )
