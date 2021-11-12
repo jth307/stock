@@ -4,22 +4,25 @@ import Promise from 'bluebird'
 import StatsRow from './StatsRow';
 import apiRoutes from '../../apiRoutes.js';
 
-function Stats({changeStock,setFetchStatus}) {
+function Stats({changeStock,setFetchStatus,user}) {
 
     const [stockData, setStockData] = useState([]);
     const [myStocks, setMyStocks] = useState([]);
 
 
     const getMyStocks = () => {
-          const myData = ['TWTR', 'PFE']
-          let promises = [];
+      console.log(user)
+      apiRoutes.getStocks({userID:user.userID})
+      .then((res) => {
+        let promises = [];
           let tempData = []
-          myData.map((stock) => {
+          res.data.map((stock) => {
             promises.push(
-              apiRoutes.getStockData(stock)
+              apiRoutes.getStockData(stock.stock)
               .then((res) => {
                 tempData.push({
-                  name: stock,
+                  name: stock.stock,
+                  quantity: stock.quantity,
                   ...res.data
                 });
               })
@@ -28,6 +31,11 @@ function Stats({changeStock,setFetchStatus}) {
           Promise.all(promises).then(()=>{
             setMyStocks(tempData);
           })
+        })
+        .catch((error)=> {
+          console.log('getmystocks error',error);
+       })
+
       }
 
 
@@ -70,7 +78,7 @@ function Stats({changeStock,setFetchStatus}) {
                         key={stock.name}
                         name={stock.name}
                         openPrice={stock.o}
-                        volume='120'
+                        volume={stock.quantity}
                         price={stock.c}
                         changeStock= {changeStock}
                       />

@@ -10,19 +10,21 @@ function StatsRow(props) {
   const percentage = ((props.price - props.openPrice)/props.openPrice) * 100;
 
   const viewStock = () => {
-    props.changeStock(props.name, props.price, percentage, Number(props.price - props.openPrice).toFixed(2))
+    props.changeStock(props.name, props.price, percentage, Number(props.price - props.openPrice).toFixed(2), props.volume)
     }
+
+  const share = props.volume === 1? ' share': " shares"
 
   return (
     <div className="row" id={props.name} onClick={viewStock}>
       <div className="row-intro">
         <h1>{props.name}</h1>
         <p>{props.volume &&
-          (props.volume + " shares")}
+          (props.volume + share)}
         </p>
       </div>
       <div className="row-chart">
-        {/* <SmallGraph stock = {props.name}/> */}
+        <SmallGraph stock = {props.name}/>
       </div>
       <div className="row-numbers">
         <p className="row-price">${props.price}</p>

@@ -21,7 +21,7 @@ function Header (props) {
       <div className="greeting-left">
         {/* <Link className="rh-logo" to="/about"> */}
           <SVGIcon name="icon" width={40} height={40} />
-          <span className="rh-logo"> Robinwood </span>
+          <span className="rh-logo"> Welcome, {props.user} </span>
         {/* </Link> */}
       </div>
       <Searchbar changeStock= {props.changeStock}/>

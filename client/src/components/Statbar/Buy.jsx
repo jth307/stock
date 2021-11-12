@@ -31,6 +31,7 @@ class Buy extends React.Component {
       shares: '',
       validInput: false,
       inputErrorDisplay: false,
+      limitExceeded: false,
       estimatedCost: "$0.00",
       modalClass: 'cart-popup-container',
     };
@@ -51,7 +52,7 @@ class Buy extends React.Component {
   }
 
   selectTab(type) {
-    this.setState({ active: type, inputErrorDisplay: false });
+    this.setState({ active: type, inputErrorDisplay: false, limitExceeded: false });
   }
 
   handleInput(e) {
@@ -60,6 +61,7 @@ class Buy extends React.Component {
       this.setState({
         shares: e.target.value,
         validInput: true,
+        limitExceeded: false,
         inputErrorDisplay: false,
         estimatedCost: "$" +
           (this.props.currentStock.price * parseInt(e.target.value))
@@ -70,6 +72,7 @@ class Buy extends React.Component {
         shares: e.target.value,
         validInput: false,
         inputErrorDisplay: false,
+        limitExceeded: false,
         estimatedCost: "$0.00"
       });
     }
@@ -79,21 +82,31 @@ class Buy extends React.Component {
     if (!this.state.validInput) {
       this.setState({ inputErrorDisplay: true });
     } else {
-    //   const sharesSuccessText = parseInt(this.state.shares) === 1 ? "share" : "shares";
-    //   if (this.state.active === 'buy') {this.openCartModal();
-    // } else {
-    //   this.openCartModal();
-    // }
-      let data = {
-        stock: this.props.currentStock.name,
-        qty: this.state.shares,
-        userID: this.props.user.userID,
+
+      let stockCount = this.state.active === 'buy'? this.state.shares : -Math.abs(this.state.shares)
+
+      if (this.state.active !== 'buy' && this.state.shares > this.props.currentStock.quantity) {
+        this.setState({limitExceeded: true});
+      } else {
+        let data = {
+          stock: this.props.currentStock.name,
+          qty: stockCount,
+          userID: this.props.user.userID,
+        }
+
+        if (this.state.active !== 'buy' && this.state.shares === this.props.currentStock.quantity.toString()){
+          apiRoutes.deleteStock(data)
+          .then((res) => {
+            this.openCartModal();
+            })
+        }else {
+          apiRoutes.updateStockQuantity(data)
+          .then((res) => {
+            console.log(res.data);
+            this.openCartModal();
+            })
+        }
       }
-      apiRoutes.buyStocks(data)
-      .then((res) => {
-        console.log(res.data);
-        this.openCartModal();
-        })
     }
   }
 
@@ -109,13 +122,16 @@ class Buy extends React.Component {
     const inputError = this.state.inputErrorDisplay ?
       (<span>Please enter a positive integer</span>) : null;
 
+    const limitError = this.state.limitExceeded ?
+    (<span>You don't have enough stocks</span>) : null;
+
     const color = this.props.currentStock.percentage < 0 ? "red" : "green";
 
     const [estimated, btnText] = this.state.active === "buy" ?
       ["Cost", "Buy"] : ["Credit", "Sell"];
 
-    const sharesText = "Shares"
-    // this.props.quantity === 1 ? "Share" : "Shares";
+    const sharesText = this.props.currentStock.quantity <= 1 ? " Share" : " Shares";
+    const shareQty = this.props.currentStock.quantity > 0 ? this.props.currentStock.quantity : 0;
 
     const relevantInfo = this.state.active === "buy" ?(
       <span>
@@ -123,7 +139,7 @@ class Buy extends React.Component {
           .toLocaleString('en', { minimumFractionDigits: 2 }) + " "}
         Buying Power Available
       </span>
-    ) : (<span>12{" "+sharesText} Available</span>);
+    ) : (<span>{shareQty + sharesText} Available</span>);
     return (
       <>
       <div className={this.state.modalClass}>
@@ -165,7 +181,7 @@ class Buy extends React.Component {
           </button>
         </div>
         <div className="sidebar-form-errors">
-          {inputError}
+          {inputError} {limitError}
           {/* {
             this.props.errors.map((error) => (<span>{error}</span>))
           } */}

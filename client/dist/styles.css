@@ -48,6 +48,7 @@ body {
   align-items: center;
   font-size: 3rem;
   justify-content: space-between;
+  padding-left: 0.5rem;
 }
 
 .switch{

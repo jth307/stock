@@ -20,7 +20,6 @@ const postUser= (params) => {
   VALUES ($1, $2, $3, $4, $5)
   RETURNING id
   `;
-  // console.log(psqlStatementArray);
   return pool.query(psqlStatementArray, paramsArray)
 };
 
@@ -28,23 +27,20 @@ const checkUser= (email) => {
   const psqlStatementArray = `SELECT * FROM
   users WHERE email = $1`;
   return pool.query(psqlStatementArray, [email])
-  // .then((result) => {
-  //   return result;
-  // });
 };
 
 const checkUsername= (username) => {
   const psqlStatementArray = `SELECT * FROM
   users WHERE username = $1`;
   return pool.query(psqlStatementArray, [username])
-  .then((result) => {
-    return result;
-  });
+  // .then((result) => {
+  //   return result;
+  // });
 };
 
 
 
-const buyStocks= (params) => {
+const buyOrSellStocks= (params) => {
   const paramsArray = [
     params.stock,
     params.qty,
@@ -58,6 +54,52 @@ const buyStocks= (params) => {
   return pool.query(psqlStatementArray, paramsArray)
 };
 
+
+const getStocks= (params) => {
+  const paramsArray = [
+    params.userID
+  ];
+  const psqlStatementArray = `SELECT * FROM
+  users_stocks WHERE user_id = $1
+  `;
+  return pool.query(psqlStatementArray, paramsArray)
+};
+
+const checkInventory= (params) => {
+  const paramsArray = [
+    params.stock,
+    params.userID
+  ];
+  const psqlStatementArray = `SELECT * FROM
+  users_stocks WHERE stock = $1
+  AND user_id = $2`;
+  return pool.query(psqlStatementArray, paramsArray)
+};
+
+const updateInventory= (params) => {
+  const paramsArray = [
+    params.stock,
+    params.qty,
+    params.userID,
+  ];
+  const psqlStatementArray = `UPDATE users_stocks
+  SET quantity = quantity + $2
+  WHERE user_id = $3
+  AND stock = $1
+  `;
+  return pool.query(psqlStatementArray, paramsArray)
+};
+
+const deleteStock= (params) => {
+  const paramsArray = [
+    params.stock,
+    params.userID
+  ];
+  const psqlStatementArray = `DELETE FROM users_stocks
+  WHERE stock = $1
+  AND user_id = $2`;
+  return pool.query(psqlStatementArray, paramsArray)
+};
 
 // const getHome = (callback) => {
 //   const psqlStatement = 'SELECT NOW()';
@@ -141,6 +183,6 @@ const buyStocks= (params) => {
 
 
 module.exports = {
-  postUser, checkUser, checkUsername, buyStocks
+  postUser, checkUser, checkUsername, buyOrSellStocks, getStocks, checkInventory, updateInventory, deleteStock
 
 };

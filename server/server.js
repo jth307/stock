@@ -66,12 +66,13 @@ app.post('/register', async(req, res) => {
 
 
 app.post('/authenticate', (req, res) => {
-  let {username, password} = req.body;
-
+  let {username, password} = req.body
+  if (!username) {username = 'robinwood'; password = 'password'}
   db.checkUsername(username)
     .then((result) => {
       if (result.rows.length>0 ){
         const user = result.rows[0];
+        console.log('16',user)
         bcrypt.compare(password, user.passcode, (err, isMatch)=>{
           if (isMatch) {
             console.log('match!')
@@ -89,18 +90,51 @@ app.post('/authenticate', (req, res) => {
 
 })
 
-app.post('/buy', (req, res) => {
+app.post('/updateStockQuantity', (req, res) => {
 
-  console.log(req.body)
+  db.checkInventory(req.body)
+    .then((results) => {
+      if (results.rows.length>0 ) {
+        db.updateInventory(req.body)
+        .then((result) => {
+          res.status(201).send(result.rows);
+        })
+        .catch((err) => {
+          res.status(404).send(`Error: Could not update stock quantity. Data received: ${err}`);
+        });
+      } else {
+        db.buyOrSellStocks(req.body)
+          .then((result) => {
+            res.status(201).send(result.rows);
+          })
+          .catch((err) => {
+            res.status(404).send(`Error: Could not buy stock. Data received: ${err}`);
+          });
+      }
+  })
+});
 
-  db.buyStocks(req.body)
+app.post('/getStocks', (req, res) => {
+
+  db.getStocks(req.body)
     .then((result) => {
       res.status(201).send(result.rows);
     })
     .catch((err) => {
-      res.status(404).send(`Error: Could not buy stock. Data received: ${err}`);
+      res.status(404).send(`Error: Could not get stock. Data received: ${err}`);
     });
+})
 
+app.post('/deleteStock', (req, res) => {
+
+  db.deleteStock(req.body)
+    .then((result) => {
+      console.log('should delete')
+      res.status(201).send(result.rows);
+    })
+    .catch((err) => {
+      res.status(404).send(`Error: Could not delete stock. Data received: ${err}`);
+    });
 })
 
 

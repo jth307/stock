@@ -19,6 +19,7 @@ function LoginForm(props) {
     e.preventDefault();}
     apiRoutes.authenticateUser(details)
     .then((res) => {
+      console.log(res.data)
       if (res.data.message === 'Success') {
         auth.login(() => {
           history.push({

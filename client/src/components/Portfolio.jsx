@@ -15,7 +15,8 @@ function Portfolio () {
     name: 'PFE',
     price: 128573.98,
     percentage: .56,
-    change: 44.25
+    change: 44.25,
+    quantity: 10
   })
   const [buyView, setBuyView] = useState(false)
   const [fetchStatus, setFetchStatus] = useState(false)
@@ -23,8 +24,8 @@ function Portfolio () {
   console.log('port', user)
 
 
-  const changeStock = (stock,price,percentage,change)=>{
-    setCurrentStock({name: stock, price: price, percentage: percentage, change: change});
+  const changeStock = (stock,price,percentage,change,volume)=>{
+    setCurrentStock({name: stock, price: price, percentage: percentage, change: change, quantity: volume});
     setBuyView(true);
   }
 
@@ -33,7 +34,8 @@ function Portfolio () {
       name:'PFE',
       price:128573.98,
       percentage: .56,
-      change: 44.25
+      change: 44.25,
+      quantity: 10
     });
     setBuyView(false);
   }
@@ -59,13 +61,13 @@ function Portfolio () {
   return (
     <div>
       <div >
-        <Header reset={reset} changeStock= {changeStock}/>
+        <Header user={user.username} reset={reset} changeStock= {changeStock}/>
       </div>
       <div className= 'portfolio-main-div'>
         <div className= 'portfolio-info-div'>
           <Newsfeed currentStock= {currentStock} buyView={buyView} setFetchStatus= {setFetchStatus}/>
           {buyView? <Buy user={user} currentStock= {currentStock}/> :
-          <Stats changeStock= {changeStock}  setFetchStatus= {setFetchStatus}/>}
+          <Stats changeStock= {changeStock}  setFetchStatus= {setFetchStatus}  user={user}/>}
         </div>
       </div>
     </div>

@@ -67,9 +67,25 @@ const apiRoutes = {
     });
   },
 
-  buyStocks: function (data) {
+  updateStockQuantity: function (data) {
     return axios
-    .post('http://localhost:9000/buy/', data)
+    .post('http://localhost:9000/updateStockQuantity/', data)
+    .catch((error) => {
+      throw new Error(error);
+    });
+  },
+
+  getStocks: function (data) {
+    return axios
+    .post('http://localhost:9000/getStocks/', data)
+    .catch((error) => {
+      throw new Error(error);
+    });
+  },
+
+  deleteStock: function (data) {
+    return axios
+    .post('http://localhost:9000/deleteStock/', data)
     .catch((error) => {
       throw new Error(error);
     });
