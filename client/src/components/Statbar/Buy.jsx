@@ -142,7 +142,7 @@ class Buy extends React.Component {
 
     const relevantInfo = this.state.active === "buy" ?(
       <span>
-        ${(3292/ 100)
+        ${(329255/ 100)
           .toLocaleString('en', { minimumFractionDigits: 2 }) + " "}
         Buying Power Available
       </span>

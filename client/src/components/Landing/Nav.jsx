@@ -4,20 +4,18 @@ import SVGIcon from '../../../dist/images/svg.js';
 
 function Nav (props) {
 
-  let history = useHistory()
+  let history = useHistory();
 
   const handleDemo = () =>{
-    if (props.displayDemoUser){
-    props.displayDemoUser()
+    if (props.displayDemoUser) {
+      props.displayDemoUser();
     } else{
       history.push({
         pathname: '/login',
         state: { demoUser: true }
       })
-      }
     }
-
-
+  }
 
   return(
     <div className="greeting-div">
@@ -46,8 +44,7 @@ function Nav (props) {
       </div>
     </div>
   )
-  }
-
+}
 
 
 export default Nav;

@@ -6,7 +6,6 @@ import Nav from './Nav';
 class About extends React.Component {
     constructor(props) {
         super(props);
-
     }
 
     render() {

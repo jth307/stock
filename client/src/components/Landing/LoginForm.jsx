@@ -7,90 +7,70 @@ import apiRoutes from '../../apiRoutes.js';
 
 function LoginForm(props) {
 
-  var history = useHistory()
-  const location = useLocation();
+    const history = useHistory();
+    const location = useLocation();
 
-  const [details, setDetails] = useState({username:'', password:''});
-  const [error, setError] = useState('');
+    const [details, setDetails] = useState({username:'', password:''});
+    const [error, setError] = useState('');
 
 
-  const submitHandler = (e) => {
-    if (e){
-    e.preventDefault();}
-    apiRoutes.authenticateUser(details)
-    .then((res) => {
-      console.log(res.data)
-      if (res.data.message === 'Success') {
-        console.log("hmmm", res.data)
-
-        auth.login(() => {
-          history.push({
-            pathname: '/portfolio',
-            state: {
-            username: details.username,
-            userID: res.data.userID
-            }
-          })         })
-      } else {
-        setError(res.data)
+    const submitHandler = (e) => {
+      if (e) {
+        e.preventDefault();
       }
-    })
-    .catch((error)=> {
-        console.log('login error',error);
-    })
-  }
 
-  const Login = () => {
-    if (location.state){
-      let currentUser = {username:location.state.username, password:location.state.password}
-      if (!location.state.username) {currentUser.username = 'robinwood'; currentUser.password = 'password', currentUser.userID = 16}
+      apiRoutes.authenticateUser(details)
+      .then((res) => {
+        if (res.data.message === 'Success') {
+          auth.login(() => {
+            history.push({
+              pathname: '/portfolio',
+              state: {
+              username: details.username,
+              userID: res.data.userID
+              }
+            })
+          })
+        } else {
+          setError(res.data);
+        }
+      })
+      .catch((error)=> {
+          console.log('login error',error);
+      })
+    }
+
+
+    const Login = () => {
+      let currentUser = {}
+        currentUser.username = 'robinwood';
+        currentUser.password = 'password',
+        currentUser.userID = 16
+        if (location.state) {
+          if (location.state.username) {
+            currentUser.username = location.state.username;
+            currentUser.password = location.state.password;
+          }
+        }
       apiRoutes.authenticateUser(currentUser)
       .then((res) => {
         if (res.data.message === 'Success') {
-          console.log("hmm", res.data)
 
           auth.login(() => {
             history.push({
               pathname: '/portfolio',
               state: {
               username: currentUser.username,
-              userID: currentUser.userID
+              userID:  res.data.userID
               }
-          })
+            })
           })
         }
       })
-
-    }else {
-      let currentUser = {username:'robinwood', password:'password'}
-      apiRoutes.authenticateUser(currentUser)
-      .then((res) => {
-        if (res.data.message === 'Success') {
-          console.log("hm", res.data)
-          auth.login(() => {
-            history.push({
-              pathname: '/portfolio',
-              state: {
-              username: 'robinwood',
-              userID: res.data.userID
-              }
-          })
-          })
-        }
+      .catch((error)=> {
+        console.log('login error',error);
       })
     }
-  }
-
-    useEffect(() => {
-      if (location.state) {
-      if (location.state.demoUser)
-        {displayDemoUser()}
-      if (location.state.username) {
-        displayDemoUser(location.state.username, 0, location.state.password)
-      }
-    }}, [])
-
-
 
     const displayDemoUser = (username='robinwood', n=0, password='password') =>{
         if (n < username.length) {
@@ -114,6 +94,14 @@ function LoginForm(props) {
         }
     }
 
+    useEffect(() => {
+      if (location.state) {
+        if (location.state.demoUser)
+          {displayDemoUser()}
+        if (location.state.username) {
+          displayDemoUser(location.state.username, 0, location.state.password)
+        }
+    }}, [])
 
     return (
       <>
@@ -128,8 +116,6 @@ function LoginForm(props) {
                     <label className='login-label'>Username</label>
                     <input
                         className='session-input'
-                        // onChange={this.update('username')}
-                        // value={this.state.username}
                         required
                         type='text' name='name' id='name' onChange={e => setDetails({...details, username: e.target.value})} value = {details.username}
                         value={details.username}
@@ -138,8 +124,6 @@ function LoginForm(props) {
                     <input
                         className='session-input'
                         type="password"
-                        // onChange={this.update('password')}
-                        // value={this.state.password}
                         required
                         type='password' name='password' id='password' onChange={e => setDetails({...details, password: e.target.value})}
                         value={details.password}
