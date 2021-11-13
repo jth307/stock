@@ -145,8 +145,21 @@ app.get('/', (req, res) => {
   console.log('get /, server says hello')
 });
 
+app.get('/db', async (req, res) => {
+  try {
+    const client = await pool.connect();
+    const result = await client.query('SELECT * FROM users');
+    const results = { 'results': (result) ? result.rows : null};
+    res.render('pages/db', results );
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+})
+
 app.listen((process.env.PORT || 9000), () => {
-  console.log('connected to server at 9000');
+  console.log('connected successfally to server at ' + (process.env.PORT || 9000));
 });
 
 

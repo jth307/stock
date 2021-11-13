@@ -1,18 +1,30 @@
 const { Pool } = require('pg');
 
+
+if (process.env.NODE_ENV === 'production') {
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+} else {
+const pool = new Pool({
+  user: 'booradley',
+  host: 'localhost',
+  database: 'robinwood',
+  port: 5432,
+});
+}
+
 // const pool = new Pool({
-//   user: 'booradley',
-//   host: 'localhost',
-//   database: 'robinwood',
-//   port: 5432,
+//   user: 'dgyizozmegnlwh',
+//   host: 'ec2-44-198-236-169.compute-1.amazonaws.com',
+//   database: 'dbpa1lo0lbar8o',
+//   port: process.env.PORT || 5432,
 // });
 
-const pool = new Pool({
-  user: 'dgyizozmegnlwh',
-  host: 'ec2-44-198-236-169.compute-1.amazonaws.com',
-  database: 'dbpa1lo0lbar8o',
-  port: process.env.PORT || 5432,
-});
+
 
 const postUser= (params) => {
   console.log('hey')
