@@ -19,6 +19,7 @@ app.post('/register', async(req, res) => {
   if (!req.body) {
     res.status(401).send('Error: Must supply body parameters');
   } else {
+    console.log('post register')
     let {firstname, lastname, email, password, username} = req.body;
 
     let errors = [];
@@ -68,6 +69,7 @@ app.post('/register', async(req, res) => {
 
 
 app.post('/authenticate', (req, res) => {
+  console.log('post authenticate')
   let {username, password} = req.body
   if (!username) {username = 'robinwood'; password = 'password'}
   db.checkUsername(username)
@@ -91,6 +93,7 @@ app.post('/authenticate', (req, res) => {
 })
 
 app.post('/updateStockQuantity', (req, res) => {
+  console.log('post updateStockQuantity')
 
   db.checkInventory(req.body)
     .then((results) => {
@@ -139,6 +142,7 @@ app.post('/deleteStock', (req, res) => {
 
 app.get('/', (req, res) => {
   res.send('Server says hello!');
+  console.log('get /, server says hello')
 });
 
 app.listen((process.env.PORT || 9000), () => {
