@@ -3,13 +3,14 @@ const { Pool } = require('pg');
 
 // if (process.env.NODE_ENV === 'production') {
 //   console.log('real')
+const DATABASE_URL = 'postgres://dgyizozmegnlwh:4848d623503d947359d1991733bd55dd374afe84bbc4b88ea12bda920bb82519@ec2-44-198-236-169.compute-1.amazonaws.com:5432/dbpa1lo0lbar8o'
 
-//   const pool = new Pool({
-//     connectionString: process.env.DATABASE_URL,
-//     ssl: {
-//       rejectUnauthorized: false
-//     }
-//   });
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
 // } else {
 //   console.log('fake')
 // const pool = new Pool({
@@ -20,12 +21,12 @@ const { Pool } = require('pg');
 // });
 // }
 
-const pool = new Pool({
-  user: 'booradley',
-  host: 'localhost',
-  database: 'robinwood',
-  port: 5432,
-});
+// const pool = new Pool({
+//   user: 'booradley',
+//   host: 'localhost',
+//   database: 'robinwood',
+//   port: 5432,
+// });
 
 // const pool = new Pool({
 //   user: 'dgyizozmegnlwh',
