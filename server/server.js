@@ -8,12 +8,12 @@ const app = express();
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, authorization");
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, authorization");
+//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+//   next();
+// });
 
 app.post('/register', async(req, res) => {
   if (!req.body) {
@@ -71,29 +71,27 @@ app.post('/register', async(req, res) => {
 
 
 app.post('/authenticate', (req, res) => {
-  res.status(200).send({message:'Success'})
-
-  // console.log('post authenticate')
-  // let {username, password} = req.body
-  // if (!username) {username = 'robinwood'; password = 'password'}
-  // db.checkUsername(username)
-  //   .then((result) => {
-  //     if (result.rows.length>0 ){
-  //       const user = result.rows[0];
-  //       bcrypt.compare(password, user.passcode, (err, isMatch)=>{
-  //         if (isMatch) {
-  //           console.log('match!')
-  //           res.status(200).send({message:'Success', userID: user.id})
-  //         } else {
-  //           console.log('nah')
-  //           res.status(200).send('Invalid Credentials')
-  //         }
-  //       })
-  //     } else {
-  //       console.log('wtf')
-  //       res.status(200).send('User is not registered')
-  //     }
-  //   })
+  console.log('post authenticate')
+  let {username, password} = req.body
+  if (!username) {username = 'robinwood'; password = 'password'}
+  db.checkUsername(username)
+    .then((result) => {
+      if (result.rows.length>0 ){
+        const user = result.rows[0];
+        bcrypt.compare(password, user.passcode, (err, isMatch)=>{
+          if (isMatch) {
+            console.log('match!')
+            res.status(200).send({message:'Success', userID: user.id})
+          } else {
+            console.log('nah')
+            res.status(200).send('Invalid Credentials')
+          }
+        })
+      } else {
+        console.log('wtf')
+        res.status(200).send('User is not registered')
+      }
+    })
 })
 
 app.post('/updateStockQuantity', (req, res) => {
