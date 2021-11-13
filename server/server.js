@@ -71,7 +71,7 @@ app.post('/register', async(req, res) => {
 
 
 app.post('/authenticate', (req, res) => {
-  res.status(200).send({message:'Success', userID: user.id})
+  res.status(200).send({message:'Success'})
 
   // console.log('post authenticate')
   // let {username, password} = req.body
