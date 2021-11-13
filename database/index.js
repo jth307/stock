@@ -1,20 +1,21 @@
 const { Pool } = require('pg');
 
-// const pool = new Pool({
-//   user: 'booradley',
-//   host: 'localhost',
-//   database: 'robinwood',
-//   port: 5432,
-// });
-
 const pool = new Pool({
-  user: 'tybfcxetfnbpuf',
-  host: 'ec2-54-159-35-35.compute-1.amazonaws.com',
-  database: 'dc1cj5c4brp6h0',
-  port: process.env.PORT || 5432,
+  user: 'booradley',
+  host: 'localhost',
+  database: 'robinwood',
+  port: 5432,
 });
 
+// const pool = new Pool({
+//   user: 'tybfcxetfnbpuf',
+//   host: 'ec2-54-159-35-35.compute-1.amazonaws.com',
+//   database: 'dc1cj5c4brp6h0',
+//   port: process.env.PORT || 5432,
+// });
+
 const postUser= (params) => {
+  console.log('hey')
   const paramsArray = [
     params.firstname,
     params.lastname,

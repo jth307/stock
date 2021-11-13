@@ -19,7 +19,6 @@ app.post('/register', async(req, res) => {
   if (!req.body) {
     res.status(401).send('Error: Must supply body parameters');
   } else {
-    console.log('registered')
     let {firstname, lastname, email, password, username} = req.body;
 
     let errors = [];

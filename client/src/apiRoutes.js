@@ -60,7 +60,6 @@ const apiRoutes = {
 
   createUser: function (data) {
     return axios
-    // .post('https://robinwood.herokuapp.com/register/', data)
     .post('/register/', data)
     .catch((error) => {
       throw new Error(error);
@@ -69,7 +68,6 @@ const apiRoutes = {
 
   authenticateUser: function (data) {
     return axios
-    // .post('https://robinwood.herokuapp.com/authenticate/', data)
     .post('/authenticate/', data)
     .catch((error) => {
       throw new Error(error);
@@ -78,7 +76,6 @@ const apiRoutes = {
 
   updateStockQuantity: function (data) {
     return axios
-    // .post('https://robinwood.herokuapp.com/updateStockQuantity/', data)
     .post('/updateStockQuantity/', data)
     .catch((error) => {
       throw new Error(error);
@@ -87,7 +84,6 @@ const apiRoutes = {
 
   getStocks: function (data) {
     return axios
-    // .post('https://robinwood.herokuapp.com/getStocks/', data)
     .post('/getStocks/', data)
     .catch((error) => {
       throw new Error(error);
@@ -96,7 +92,6 @@ const apiRoutes = {
 
   deleteStock: function (data) {
     return axios
-    // .post('https://robinwood.herokuapp.com/deleteStock/', data)
     .post('/deleteStock/', data)
     .catch((error) => {
       throw new Error(error);
