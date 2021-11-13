@@ -37,6 +37,8 @@ app.post('/register', async(req, res) => {
     } else {
   // form validation passed
 
+   console.log('passed validation!')
+
     let hashedPassword = await bcrypt.hash(password, 10 )
     req.body.password = hashedPassword
 
