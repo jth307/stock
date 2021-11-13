@@ -40,6 +40,8 @@ app.post('/register', async(req, res) => {
     let hashedPassword = await bcrypt.hash(password, 10 )
     req.body.password = hashedPassword
 
+    console.log(hashedPassword)
+
     db.checkUser(email)
     .then((results) => {
       if (results.rows.length>0 ){

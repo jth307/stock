@@ -140,7 +140,7 @@ class Buy extends React.Component {
           .toLocaleString('en', { minimumFractionDigits: 2 }) + " "}
         Buying Power Available
       </span>
-    ) : (<span>{this.state.stockQty + sharesText} Available</span>);
+    ) : (<span>{(this.state.stockQty || 0) + sharesText} Available</span>);
 
     return (
       <>
