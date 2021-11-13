@@ -35,7 +35,7 @@ const pool = new Pool({
 //   user: 'dgyizozmegnlwh',
 //   host: 'ec2-44-198-236-169.compute-1.amazonaws.com',
 //   database: 'dbpa1lo0lbar8o',
-//   port: process.env.PORT || 5432,
+//   port: 5432,
 // });
 
 
@@ -58,6 +58,7 @@ const postUser= (params) => {
 };
 
 const checkUser= (email) => {
+  console.log('r u here')
   const psqlStatementArray = `SELECT * FROM
   users WHERE email = $1`;
   return pool.query(psqlStatementArray, [email])
