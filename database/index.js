@@ -2,6 +2,8 @@ const { Pool } = require('pg');
 
 
 if (process.env.NODE_ENV === 'production') {
+  console.log('real')
+
   const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
@@ -9,13 +11,21 @@ if (process.env.NODE_ENV === 'production') {
     }
   });
 } else {
+  console.log('fake')
 const pool = new Pool({
-  user: 'booradley',
-  host: 'localhost',
-  database: 'robinwood',
-  port: 5432,
+  user: 'dgyizozmegnlwh',
+  host: 'ec2-44-198-236-169.compute-1.amazonaws.com',
+  database: 'dbpa1lo0lbar8o',
+  port: process.env.PORT || 5432,
 });
 }
+
+// const pool = new Pool({
+//   user: 'booradley',
+//   host: 'localhost',
+//   database: 'robinwood',
+//   port: 5432,
+// });
 
 // const pool = new Pool({
 //   user: 'dgyizozmegnlwh',
