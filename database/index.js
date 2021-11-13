@@ -8,9 +8,9 @@ const { Pool } = require('pg');
 // });
 
 const pool = new Pool({
-  user: 'tybfcxetfnbpuf',
-  host: 'ec2-54-159-35-35.compute-1.amazonaws.com',
-  database: 'dc1cj5c4brp6h0',
+  user: 'dgyizozmegnlwh',
+  host: 'ec2-44-198-236-169.compute-1.amazonaws.com',
+  database: 'dbpa1lo0lbar8o',
   port: process.env.PORT || 5432,
 });
 
