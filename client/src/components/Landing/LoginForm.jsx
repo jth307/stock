@@ -84,14 +84,14 @@ function LoginForm(props) {
     }
 
     const displayDemoPassword = (password, n) =>{
-        if (n < password.length) {
-            let curr = password.substring(0, n + 1);
-            setDetails({ password: curr });
-            n++;
-            setTimeout(() => { displayDemoPassword(password, n) }, 100);
-        } else {
-            Login();
-        }
+      if (n < password.length) {
+          let curr = password.substring(0, n + 1);
+          setDetails({ password: curr });
+          n++;
+          setTimeout(() => { displayDemoPassword(password, n) }, 100);
+      } else {
+          Login();
+      }
     }
 
     useEffect(() => {

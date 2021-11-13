@@ -23,7 +23,7 @@ function Newsfeed (props) {
           <div className='newsfeed-container'>
             <div className='newsfeed-chartSection'>
               <div className='newsfeed-portfolio'>
-                <h2>{ props.buyView?props.currentStock.name: 'Balance' }</h2>
+                <h2>{ props.buyView? props.currentStock.name: 'Balance' }</h2>
                 <h1> $<Odometer
                   format="(,ddd).dd"
                   duration={ 200 }

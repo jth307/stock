@@ -50,7 +50,6 @@ class Searchbar extends React.Component {
   }
 
   handleClick(symbol) {
-    console.log('clicked')
     apiRoutes.getStockData(symbol)
     .then((res) => {
       this.props.changeStock(symbol,res.data.c,res.data.dp, res.data.d)

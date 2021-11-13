@@ -1,5 +1,5 @@
 import React from 'react';
-import phone from '../../../dist/images/phone.png';
+import phone from '../../../dist/images/splashphone.png';
 import Nav from './Nav';
 
 

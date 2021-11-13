@@ -72,30 +72,30 @@ function SmallGraph({stock}) {
     let dataX = [];
     let dataY = [];
 
-        apiRoutes.getStockGraphData(stock,'2')
-        .then((res) => {
-          for (let i = 0; i < res.data.length; i++) {
-            dataX.push(res.data[i].minute);
-            dataY.push(res.data[i].average)
-          }
-          setGraphXData(dataX);
-          setGraphYData(dataY);
+    apiRoutes.getStockGraphData(stock,'2')
+    .then((res) => {
+      for (let i = 0; i < res.data.length; i++) {
+        dataX.push(res.data[i].minute);
+        dataY.push(res.data[i].average)
+      }
+      setGraphXData(dataX);
+      setGraphYData(dataY);
 
-          if (dataY[dataY.length-1] - dataY[0] < 0) {
-            setGraphColor('red')}
-        })
+      if (dataY[dataY.length-1] - dataY[0] < 0) {
+        setGraphColor('red')}
+    })
   }, []);
 
 
   return (
     <div className='graph'>
-           <Line
-              data={graphData}
-              options={graphOptions}
-              width={72}
-              height={40}
-           />
-          </div>
+      <Line
+        data={graphData}
+        options={graphOptions}
+        width={72}
+        height={40}
+      />
+    </div>
   );
 }
 

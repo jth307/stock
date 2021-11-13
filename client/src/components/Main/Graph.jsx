@@ -11,7 +11,7 @@ function Graph({currentStock,  setFetchStatus}) {
 
   const [graphXData, setGraphXData] = useState([]);
   const [graphYData, setGraphYData] = useState([]);
-  const [graphColor, setGraphColor] = useState('#21CE99');
+  const [graphColor, setGraphColor] = useState('white');
   const [graphInterval, setGraphInterval] = useState('24H');
 
   const changeInterval = (interval) => {
@@ -55,7 +55,7 @@ function Graph({currentStock,  setFetchStatus}) {
       displayColors: false,
       titleFont: {size: 0},
       padding: 15,
-      borderColor	: 'lightgrey',
+      borderColor	: graphColor,
       borderWidth: 1,
       cornerRadius: 0,
       caretPadding: 55,
@@ -89,6 +89,10 @@ function Graph({currentStock,  setFetchStatus}) {
 
         setGraphXData(dataX);
         setGraphYData(dataY);
+
+        if (currentStock.price === 0) {
+          setGraphColor('white')
+        } else
 
         if (dataY[dataY.length-1] - dataY[0] < 0) {
           setGraphColor('red')

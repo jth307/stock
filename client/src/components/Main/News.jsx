@@ -23,27 +23,11 @@ function News(props) {
     }, [props.currentStock]);
 
 
+  const newsSet = props.buyView? stockNews: news ;
   const renderNews=()=> {
-    if (props.buyView) {
-        return (
-          <ul className='general-news-list'>
-              {stockNews.map((article, i) => {
-                  return (
-                    <li className='news-article' key={`article-${i}`}>
-                        <div>
-                            <a href={article.url}>{article.title}</a>
-                            <p>{article.description}</p>
-                        </div>
-                        <img src={article.urlToImage}/>
-                    </li>
-                  )
-              })}
-          </ul>
-      );
-    } else {
-        return (
+      return (
         <ul className='general-news-list'>
-            {news.map((article, i) => {
+            {newsSet.map((article, i) => {
                 return (
                   <li className='news-article' key={`article-${i}`}>
                       <div>
@@ -55,8 +39,24 @@ function News(props) {
                 )
             })}
         </ul>
-    );
-  }
+      );
+  //   } else {
+  //     return (
+  //     <ul className='general-news-list'>
+  //         {news.map((article, i) => {
+  //             return (
+  //               <li className='news-article' key={`article-${i}`}>
+  //                   <div>
+  //                       <a href={article.url}>{article.title}</a>
+  //                       <p>{article.description}</p>
+  //                   </div>
+  //                   <img src={article.urlToImage}/>
+  //               </li>
+  //             )
+  //         })}
+  //     </ul>
+  //   );
+  // }
 }
 
   return (
