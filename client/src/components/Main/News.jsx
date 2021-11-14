@@ -34,7 +34,7 @@ function News(props) {
                           <a href={article.url}>{article.title}</a>
                           <p>{article.description}</p>
                       </div>
-                      <img src={article.urlToImage}/>
+                      <img src={article.image}/>
                   </li>
                 )
             })}

@@ -24,7 +24,7 @@ const apiRoutes = {
 
   fetchGeneralNews : function() {
     return axios
-      .get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${NEWS_TOKEN}`)
+      .get(`https://gnews.io/api/v4/top-headlines?token=a975a8568ec204a4a2134acac70d3b61&lang=en`)
       .catch((error) => {
         console.error("Error", error.message);
       });
@@ -32,7 +32,8 @@ const apiRoutes = {
 
   fetchStockNews : function(stock) {
     return axios
-      .get(`https://newsapi.org/v2/everything?q=${stock}&apiKey=${NEWS_TOKEN}`)
+      .get(`${CLOUD_BASE_URL}${stock.toLowerCase()}/news/last/5?token=${CLOUD_TOKEN}`)
+      // https://newsapi.org/v2/everything?q=${stock}&apiKey=${NEWS_TOKEN}
       .catch((error) => {
         console.error("Error", error.message);
       });
