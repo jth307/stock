@@ -1,7 +1,0 @@
-node_modules/
-client/dist/.DS_Store
-
-## API keys ##
-# server/helpers/config.js
-
-package-lock.json
