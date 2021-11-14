@@ -3,8 +3,6 @@ require('dotenv').config()
 
 let pool;
 // if (process.env.NODE_ENV === 'production') {
-  console.log('real')
-
    pool = new Client({
     connectionString: process.env.DATABASE_URL,
     ssl: {
@@ -12,7 +10,6 @@ let pool;
     }
   });
 // } else {
-//   console.log('fake')
 //   pool = new Client({
 //   user: 'booradley',
 //   host: 'localhost',

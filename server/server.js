@@ -10,12 +10,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, authorization");
-//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-//   next();
-// });
+
 
 app.post('/register', async(req, res) => {
   if (!req.body) {
@@ -151,21 +146,9 @@ app.get('/', (req, res) => {
   console.log('get /, server says hello')
 });
 
-app.get('/db', async (req, res) => {
-  try {
-    const client = await pool.connect();
-    const result = await client.query('SELECT * FROM users');
-    const results = { 'results': (result) ? result.rows : null};
-    res.render('pages/db', results );
-    client.release();
-  } catch (err) {
-    console.error(err);
-    res.send("Error " + err);
-  }
-})
 
-app.listen((process.env.PORT), () => {
-  console.log('connected successfally to server at ' + process.env.PORT );
+app.listen((process.env.PORT ||9000), () => {
+  console.log('connected successfally to server at ' + (process.env.PORT || 9000) );
 });
 
 
