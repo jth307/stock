@@ -2,6 +2,8 @@ const path = require('path');
 const express = require('express');
 const db = require('../database/index');
 const bcrypt = require('bcrypt');
+require('dotenv').config()
+
 
 const app = express();
 
@@ -162,8 +164,8 @@ app.get('/db', async (req, res) => {
   }
 })
 
-app.listen((process.env.PORT || 9000), () => {
-  console.log('connected successfally to server at ' + (process.env.PORT || 9000));
+app.listen((process.env.PORT), () => {
+  console.log('connected successfally to server at ' + process.env.PORT );
 });
 
 

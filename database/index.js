@@ -1,28 +1,27 @@
-const { Pool } = require('pg');
-// require('dotenv').config()
+const Client = require('pg').Client
+require('dotenv').config()
 
-// // if (process.env.NODE_ENV === 'production') {
-// //   console.log('real')
+let pool;
+if (process.env.NODE_ENV === 'production') {
+  console.log('real')
 
-//   const pool = new Pool({
-//   //     user: 'booradley',
-//   // host: 'localhost',
-//   // database: 'robinwood',
-//   // port: 5432,
-//     connectionString: process.env.DATABASE_URL,
-//     ssl: {
-//       rejectUnauthorized: false
-//     }
-//   });
-// // } else {
-// //   console.log('fake')
-// // const pool = new Pool({
-// //   user: 'dgyizozmegnlwh',
-// //   host: 'ec2-44-198-236-169.compute-1.amazonaws.com',
-// //   database: 'dbpa1lo0lbar8o',
-// //   port: process.env.PORT || 5432,
-// // });
-// // }
+   pool = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+} else {
+  console.log('fake')
+  pool = new Client({
+  user: 'booradley',
+  host: 'localhost',
+  database: 'robinwood',
+  port: 5432,
+});
+}
+
+pool.connect();
 
 // const pool = new Pool({
 //   user: 'booradley',
@@ -31,13 +30,13 @@ const { Pool } = require('pg');
 //   port: 5432,
 // });
 
-const pool = new Pool({
-  user: 'dgyizozmegnlwh',
-  host: 'ec2-44-198-236-169.compute-1.amazonaws.com',
-  database: 'dbpa1lo0lbar8o',
-  password: '4848d623503d947359d1991733bd55dd374afe84bbc4b88ea12bda920bb82519',
-  port: 5432,
-});
+// const pool = new Pool({
+//   user: 'dgyizozmegnlwh',
+//   host: 'ec2-44-198-236-169.compute-1.amazonaws.com',
+//   database: 'dbpa1lo0lbar8o',
+//   password: '4848d623503d947359d1991733bd55dd374afe84bbc4b88ea12bda920bb82519',
+//   port: 5432,
+// });
 
 
 
