@@ -76,7 +76,7 @@ const apiRoutes = {
 
   updateStockQuantity: function (data) {
     return axios
-    .post('/updateStockQuantity/', data)
+    .post('http://localhost:9000/updateStockQuantity/', data)
     .catch((error) => {
       throw new Error(error);
     });
@@ -84,7 +84,7 @@ const apiRoutes = {
 
   getStocks: function (data) {
     return axios
-    .post('/getStocks/', data)
+    .post('http://localhost:9000/getStocks/', data)
     .catch((error) => {
       throw new Error(error);
     });
@@ -92,7 +92,7 @@ const apiRoutes = {
 
   deleteStock: function (data) {
     return axios
-    .post('/deleteStock/', data)
+    .post('http://localhost:9000/deleteStock/', data)
     .catch((error) => {
       throw new Error(error);
     });
