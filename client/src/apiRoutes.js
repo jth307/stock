@@ -67,7 +67,6 @@ const apiRoutes = {
   },
 
   authenticateUser: function (data) {
-    console.log('apiroutes')
     return axios
     .post('/authenticate/', data)
     .catch((error) => {

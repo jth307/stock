@@ -41,7 +41,6 @@ const pool = new Pool({
 
 
 const postUser= (params) => {
-  console.log('hey')
   const paramsArray = [
     params.firstname,
     params.lastname,

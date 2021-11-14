@@ -18,7 +18,7 @@ function LoginForm(props) {
       if (e) {
         e.preventDefault();
       }
-      console.log('submit')
+
       apiRoutes.authenticateUser(details)
       .then((res) => {
         if (res.data.message === 'Success') {
