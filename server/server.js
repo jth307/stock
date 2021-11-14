@@ -162,7 +162,7 @@ app.get('/db', async (req, res) => {
   }
 })
 
-app.listen(9000, () => {
+app.listen((process.env.PORT || 9000), () => {
   console.log('connected successfally to server at ' + (process.env.PORT || 9000));
 });
 

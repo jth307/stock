@@ -60,7 +60,7 @@ const apiRoutes = {
 
   createUser: function (data) {
     return axios
-    .post('/register/', data)
+    .post('http://localhost:9000/register/', data)
     .catch((error) => {
       throw new Error(error);
     });
@@ -68,7 +68,7 @@ const apiRoutes = {
 
   authenticateUser: function (data) {
     return axios
-    .post('/authenticate/', data)
+    .post('http://localhost:9000/authenticate/', data)
     .catch((error) => {
       throw new Error(error);
     });
