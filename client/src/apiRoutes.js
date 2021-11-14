@@ -60,7 +60,7 @@ const apiRoutes = {
 
   createUser: function (data) {
     return axios
-    .post('http://localhost:9000/register/', data)
+    .post('/register/', data)
     .catch((error) => {
       throw new Error(error);
     });
@@ -68,7 +68,7 @@ const apiRoutes = {
 
   authenticateUser: function (data) {
     return axios
-    .post('http://localhost:9000/authenticate/', data)
+    .post('/authenticate/', data)
     .catch((error) => {
       throw new Error(error);
     });
@@ -76,7 +76,7 @@ const apiRoutes = {
 
   updateStockQuantity: function (data) {
     return axios
-    .post('http://localhost:9000/updateStockQuantity/', data)
+    .post('/updateStockQuantity/', data)
     .catch((error) => {
       throw new Error(error);
     });
@@ -84,7 +84,7 @@ const apiRoutes = {
 
   getStocks: function (data) {
     return axios
-    .post('http://localhost:9000/getStocks/', data)
+    .post('/getStocks/', data)
     .catch((error) => {
       throw new Error(error);
     });
@@ -92,7 +92,7 @@ const apiRoutes = {
 
   deleteStock: function (data) {
     return axios
-    .post('http://localhost:9000/deleteStock/', data)
+    .post('/deleteStock/', data)
     .catch((error) => {
       throw new Error(error);
     });
