@@ -2,7 +2,7 @@ const Client = require('pg').Client
 require('dotenv').config()
 
 let pool;
-if (process.env.NODE_ENV === 'production') {
+// if (process.env.NODE_ENV === 'production') {
   console.log('real')
 
    pool = new Client({
@@ -11,15 +11,15 @@ if (process.env.NODE_ENV === 'production') {
       rejectUnauthorized: false
     }
   });
-} else {
-  console.log('fake')
-  pool = new Client({
-  user: 'booradley',
-  host: 'localhost',
-  database: 'robinwood',
-  port: 5432,
-});
-}
+// } else {
+//   console.log('fake')
+//   pool = new Client({
+//   user: 'booradley',
+//   host: 'localhost',
+//   database: 'robinwood',
+//   port: 5432,
+// });
+// }
 
 pool.connect();
 
