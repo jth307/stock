@@ -24,19 +24,20 @@ const { Pool } = require('pg');
 // // });
 // // }
 
-const pool = new Pool({
-  user: 'booradley',
-  host: 'localhost',
-  database: 'robinwood',
-  port: 5432,
-});
-
 // const pool = new Pool({
-//   user: 'dgyizozmegnlwh',
-//   host: 'ec2-44-198-236-169.compute-1.amazonaws.com',
-//   database: 'dbpa1lo0lbar8o',
+//   user: 'booradley',
+//   host: 'localhost',
+//   database: 'robinwood',
 //   port: 5432,
 // });
+
+const pool = new Pool({
+  user: 'dgyizozmegnlwh',
+  host: 'ec2-44-198-236-169.compute-1.amazonaws.com',
+  database: 'dbpa1lo0lbar8o',
+  password: '4848d623503d947359d1991733bd55dd374afe84bbc4b88ea12bda920bb82519',
+  port: 5432,
+});
 
 
 
