@@ -16,7 +16,6 @@ app.post('/register', async(req, res) => {
   if (!req.body) {
     res.status(401).send('Error: Must supply body parameters');
   } else {
-    console.log('post register')
     let {firstname, lastname, email, password, username} = req.body;
 
     let errors = [];
@@ -70,7 +69,7 @@ app.post('/register', async(req, res) => {
 
 
 app.post('/authenticate', (req, res) => {
-  console.log('post authenticate')
+
   let {username, password} = req.body
   if (!username) {username = 'robinwood'; password = 'password'}
   db.checkUsername(username)
@@ -82,19 +81,17 @@ app.post('/authenticate', (req, res) => {
             console.log('match!')
             res.status(200).send({message:'Success', userID: user.id})
           } else {
-            console.log('nah')
             res.status(200).send('Invalid Credentials')
           }
         })
       } else {
-        console.log('wtf')
+        console.log('no user found')
         res.status(200).send('User is not registered')
       }
     })
 })
 
-app.post('/updateStockQuantity', (req, res) => {
-  console.log('post updateStockQuantity')
+app.put('/updateStockQuantity', (req, res) => {
 
   db.checkInventory(req.body)
     .then((results) => {
@@ -118,9 +115,9 @@ app.post('/updateStockQuantity', (req, res) => {
     })
 });
 
-app.post('/getStocks', (req, res) => {
+app.get('/getStocks/:user_id', (req, res) => {
 
-  db.getStocks(req.body)
+  db.getStocks(req.params)
     .then((result) => {
       res.status(201).send(result.rows);
     })
@@ -129,9 +126,9 @@ app.post('/getStocks', (req, res) => {
     });
 })
 
-app.post('/deleteStock', (req, res) => {
+app.delete('/deleteStock/:stock_id/:user_id', (req, res) => {
 
-  db.deleteStock(req.body)
+  db.deleteStock(req.params)
     .then((result) => {
       res.status(201).send(result.rows);
     })
@@ -148,7 +145,7 @@ app.get('/', (req, res) => {
 
 
 app.listen((process.env.PORT ||9000), () => {
-  console.log('connected successfally to server at ' + (process.env.PORT || 9000) );
+  console.log('connected to server at ' + (process.env.PORT || 9000) );
 });
 
 

@@ -54,7 +54,6 @@ const postUser= (params) => {
 };
 
 const checkUser= (email) => {
-  console.log('r u here')
   const psqlStatementArray = `SELECT * FROM
   users WHERE email = $1`;
   return pool.query(psqlStatementArray, [email])
@@ -82,7 +81,7 @@ const buyOrSellStocks= (params) => {
 
 const getStocks= (params) => {
   const paramsArray = [
-    params.userID
+    params.user_id
   ];
   const psqlStatementArray = `SELECT * FROM
   users_stocks WHERE user_id = $1
@@ -117,8 +116,8 @@ const updateInventory= (params) => {
 
 const deleteStock= (params) => {
   const paramsArray = [
-    params.stock,
-    params.userID
+    params.stock_id,
+    params.user_id
   ];
   const psqlStatementArray = `DELETE FROM users_stocks
   WHERE stock = $1
